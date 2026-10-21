@@ -1,6 +1,6 @@
 # GYNAEQ frontend
 
-Website pages, CSS, JavaScript, and product assets are in `public/`.
+Website pages, CSS, JavaScript, and product assets are at the repository root.
 
 ## Run with the backend
 
@@ -15,4 +15,4 @@ npm start
 
 Open http://localhost:4000. The backend serves the frontend and `/api` on the same origin. No frontend build or dependency installation is needed.
 
-For separate hosting, serve `public/` as the web root and proxy `/api/` to the backend.
+For separate hosting, serve the repository root as the web root and proxy `/api/` to the backend.

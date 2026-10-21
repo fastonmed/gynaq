@@ -1,0 +1,6 @@
+DirectoryIndex index.html
+Options -Indexes -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(shop|product|category|about|contact|packages|compare|admin)/?$ $1.html [L]
