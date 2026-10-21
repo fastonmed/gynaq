@@ -87,6 +87,7 @@ class GynaeqStore {
       const res = await gynaeqFetch('/api/data');
       if (res.ok) {
         this.data = await res.json();
+        if (!location.pathname.startsWith('/admin')) this.data.products = (this.data.products || []).filter(p => !p.status || p.status === 'published');
         localStorage.removeItem('gynaeq_cached_db');
       } else {
         throw new Error('API offline');

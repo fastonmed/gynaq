@@ -8,4 +8,4 @@ RewriteRule ^ https://www.gynaeq.com%{REQUEST_URI} [R=301,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(shop|product|category|about|contact|packages|compare|admin)/?$ $1.html [L]
+RewriteRule ^(shop|product|category|about|contact|packages|compare|admin|blog|post|page)/?$ $1.html [L]

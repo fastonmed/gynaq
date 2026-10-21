@@ -34,9 +34,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // 2. Set Page Meta Title & Breadcrumb
-  document.title = `${p.title} (${p.sku}) | Official UAE Price & Specs | GYNAEQ`;
+  document.title = p.seoTitle || `${p.title} (${p.sku}) | Official UAE Price & Specs | GYNAEQ`;
   const metaDesc = document.getElementById('page-meta-desc');
-  if (metaDesc) metaDesc.content = `${p.title} official UAE specifications, distributor warranty, DHA/MoHAP registration and hospital tender pricing. In stock Dubai.`;
+  if (metaDesc) metaDesc.content = p.seoDescription || `${p.title} official UAE specifications, distributor warranty, DHA/MoHAP registration and hospital tender pricing. In stock Dubai.`;
 
   const bcCat = document.getElementById('bc-category-name');
   if (bcCat) {
@@ -52,17 +52,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   const mainImgEl = document.getElementById('prod-main-img');
   if (mainImgEl) {
     mainImgEl.src = p.image;
-    mainImgEl.alt = p.title;
+    mainImgEl.alt = p.imageAlt || p.title;
   }
 
   const thumbContainer = document.getElementById('prod-thumbnails');
   if (thumbContainer) {
-    // Generate simulated angle views based on product category
-    const thumbnails = [
-      p.image,
-      p.image, // angle 2
-      '/assets/hero_suite.jpg' // clinical setting view
-    ];
+    const thumbnails = [...new Set([p.image, ...(p.galleryImages || [])])].filter(Boolean);
     thumbContainer.innerHTML = thumbnails.map((img, idx) => `
       <div class="gallery-thumb ${idx === 0 ? 'active' : ''}" data-src="${img}">
         <img src="${img}" alt="${p.title} view ${idx + 1}">
