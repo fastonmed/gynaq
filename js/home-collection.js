@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const store = window.gynaeqStore;
+  const store = window.gynaeqStore || new GynaeqStore();
   const formatAED = amount => new Intl.NumberFormat('en-AE', {style: 'currency', currency: 'AED', maximumFractionDigits: 0}).format(amount);
   await store.init();
   const track = document.getElementById('home-collection-track');
