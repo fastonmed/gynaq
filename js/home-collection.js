@@ -1,0 +1,21 @@
+document.addEventListener('DOMContentLoaded', async () => {
+  const store = window.gynaeqStore;
+  const formatAED = amount => new Intl.NumberFormat('en-AE', {style: 'currency', currency: 'AED', maximumFractionDigits: 0}).format(amount);
+  await store.init();
+  const track = document.getElementById('home-collection-track');
+  if (!track) return;
+  const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const ids = ['electric-gynaecology-examination-chair', 'edan-c6a-video-colposcope', 'aveus-av-classic-3-fetal-monitor', 'jumper-jpd-100e-fetal-doppler-with-tft-display'];
+  const products = store.getProducts();
+  const ordered = [...ids.map(id => products.find(p => p.id === id)).filter(Boolean), ...products.filter(p => !ids.includes(p.id))];
+  track.innerHTML = ordered.map(p => `<a class="home-collection-item" href="/product?id=${encodeURIComponent(p.id)}"><div class="home-collection-image"><img src="${escape(p.image)}" alt="${escape(p.title)}" loading="lazy"></div><h3>${escape(p.title)}</h3><div class="home-collection-price">${p.callForPrice ? 'Price on request' : escape(formatAED(p.price))}</div></a>`).join('');
+  const move = direction => track.scrollBy({left: direction * (track.clientWidth + 24), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+  const previous = document.querySelector('.home-collection-arrow.previous');
+  const next = document.querySelector('.home-collection-arrow.next');
+  previous.onclick = () => move(-1);
+  next.onclick = () => move(1);
+  const update = () => {previous.disabled = track.scrollLeft < 2; next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;};
+  track.addEventListener('scroll', update, {passive: true});
+  window.addEventListener('resize', update);
+  update();
+});

@@ -7,60 +7,101 @@
   <meta name="description" content="Compare technical specifications, optics, warranty terms and UAE pricing for advanced obstetrics and gynecology equipment.">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 
-  <link rel="stylesheet" href="/css/tokens.css">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/pages.css">
-<link rel="stylesheet" href="/css/content.css?v=20261021-console">
+  <link rel="stylesheet" href="/css/tokens.css?v=20261022-black-footer">
+  <link rel="stylesheet" href="/css/style.css?v=20261022-black-footer">
+  <link rel="stylesheet" href="/css/pages.css?v=20261022-black-footer">
+  <link rel="stylesheet" href="/css/marketplace.css?v=20261022-shared-header">
+  <link rel="stylesheet" href="/css/brand.css?v=20261022-white-footer">
+  <link rel="stylesheet" href="/css/shop-mega.css?v=20261022-aligned">
 </head>
 <body>
 
 
   <!-- Header -->
-  <header class="main-header" id="site-header">
-    <div class="header-container">
-      <a href="/" class="logo-wrapper" title="GYNAEQ Home">
-        <img src="/assets/gynaeq-logo.svg" alt="GYNAEQ Medical Equipment" class="logo-img">
-      </a>
-
-      <div class="header-search">
-        <div class="search-box">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="header-search-input" placeholder="Search by machine model, brand (GE, Philips, Mindray), or SKU..." autocomplete="off">
+    <div class="beco-topbar">
+    <div class="beco-container">
+      <div class="beco-topbar-inner">
+        <div class="beco-topbar-ticker">
+          <span class="beco-announcement-full">FREE CLINICAL DELIVERY &amp; ON-SITE COMMISSIONING ACROSS UAE &bull; 2-YEAR FACTORY WARRANTY</span><span class="beco-announcement-short">FREE UAE DELIVERY</span>
         </div>
-        <div class="search-dropdown" id="search-dropdown"></div>
-      </div>
-
-      <div class="header-actions">
-        <a href="/compare" class="header-btn header-btn-primary" style="background: var(--color-navy-900);" title="Compare Selected Equipment">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          <span>Compare</span>
-          <span class="header-badge compare-badge" style="display: none;">0</span>
-        </a>
-
-        <button class="header-btn header-btn-primary" data-trigger-rfq-drawer title="View Request for Quote Basket">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          <span>Request Quote</span>
-          <span class="header-badge cart-badge" style="display: none;">0</span>
-        </button>
+        <div class="beco-topbar-auth">
+          <a href="/admin">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>SIGN IN / SIGN UP</span>
+          </a>
+        </div>
       </div>
     </div>
+  </div>
 
-    <nav class="nav-bar">
-      <div class="nav-container">
-        <ul class="nav-links">
-          <li><a href="/" class="nav-item">Home</a></li>
-          <li><a href="/shop" class="nav-item">Shop Equipment</a></li>
-          <li><a href="/packages" class="nav-item">Turnkey Packages</a></li>
-          <li><a href="/about" class="nav-item">About GYNAEQ</a></li>
-          <li><a href="/contact" class="nav-item">Contact Showroom</a></li>
-          <li><a href="/admin" class="nav-item" style="color: var(--color-primary); font-weight: 700;">Admin Console</a></li>
-        </ul>
-        <div class="nav-phone-call">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Dubai Showroom: +971 4 879 2300
+  <!-- ─── MAIN HEADER (BeCosmetics 4 Screenshot 2) ───────────────────────── -->
+  <header class="beco-header" id="site-header">
+    <div class="beco-container">
+      <div class="beco-header-inner">
+        <div class="beco-header-left">
+          <!-- Logo -->
+          <a href="/" class="beco-logo" title="GYNAEQ Medical Technologies">
+            <img class="gynaeq-brand-logo" src="/assets/gynaeq-logo.svg?v=20261022-reference" alt="GYNAEQ" width="189" height="44">
+          </a>
+
+          <!-- All Categories Dropdown Menu (BeCosmetics 4 Architecture) -->
+          <div class="beco-cats-dropdown-wrapper">
+            <a href="/shop" class="beco-cats-btn" id="cats-toggle-btn">
+              <span>ALL CATEGORIES</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="beco-cats-menu" id="cats-dropdown-menu">
+              <a href="/category?id=ultrasound" class="beco-cats-menu-item">
+                <strong>4D/5D Fetal Ultrasound</strong>
+                <span>GE Voluson, Mindray Resona, HDlive Matrix</span>
+              </a>
+              <a href="/category?id=fetal-monitoring" class="beco-cats-menu-item">
+                <strong>Fetal &amp; Twins CTG Monitoring</strong>
+                <span>Twins FHR, TOCO, telemetry transducers</span>
+              </a>
+              <a href="/category?id=colposcopy" class="beco-cats-menu-item">
+                <strong>Digital Video Colposcopy</strong>
+                <span>4K optics, green filters &amp; diagnostic software</span>
+              </a>
+              <a href="/category?id=beds-chairs" class="beco-cats-menu-item">
+                <strong>Delivery &amp; Examination Beds</strong>
+                <span>Motorized multi-position Ob-Gyn couches</span>
+              </a>
+              <a href="/category?id=electrosurgery" class="beco-cats-menu-item">
+                <strong>LEEP / LLETZ Electrosurgery</strong>
+                <span>High-frequency generators &amp; loop tips</span>
+              </a>
+              <a href="/packages" class="beco-cats-menu-item" style="border-top: 1px solid #F1F3F6; background: #FFF5F8;">
+                <strong style="color: #C7186F;">Turnkey Maternity Setup</strong>
+                <span>Complete polyclinic packages with up to 25% discount</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Nav Menu Links -->
+          <ul class="beco-nav-links">
+            <li><a href="/shop">SHOP</a></li>
+            <li><a href="/about">ABOUT</a></li>
+            <li><a href="/contact">CONTACT</a></li>
+          </ul>
+        </div>
+
+        <!-- Header Right: Search Input + Cart Box (BeCosmetics 4 Screenshot 2) -->
+        <div class="beco-header-right">
+          <div class="beco-search-container">
+            <svg class="beco-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="header-search-input" class="beco-search-input" placeholder="Search products..." autocomplete="off">
+            <div class="search-dropdown" id="search-dropdown"></div>
+          </div>
+
+          <!-- Cart Basket Icon Box -->
+          <button class="beco-cart-btn" data-trigger-rfq-drawer title="RFQ Tender Basket">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="beco-cart-count cart-badge" style="display: none;">0</span>
+          </button>
         </div>
       </div>
-    </nav>
+    </div>
   </header>
 
   <!-- Breadcrumb -->
@@ -120,7 +161,7 @@
     <div class="footer-container">
       <div class="footer-top-grid">
         <div class="footer-col-main">
-          <img src="/assets/gynaeq-logo-white.svg" alt="GYNAEQ" class="footer-logo">
+          <img class="gynaeq-brand-logo" src="/assets/gynaeq-logo.svg?v=20261022-reference" alt="GYNAEQ" width="189" height="44">
           <p class="footer-brand-desc">
             Authorized regional distributor of advanced gynecology, obstetrics, fetal medicine, and women's health medical equipment across the United Arab Emirates and Gulf Cooperation Council.
           </p>
@@ -142,9 +183,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="/js/store.js?v=20261021-console"></script>
+  <script src="/js/store.js"></script>
   <script src="/js/layout.js"></script>
   <script src="/js/compare.js"></script>
-<script src="/js/site-content.js?v=20261021-console"></script>
+  <script src="/js/shop-mega.js?v=20261022-aligned"></script>
 </body>
 </html>

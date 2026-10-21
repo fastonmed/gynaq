@@ -1,0 +1,126 @@
+/* Compact shopping tools keep the product catalog in view. */
+.gynaeq-shop .ecomus-category-hero { padding: 28px 0 18px; background: #fff; }
+.shop-heading-row { display: flex; justify-content: space-between; align-items: center; gap: 30px; margin-bottom: 24px; }
+.shop-title-line { display: flex; align-items: center; gap: 14px; }
+.gynaeq-shop .shop-heading-row .ecomus-page-title { margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -.035em; line-height: 1.3; }
+.shop-title-line > span { font-size: 12px; color: #85909b; white-space: nowrap; }
+.shop-heading-row p { font-size: 12px; margin: 7px 0 0; color: #79828f; }
+.shop-heading-row .catalog-search { width: 390px; max-width: 100%; margin: 0; border: 1px solid #e4e7eb; padding: 4px 5px 4px 14px; border-radius: 5px; gap: 8px; align-items: center; }
+.catalog-search > svg { flex-shrink: 0; color: #83909c; }
+.shop-heading-row .catalog-search input { font-size: 12px; padding: 10px 0; outline-offset: 3px; }
+.shop-heading-row .catalog-search button { border-radius: 3px; padding: 11px 16px; font-size: 11px; font-weight: 500; }
+.shop-heading-row .catalog-search button:hover { background: #a5155c; }
+.gynaeq-shop .catalog-category-panel { padding: 18px 0 0; margin: 0; border: 0; border-top: 1px solid #eceef1; border-radius: 0; }
+.catalog-category-controls { margin-bottom: 10px; }
+.catalog-category-controls > span { font-size: 10px; font-weight: 500; color: #8a929e; text-transform: uppercase; letter-spacing: .1em; }
+.catalog-category-controls button { width: 25px; height: 25px; font-size: 12px; }
+.gynaeq-shop .ecomus-subcategories-bar { gap: 8px; padding: 0 0 5px; }
+.gynaeq-shop .catalog-category-card { flex: 0 0 auto; flex-direction: row; gap: 8px; padding: 9px 12px; border: 1px solid #e8eaed; border-radius: 4px; text-align: left; background: #fff; }
+.gynaeq-shop .catalog-category-image { display: none; }
+.gynaeq-shop .catalog-category-card strong { font-size: 11px; font-weight: 500; line-height: 1.4; white-space: nowrap; }
+.gynaeq-shop .catalog-category-card > span { margin: 0; padding: 0; font-size: 10px; background: none; color: #8a929e; white-space: nowrap; }
+.gynaeq-shop .catalog-category-card.active { background: #fff5f9; border-color: #e4b0c9; color: #b21860; }
+.gynaeq-shop .catalog-category-card.active > span { color: #b21860; background: none; }
+.gynaeq-shop .catalog-category-card:hover { border-color: #c7186f; }
+@media(max-width: 700px) { .shop-heading-row { flex-direction: column; align-items: stretch; gap: 18px; margin-bottom: 18px; } .shop-heading-row .catalog-search { width: 100%; } .gynaeq-shop .shop-heading-row .ecomus-page-title { font-size: 25px; } .gynaeq-shop .ecomus-category-hero { padding-top: 20px; } }
+
+/* Outline illustrations for quick category recognition. */
+.gynaeq-shop .catalog-category-card { flex: 0 0 155px; flex-direction: column; align-items: center; justify-content: flex-start; gap: 7px; padding: 14px 10px 12px; text-align: center; border: 1px solid #eceef1; border-radius: 5px; }
+.catalog-category-line { width: 42px; height: 42px; margin-bottom: 4px; color: #526071; }
+.catalog-category-line svg { display: block; width: 100%; height: 100%; }
+.gynaeq-shop .catalog-category-card strong { white-space: normal; min-height: 2.8em; display: flex; align-items: center; justify-content: center; }
+.gynaeq-shop .catalog-category-card > span { margin-top: auto; }
+.gynaeq-shop .catalog-category-card.active .catalog-category-line { color: #c7186f; }
+@media(max-width: 640px) { .gynaeq-shop .catalog-category-card { flex-basis: 130px; } .catalog-category-line { width: 36px; height: 36px; } }
+
+/* Circular category navigation. */
+.gynaeq-shop .catalog-category-card {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 10px 8px 12px;
+  gap: 9px;
+}
+.gynaeq-shop .catalog-category-card .catalog-category-line {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #e7eaf0;
+  border-radius: 50%;
+  background: #f8f9fb;
+  margin-bottom: 3px;
+}
+.catalog-category-line svg { width: 36px; height: 36px; }
+.gynaeq-shop .catalog-category-card.active { background: transparent; }
+.gynaeq-shop .catalog-category-card.active .catalog-category-line {
+  background: #fff0f6;
+  border-color: #dc8bb2;
+  color: #c7186f;
+}
+.gynaeq-shop .catalog-category-card:hover { background: transparent; }
+.gynaeq-shop .catalog-category-card:hover .catalog-category-line { border-color: #c7186f; }
+@media(max-width: 640px) {
+  .gynaeq-shop .catalog-category-card .catalog-category-line { width: 64px; height: 64px; }
+  .catalog-category-line svg { width: 30px; height: 30px; }
+}
+
+.gynaeq-shop .ecomus-subcategories-bar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.gynaeq-shop .ecomus-subcategories-bar::-webkit-scrollbar { display: none; }
+
+/* Compact, evenly aligned specialty navigation. */
+.gynaeq-shop .ecomus-subcategories-bar { gap: 10px; padding: 4px 0 12px; }
+.gynaeq-shop .catalog-category-card { flex-basis: 126px; padding: 12px 6px; gap: 7px; border-radius: 14px; }
+.gynaeq-shop .catalog-category-card .catalog-category-line { width: 64px; height: 64px; background: #f8f8fa; border-color: transparent; margin-bottom: 4px; }
+.catalog-category-line svg { width: 29px; height: 29px; }
+.gynaeq-shop .catalog-category-card strong { min-height: 2.8em; font-size: 11px; font-weight: 500; line-height: 1.4; color: #556171; }
+.gynaeq-shop .catalog-category-card > span { font-size: 10px; color: #8e96a1; }
+.gynaeq-shop .catalog-category-card.active { background: #fff5f9; }
+.gynaeq-shop .catalog-category-card.active .catalog-category-line { background: #fff; border-color: #f2c7db; }
+.gynaeq-shop .catalog-category-card.active strong { color: #b81b65; }
+.gynaeq-shop .catalog-category-card:hover { background: #faf7f9; }
+.gynaeq-shop .catalog-category-card:hover .catalog-category-line { border-color: #efc3d7; }
+@media(min-width: 1400px) { .gynaeq-shop .catalog-category-card { flex-basis: calc((100% - 90px) / 10); } }
+@media(max-width: 640px) { .gynaeq-shop .catalog-category-card { flex-basis: 112px; } }
+
+/* Product miniatures bring dimension to the category icons. */
+.gynaeq-shop .catalog-category-card .catalog-category-dimensional {
+  width: 72px; height: 72px; padding: 10px;
+  background: radial-gradient(circle at 35% 25%, #fff 0%, #f5f1f5 70%, #ece7ee 100%);
+  box-shadow: inset 0 1px 2px #ffffff, 0 3px 7px #26324708;
+}
+.catalog-category-dimensional img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; filter: drop-shadow(2px 4px 2px #14233525); }
+.gynaeq-shop .catalog-category-card.active .catalog-category-dimensional { background: radial-gradient(circle at 35% 25%, #fff 0%, #fce7f1 85%); }
+@media(max-width: 640px) { .gynaeq-shop .catalog-category-card .catalog-category-dimensional { width: 64px; height: 64px; } }
+
+.catalog-category-dimensional .category-3d-icon { width: 55px; height: 55px; overflow: visible; filter: drop-shadow(1px 3px 2px #98527a20); }
+@media(max-width: 640px) { .catalog-category-dimensional .category-3d-icon { width: 48px; height: 48px; } }
+
+.category-clay-icon { display: block; width: 64px; height: 64px; background-image: url('/assets/icons/medical-3d-categories.png'); background-size: 300% 300%; background-repeat: no-repeat; }
+.gynaeq-shop .catalog-category-card .catalog-category-dimensional { padding: 4px; }
+@media(max-width: 640px) { .category-clay-icon { width: 56px; height: 56px; } }
+#shop-footer-category-links .category-clay-icon { width: 28px; height: 28px; }
+
+/* Share the full row width between the categories actually present. */
+@media(min-width: 1101px) {
+  .gynaeq-shop .ecomus-subcategories-bar { width: 100%; }
+  .gynaeq-shop .catalog-category-card { flex: 1 0 110px; }
+}
+
+.gynaeq-shop .catalog-category-panel { border-top: 0; }
+
+.shop-category-search { display: flex; align-items: center; gap: 12px; width: min(100%, 640px); margin: 0 auto 24px; padding: 5px 6px 5px 18px; border: 1px solid #e4e7ec; border-radius: 999px; background: #fff; }
+.shop-category-search svg { color: #8a96a5; flex-shrink: 0; }
+.shop-category-search input { min-width: 0; flex: 1; border: 0; background: transparent; padding: 10px 0; font: inherit; font-size: 12px; outline-offset: 3px; }
+.shop-category-search button { border: 0; border-radius: 999px; background: #c7186f; color: #fff; padding: 12px 24px; font: inherit; font-size: 12px; cursor: pointer; }
+.shop-category-search button:hover { background: #a8155c; }
+@media(max-width: 640px) { .shop-category-search { gap: 8px; padding-left: 14px; }.shop-category-search button { padding: 12px 17px; } }
+
+.shop-search-pink-box { background: #fff0f6; border: 1px solid #f6dbe8; border-radius: 18px; padding: 24px; margin-bottom: 24px; }
+.shop-search-pink-box .shop-category-search { margin-bottom: 0; background: #fff; border-color: #efd4e1; }
+@media(max-width: 640px) { .shop-search-pink-box { padding: 16px 12px; border-radius: 14px; } }
+
+.shop-search-pink-box { background: #c7186f; border-color: #c7186f; }

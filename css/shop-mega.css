@@ -1,0 +1,27 @@
+.beco-header { position: sticky; }
+.shop-mega-owner { display: flex; align-items: center; gap: 4px; }
+.shop-mega-toggle { border: 0; background: transparent; padding: 8px 5px; cursor: pointer; color: inherit; font-size: 15px; }
+.shop-mega-panel[hidden] { display: none; }
+.shop-mega-panel { position: absolute; top: 100%; left: 0; width: 100%; background: #fff; border-top: 1px solid #eceef1; border-bottom: 1px solid #eceef1; box-shadow: 0 15px 20px #0b192c08; z-index: 100; }
+.shop-mega-inner { max-width: 1440px; margin: auto; padding: 32px 40px 38px; display: grid; grid-template-columns: .85fr .85fr .85fr 1.25fr 1.25fr; gap: 28px; }
+.shop-mega-group h2 { font-size: 10px; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; margin: 0 0 18px; color: #142033; }
+.shop-mega-group a { display: block; padding: 7px 0; color: #777b82; font-size: 12px; line-height: 1.5; }
+.shop-mega-group a:hover { color: #c7186f; }
+.shop-mega-feature { display: block; position: relative; height: 265px; background: #f6f3ee; overflow: hidden; border-radius: 7px; }
+.shop-mega-feature img { width: 100%; height: 100%; object-fit: cover; transition: transform .25s; }
+.shop-mega-feature:first-of-type img { object-fit: contain; }
+.shop-mega-feature:hover img { transform: scale(1.035); }
+.shop-mega-feature span { position: absolute; bottom: 22px; left: 16px; right: 16px; padding: 13px 12px; background: #fff; color: #172333; text-align: center; font-size: 12px; border-radius: 3px; }
+.shop-mega-feature b { margin-left: 8px; font-weight: 400; }
+.shop-mega-toggle:focus-visible, .shop-mega-panel a:focus-visible { outline: 2px solid #c7186f; outline-offset: 3px; }
+@media(max-width: 1000px) { .shop-mega-inner { gap: 18px; padding: 25px; grid-template-columns: repeat(3, 1fr); }.shop-mega-feature { height: 180px; }.shop-mega-feature:last-child { grid-column: span 2; } }
+@media(max-width: 640px) { .shop-mega-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 20px; }.shop-mega-panel { max-height: 75vh; overflow: auto; }.shop-mega-feature { height: 160px; }.shop-mega-feature:last-child { grid-column: auto; } }
+@media(prefers-reduced-motion: reduce) { .shop-mega-feature img { transition: none; } }
+
+/* Keep label and chevron centered on the shared navigation baseline. */
+.beco-nav-links { align-items: center; }
+.beco-nav-links > li { display: flex; align-items: center; }
+.beco-nav-links > li > a { display: inline-flex; align-items: center; line-height: 1; }
+.beco-nav-links .shop-mega-owner { gap: 6px; }
+.shop-mega-toggle { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 32px; padding: 0; line-height: 1; flex-shrink: 0; }
+.shop-mega-toggle svg { display: block; }

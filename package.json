@@ -1,0 +1,18 @@
+{
+  "name": "gynaeq-website",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node console-src/build.mjs"
+  },
+  "dependencies": {
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "lucide-react": "1.16.0",
+    "dompurify": "3.2.7"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  }
+}

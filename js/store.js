@@ -1,13 +1,3 @@
-// Production API runs on the backend subdomain; local previews use the same origin.
-window.GYNAEQ_API_BASE = ['gynaeq.com', 'www.gynaeq.com'].includes(location.hostname) ? 'https://api.gynaeq.com' : '';
-async function gynaeqFetch(path, options = {}) {
-  const response = await fetch(window.GYNAEQ_API_BASE + path, { ...options, credentials: 'include' });
-  if (!response.ok) {
-    const message = await response.clone().json().catch(() => ({}));
-    throw new Error(message.error || `Request failed (${response.status})`);
-  }
-  return response;
-}
 // ==========================================================================
 // GYNAEQ Reactive Store & Data Management Client
 // Handles bi-directional sync between Storefront and Executive Admin CRM
@@ -84,17 +74,19 @@ class GynaeqStore {
 
   async init() {
     try {
-      const res = await gynaeqFetch('/api/data');
+      const res = await fetch('/api/data');
       if (res.ok) {
         this.data = await res.json();
-        if (!location.pathname.startsWith('/admin')) this.data.products = (this.data.products || []).filter(p => !p.status || p.status === 'published');
-        localStorage.removeItem('gynaeq_cached_db');
+        this.saveLocalStorage('gynaeq_cached_db', this.data);
       } else {
         throw new Error('API offline');
       }
     } catch (e) {
       console.warn('Using local cached database or fallback seed data:', e);
-      localStorage.removeItem('gynaeq_cached_db');
+      const cached = this.loadLocalStorage('gynaeq_cached_db', null);
+      if (cached) {
+        this.data = cached;
+      }
     }
     this.emit('data:ready', this.data);
     return this.data;
@@ -264,7 +256,7 @@ class GynaeqStore {
 
   async submitRFQ(rfqData) {
     try {
-      const res = await gynaeqFetch('/api/enquiries', {
+      const res = await fetch('/api/enquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(rfqData)
@@ -272,7 +264,7 @@ class GynaeqStore {
       const data = await res.json();
       if (data.success && data.enquiry) {
         this.data.enquiries = [data.enquiry, ...(this.data.enquiries || [])];
-        localStorage.removeItem('gynaeq_cached_db');
+        this.saveLocalStorage('gynaeq_cached_db', this.data);
         this.emit('enquiries:updated', this.data.enquiries);
         return data.enquiry;
       }
@@ -287,7 +279,7 @@ class GynaeqStore {
         createdAt: new Date().toISOString()
       };
       this.data.enquiries = [fallbackEnquiry, ...(this.data.enquiries || [])];
-      localStorage.removeItem('gynaeq_cached_db');
+      this.saveLocalStorage('gynaeq_cached_db', this.data);
       this.emit('enquiries:updated', this.data.enquiries);
       return fallbackEnquiry;
     }
@@ -295,7 +287,7 @@ class GynaeqStore {
 
   async updateEnquiryStatus(id, status, assignedTo, notes) {
     try {
-      const res = await gynaeqFetch(`/api/enquiries/${id}`, {
+      const res = await fetch(`/api/enquiries/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status, assignedTo, notes })
@@ -304,7 +296,7 @@ class GynaeqStore {
       if (data.success && data.enquiry) {
         const idx = this.data.enquiries.findIndex(e => e.id === id);
         if (idx !== -1) this.data.enquiries[idx] = data.enquiry;
-        localStorage.removeItem('gynaeq_cached_db');
+        this.saveLocalStorage('gynaeq_cached_db', this.data);
         this.emit('enquiries:updated', this.data.enquiries);
       }
     } catch (e) {
@@ -313,37 +305,73 @@ class GynaeqStore {
         if (status) this.data.enquiries[idx].status = status;
         if (assignedTo) this.data.enquiries[idx].assignedTo = assignedTo;
         if (notes) this.data.enquiries[idx].notes = notes;
-        localStorage.removeItem('gynaeq_cached_db');
+        this.saveLocalStorage('gynaeq_cached_db', this.data);
         this.emit('enquiries:updated', this.data.enquiries);
       }
     }
   }
 
   async addProduct(productData) {
-    const res = await gynaeqFetch('/api/products', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(productData) });
-    const data = await res.json();
-    this.data.products = [data.product, ...(this.data.products || [])];
-    this.emit('products:updated', this.data.products);
-    return data.product;
+    try {
+      const res = await fetch('/api/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(productData)
+      });
+      const data = await res.json();
+      if (data.success && data.product) {
+        this.data.products = [data.product, ...(this.data.products || [])];
+        this.saveLocalStorage('gynaeq_cached_db', this.data);
+        this.emit('products:updated', this.data.products);
+        return data.product;
+      }
+    } catch {
+      const newP = { id: `gnq-${Date.now()}`, ...productData };
+      this.data.products = [newP, ...(this.data.products || [])];
+      this.saveLocalStorage('gynaeq_cached_db', this.data);
+      this.emit('products:updated', this.data.products);
+      return newP;
+    }
   }
 
   async updateProduct(id, productData) {
-    const res = await gynaeqFetch(`/api/products/${encodeURIComponent(id)}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(productData) });
-    const data = await res.json();
-    const idx = this.data.products.findIndex(p => p.id === id);
-    if (idx !== -1) this.data.products[idx] = data.product;
-    this.emit('products:updated', this.data.products);
+    try {
+      const res = await fetch(`/api/products/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(productData)
+      });
+      const data = await res.json();
+      if (data.success && data.product) {
+        const idx = this.data.products.findIndex(p => p.id === id);
+        if (idx !== -1) this.data.products[idx] = data.product;
+        this.saveLocalStorage('gynaeq_cached_db', this.data);
+        this.emit('products:updated', this.data.products);
+      }
+    } catch {
+      const idx = this.data.products.findIndex(p => p.id === id);
+      if (idx !== -1) {
+        this.data.products[idx] = { ...this.data.products[idx], ...productData };
+        this.saveLocalStorage('gynaeq_cached_db', this.data);
+        this.emit('products:updated', this.data.products);
+      }
+    }
   }
 
   async deleteProduct(id) {
-    await gynaeqFetch(`/api/products/${encodeURIComponent(id)}`, { method: 'DELETE' });
+    try {
+      await fetch(`/api/products/${id}`, { method: 'DELETE' });
+    } catch (e) {
+      console.warn('Local delete:', e);
+    }
     this.data.products = this.data.products.filter(p => p.id !== id);
+    this.saveLocalStorage('gynaeq_cached_db', this.data);
     this.emit('products:updated', this.data.products);
   }
 
   async createQuotation(quoteData) {
     try {
-      const res = await gynaeqFetch('/api/quotations', {
+      const res = await fetch('/api/quotations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(quoteData)
@@ -351,14 +379,14 @@ class GynaeqStore {
       const data = await res.json();
       if (data.success && data.quotation) {
         this.data.quotations = [data.quotation, ...(this.data.quotations || [])];
-        localStorage.removeItem('gynaeq_cached_db');
+        this.saveLocalStorage('gynaeq_cached_db', this.data);
         this.emit('quotations:updated', this.data.quotations);
         return data.quotation;
       }
     } catch {
       const newQ = { id: `qt-${Date.now()}`, ...quoteData };
       this.data.quotations = [newQ, ...(this.data.quotations || [])];
-      localStorage.removeItem('gynaeq_cached_db');
+      this.saveLocalStorage('gynaeq_cached_db', this.data);
       this.emit('quotations:updated', this.data.quotations);
       return newQ;
     }
@@ -366,7 +394,7 @@ class GynaeqStore {
 
   async createAMC(amcData) {
     try {
-      const res = await gynaeqFetch('/api/amcs', {
+      const res = await fetch('/api/amcs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(amcData)
@@ -374,14 +402,14 @@ class GynaeqStore {
       const data = await res.json();
       if (data.success && data.contract) {
         this.data.amcContracts = [data.contract, ...(this.data.amcContracts || [])];
-        localStorage.removeItem('gynaeq_cached_db');
+        this.saveLocalStorage('gynaeq_cached_db', this.data);
         this.emit('amc:updated', this.data.amcContracts);
         return data.contract;
       }
     } catch {
       const newA = { id: `amc-${Date.now()}`, ...amcData };
       this.data.amcContracts = [newA, ...(this.data.amcContracts || [])];
-      localStorage.removeItem('gynaeq_cached_db');
+      this.saveLocalStorage('gynaeq_cached_db', this.data);
       this.emit('amc:updated', this.data.amcContracts);
       return newA;
     }

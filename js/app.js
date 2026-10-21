@@ -523,7 +523,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // ─── QUICK VIEW MODAL CONTROLLER ─────────────────────────────────────────
+  // ─── QUICK VIEW MODAL CONTROLLER (BeCosmetics 4 Luxury Standard) ────────
   function openQuickView(productId) {
     const p = store.getProductById(productId);
     if (!p || !quickviewBackdropEl) return;
@@ -532,55 +532,76 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!modalBody) return;
 
     const specsRows = Object.entries(p.specifications || {}).map(([k, v]) => `
-      <tr>
-        <td class="spec-key">${k}</td>
-        <td class="spec-val">${v}</td>
-      </tr>
+      <div class="beco-spec-row">
+        <span class="beco-spec-label">${k}</span>
+        <span class="beco-spec-value">${v}</span>
+      </div>
     `).join('');
 
     const certPills = (p.certifications || []).map(c => `
-      <span style="display: inline-block; background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-pill); margin-right: 6px; margin-bottom: 6px;">
+      <span class="beco-modal-pill">
         ✓ ${c}
       </span>
     `).join('');
 
     modalBody.innerHTML = `
-      <div class="quickview-grid">
-        <div class="quickview-media-box">
-          <img src="${p.image}" alt="${p.title}">
-        </div>
-        <div class="quickview-content">
-          <div style="font-family: var(--font-heading); font-weight: 800; font-size: 0.8rem; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">
-            ${p.brand} &bull; ${p.categoryName}
+      <div class="beco-modal-grid">
+        <!-- Left Product Showcase Media -->
+        <div class="beco-modal-media-wrap">
+          <div class="beco-modal-badge-top">HOSPITAL GRADE</div>
+          <div class="beco-modal-img-container">
+            <img src="${p.image}" alt="${p.title}" class="beco-modal-img">
           </div>
-          <h2 class="quickview-title">${p.title}</h2>
-          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 12px;">SKU: ${p.sku}</div>
-          
-          <div class="quickview-price-tag">
-            ${p.callForPrice ? 'Contact for Official Quote' : formatAED(p.price)}
+          <div class="beco-modal-trust-box">
+            <div class="beco-modal-trust-line">
+              <span class="beco-trust-dot"></span>
+              <span>In Stock (Dubai Healthcare City Hub)</span>
+            </div>
+            <div class="beco-modal-trust-line">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C7186F" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>2-Year UAE Factory Warranty &amp; Certified Calibration</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Product Information & Actions -->
+        <div class="beco-modal-content-wrap">
+          <div class="beco-modal-eyebrow">${p.brand} &bull; ${p.categoryName || 'Obstetrics & Gynecology'}</div>
+          <h2 class="beco-modal-title">${p.title}</h2>
+          <div class="beco-modal-sku">SKU: ${p.sku} &bull; DHA Medical Device Registered</div>
+
+          <div class="beco-modal-price-row">
+            <span class="beco-modal-price">${p.callForPrice ? 'Contact for Official Quote' : formatAED(p.price)}</span>
+            ${p.price ? `<span class="beco-modal-price-old">${formatAED(Math.round(p.price * 1.15))}</span>` : ''}
+            <span class="beco-modal-discount-tag">TENDER PRICING</span>
           </div>
 
-          <div style="margin-bottom: 14px;">
+          <div class="beco-modal-certs">
             ${certPills}
           </div>
 
-          <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 18px;">
+          <p class="beco-modal-desc">
             ${p.shortDesc}
           </p>
 
-          <table class="specs-table">
-            <tbody>
-              ${specsRows}
-            </tbody>
-          </table>
-
-          <div style="display: flex; gap: 12px; margin-top: auto;">
-            <button class="btn-primary" id="btn-quickview-add-rfq" style="flex: 1; justify-content: center;">
-              Add to Official RFQ
+          <!-- PROMINENT IMMEDIATE ACTION BUTTONS (Above the fold!) -->
+          <div class="beco-modal-actions-bar">
+            <button class="beco-btn beco-btn-primary" id="btn-quickview-add-rfq" style="flex: 1.2; justify-content: center;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <span>REQUEST OFFICIAL RFQ</span>
             </button>
-            <a href="https://wa.me/971508921100?text=Hello%20Gynaeq,%20I%20am%20inquiring%20about%20${encodeURIComponent(p.title)}%20(SKU:%20${p.sku})" target="_blank" class="btn-secondary" style="justify-content: center;">
-              WhatsApp Specialist
+            <a href="https://wa.me/971508921100?text=Hello%20Gynaeq,%20I%20am%20inquiring%20about%20${encodeURIComponent(p.title)}%20(SKU:%20${p.sku})" target="_blank" class="beco-btn beco-btn-secondary" style="flex: 1; justify-content: center;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>WHATSAPP SPECIALIST</span>
             </a>
+          </div>
+
+          <!-- Technical Specifications Matrix -->
+          <div class="beco-modal-specs-section">
+            <div class="beco-modal-specs-header">TECHNICAL SPECIFICATIONS</div>
+            <div class="beco-modal-specs-grid">
+              ${specsRows}
+            </div>
           </div>
         </div>
       </div>
@@ -603,6 +624,79 @@ document.addEventListener('DOMContentLoaded', async () => {
   quickviewBackdropEl?.addEventListener('click', (e) => {
     if (e.target === quickviewBackdropEl) quickviewBackdropEl.classList.remove('active');
   });
+
+  // ─── LIVE COUNTDOWN TIMER (Screenshot 5: 07 : 09 : 44 : 09) ─────────────
+  function initLiveCountdown() {
+    let secondsLeft = (7 * 86400) + (9 * 3600) + (44 * 60) + 9;
+    const daysEl = document.getElementById('timer-days');
+    const hoursEl = document.getElementById('timer-hours');
+    const minEl = document.getElementById('timer-min');
+    const secEl = document.getElementById('timer-sec');
+
+    if (!daysEl || !hoursEl || !minEl || !secEl) return;
+
+    setInterval(() => {
+      if (secondsLeft <= 0) return;
+      secondsLeft--;
+      const d = Math.floor(secondsLeft / 86400);
+      const h = Math.floor((secondsLeft % 86400) / 3600);
+      const m = Math.floor((secondsLeft % 3600) / 60);
+      const s = secondsLeft % 60;
+
+      daysEl.textContent = String(d).padStart(2, '0');
+      hoursEl.textContent = String(h).padStart(2, '0');
+      minEl.textContent = String(m).padStart(2, '0');
+      secEl.textContent = String(s).padStart(2, '0');
+    }, 1000);
+  }
+  initLiveCountdown();
+
+  // ─── INTERACTIVE BEFORE / AFTER SLIDER (BeCosmetics 4 Style) ──────────────
+  function initBeforeAfterSlider() {
+    const rangeInput = document.getElementById('home-ba-range');
+    const sliderContainer = document.getElementById('home-ba-slider');
+    if (!rangeInput || !sliderContainer) return;
+
+    const updateSlider = (val) => {
+      sliderContainer.style.setProperty('--ba-pos', `${val}%`);
+    };
+
+    rangeInput.addEventListener('input', (e) => {
+      updateSlider(e.target.value);
+    });
+
+    let isDragging = false;
+    const handleMove = (clientX) => {
+      const rect = sliderContainer.getBoundingClientRect();
+      const x = clientX - rect.left;
+      let pct = (x / rect.width) * 100;
+      pct = Math.max(0, Math.min(100, pct));
+      rangeInput.value = pct;
+      updateSlider(pct);
+    };
+
+    sliderContainer.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      handleMove(e.clientX);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (isDragging) handleMove(e.clientX);
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    sliderContainer.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 0) handleMove(e.touches[0].clientX);
+    }, { passive: true });
+
+    sliderContainer.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) handleMove(e.touches[0].clientX);
+    }, { passive: true });
+  }
+  initBeforeAfterSlider();
 
   // ─── COMPARISON TRAY CONTROLLER ──────────────────────────────────────────
   function renderCompareTray() {
@@ -735,6 +829,44 @@ document.addEventListener('DOMContentLoaded', async () => {
   store.on('products:updated', () => {
     renderProducts();
   });
+
+  // ─── MARKETPLACE INTERACTIVITY HANDLERS ────────────────────────────────
+  document.addEventListener('click', (e) => {
+    // Quickview click handler for cards
+    const qvBtn = e.target.closest('[data-quickview]');
+    if (qvBtn && !e.target.closest('.mkt-card-wishlist-btn')) {
+      const qvId = qvBtn.getAttribute('data-quickview');
+      if (qvId && qvId !== 'javascript:void(0)') {
+        openQuickView(qvId);
+      }
+      return;
+    }
+
+    // Wishlist click handler
+    const wishBtn = e.target.closest('.mkt-card-wishlist-btn');
+    if (wishBtn) {
+      e.stopPropagation();
+      wishBtn.classList.toggle('active');
+      const isAct = wishBtn.classList.contains('active');
+      wishBtn.style.color = isAct ? '#e11d48' : '#64748b';
+      wishBtn.style.background = isAct ? '#fff1f2' : '#ffffff';
+      showToast(isAct ? 'Item added to your healthcare wishlist' : 'Removed from wishlist');
+      return;
+    }
+  });
+
+  // AI Search input handler
+  const mktAiInput = document.getElementById('mkt-ai-input');
+  if (mktAiInput) {
+    mktAiInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const query = mktAiInput.value.trim();
+        if (query) {
+          window.location.href = `/shop?search=${encodeURIComponent(query)}`;
+        }
+      }
+    });
+  }
 
   // ─── FASTONMED HERO PRODUCT IMAGE ROTATOR & INTERACTIVE SHOWCASE ────────
   function initHeroProductShowcase() {
@@ -1009,6 +1141,35 @@ document.addEventListener('DOMContentLoaded', async () => {
         restartTimer();
       });
     }
+
+    // Global delegated click listeners for quickview, add-to-cart, and drawer buttons
+    document.addEventListener('click', (e) => {
+      const qvBtn = e.target.closest('[data-quickview]');
+      if (qvBtn) {
+        e.preventDefault();
+        const id = qvBtn.getAttribute('data-quickview');
+        openQuickView(id);
+        return;
+      }
+
+      const addBtn = e.target.closest('[data-add-to-cart]');
+      if (addBtn) {
+        e.preventDefault();
+        const id = addBtn.getAttribute('data-add-to-cart');
+        store.addToCart(id, 1);
+        const p = store.getProductById(id);
+        showToast(`Added ${p ? p.title : 'system'} to RFQ basket!`);
+        openRFQDrawer();
+        return;
+      }
+
+      const closeDrawerBtn = e.target.closest('#close-rfq-drawer-btn');
+      if (closeDrawerBtn) {
+        e.preventDefault();
+        closeRFQDrawer();
+        return;
+      }
+    });
 
     // Initial load
     showProduct(0);

@@ -3,448 +3,582 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GYNAEQ | Advanced Gynecology, Obstetrics & Women's Healthcare Medical Equipment Supplier UAE</title>
-  <meta name="description" content="GYNAEQ is the premier authorized distributor of advanced 4D/5D ultrasound systems, fetal & maternal monitors, digital colposcopes, electric delivery beds, LEEP electrosurgery and IVF lab equipment in Dubai UAE, Abu Dhabi, Saudi Arabia, Qatar & Gulf region.">
+  <title>GYNAEQ | Advanced Gynecology &amp; Obstetrics Technology UAE</title>
+  <meta name="description" content="GYNAEQ is the premier UAE medical technology distributor for 4D/5D ultrasound, fetal CTG monitors, digital colposcopes, examination chairs, and clinic setup packages in Dubai and GCC.">
   <link rel="canonical" href="https://www.gynaeq.com/">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 
-  <!-- Design System CSS -->
-  <link rel="stylesheet" href="/css/tokens.css">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/pages.css">
-<link rel="stylesheet" href="/css/content.css?v=20261021-console">
+  <!-- Typography: Plus Jakarta Sans & Manrope (from BeCosmetics 4) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core Design System & Tokens -->
+  <link rel="stylesheet" href="/css/tokens.css?v=20261022-black-footer">
+  <link rel="stylesheet" href="/css/style.css?v=20261022-black-footer">
+  <link rel="stylesheet" href="/css/marketplace.css?v=20261022-black-footer">
+  <link rel="stylesheet" href="/css/brand.css?v=20261022-no-category-divider">
+  <link rel="stylesheet" href="/css/shop-mega.css?v=20261022-aligned">
+  <link rel="stylesheet" href="/css/home-collection.css?v=20261022-five-products">
 </head>
-<body>
+<body class="marketplace-theme">
 
-
-  <!-- ─── MAIN FLOATING HEADER ───────────────────────────────────────────── -->
-  <header class="main-header" id="site-header">
-    <div class="header-container">
-      <!-- Vector Brand Logo -->
-      <a href="/" class="logo-wrapper" title="GYNAEQ Home">
-        <img src="/assets/gynaeq-logo.svg" alt="GYNAEQ Medical Equipment" class="logo-img">
-      </a>
-
-      <!-- Live Search with Instant Dropdown -->
-      <div class="header-search">
-        <div class="search-box">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="header-search-input" placeholder="Search by machine model, brand (GE, Philips, Mindray), or SKU..." autocomplete="off">
+  <!-- ─── TOP ANNOUNCEMENT BAR (BeCosmetics 4 Screenshot 2) ──────────────── -->
+  <div class="beco-topbar">
+    <div class="beco-container">
+      <div class="beco-topbar-inner">
+        <div class="beco-topbar-ticker">
+          <span class="beco-announcement-full">FREE CLINICAL DELIVERY &amp; ON-SITE COMMISSIONING ACROSS UAE &bull; 2-YEAR FACTORY WARRANTY</span><span class="beco-announcement-short">FREE UAE DELIVERY</span>
         </div>
-        <div class="search-dropdown" id="search-dropdown"></div>
-      </div>
-
-      <!-- Header Actions -->
-      <div class="header-actions">
-        <a href="/compare" class="header-btn header-btn-ghost" id="btn-open-compare-modal" title="Compare Selected Equipment">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          <span>Compare</span>
-          <span class="header-badge compare-badge" style="display: none;">0</span>
-        </a>
-
-        <button class="header-btn header-btn-primary" data-trigger-rfq-drawer title="View Request for Quote Basket">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          <span>Request Quote</span>
-          <span class="header-badge cart-badge" style="display: none;">0</span>
-        </button>
+        <div class="beco-topbar-auth">
+          <a href="/admin">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>SIGN IN / SIGN UP</span>
+          </a>
+        </div>
       </div>
     </div>
+  </div>
 
-    <!-- Navigation Bar -->
-    <nav class="nav-bar">
-      <div class="nav-container">
-        <ul class="nav-links">
-          <li><a href="/" class="nav-item active">Home</a></li>
-          <li><a href="/shop" class="nav-item">Shop Equipment</a></li>
-          <li><a href="/packages" class="nav-item">Turnkey Packages</a></li>
-          <li><a href="/about" class="nav-item">About GYNAEQ</a></li>
-          <li><a href="/contact" class="nav-item">Contact Showroom</a></li>
-          <li><a href="/admin" class="nav-item" style="color: var(--color-primary); font-weight: 700;">Admin Console</a></li>
-        </ul>
-        <div class="nav-phone-call">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <a href="tel:+97148792300">+971 4 879 2300</a>
+  <!-- ─── MAIN HEADER (BeCosmetics 4 Screenshot 2) ───────────────────────── -->
+  <header class="beco-header" id="site-header">
+    <div class="beco-container">
+      <div class="beco-header-inner">
+        <div class="beco-header-left">
+          <!-- Logo -->
+          <a href="/" class="beco-logo" title="GYNAEQ Medical Technologies">
+            <img class="gynaeq-brand-logo" src="/assets/gynaeq-logo.svg?v=20261022-reference" alt="GYNAEQ" width="189" height="44">
+          </a>
+
+          <!-- All Categories Dropdown Menu (BeCosmetics 4 Architecture) -->
+          <div class="beco-cats-dropdown-wrapper">
+            <a href="/shop" class="beco-cats-btn" id="cats-toggle-btn">
+              <span>ALL CATEGORIES</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="beco-cats-menu" id="cats-dropdown-menu">
+              <a href="/category?id=ultrasound" class="beco-cats-menu-item">
+                <strong>4D/5D Fetal Ultrasound</strong>
+                <span>GE Voluson, Mindray Resona, HDlive Matrix</span>
+              </a>
+              <a href="/category?id=fetal-monitoring" class="beco-cats-menu-item">
+                <strong>Fetal &amp; Twins CTG Monitoring</strong>
+                <span>Twins FHR, TOCO, telemetry transducers</span>
+              </a>
+              <a href="/category?id=colposcopy" class="beco-cats-menu-item">
+                <strong>Digital Video Colposcopy</strong>
+                <span>4K optics, green filters &amp; diagnostic software</span>
+              </a>
+              <a href="/category?id=beds-chairs" class="beco-cats-menu-item">
+                <strong>Delivery &amp; Examination Beds</strong>
+                <span>Motorized multi-position Ob-Gyn couches</span>
+              </a>
+              <a href="/category?id=electrosurgery" class="beco-cats-menu-item">
+                <strong>LEEP / LLETZ Electrosurgery</strong>
+                <span>High-frequency generators &amp; loop tips</span>
+              </a>
+              <a href="/packages" class="beco-cats-menu-item" style="border-top: 1px solid #F1F3F6; background: #FFF5F8;">
+                <strong style="color: #C7186F;">Turnkey Maternity Setup</strong>
+                <span>Complete polyclinic packages with up to 25% discount</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Nav Menu Links -->
+          <ul class="beco-nav-links">
+            <li><a href="/shop">SHOP</a></li>
+            <li><a href="/about">ABOUT</a></li>
+            <li><a href="/contact">CONTACT</a></li>
+          </ul>
+        </div>
+
+        <!-- Header Right: Search Input + Cart Box (BeCosmetics 4 Screenshot 2) -->
+        <div class="beco-header-right">
+          <div class="beco-search-container">
+            <svg class="beco-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="header-search-input" class="beco-search-input" placeholder="Search products..." autocomplete="off">
+            <div class="search-dropdown" id="search-dropdown"></div>
+          </div>
+
+          <!-- Cart Basket Icon Box -->
+          <button class="beco-cart-btn" data-trigger-rfq-drawer title="RFQ Tender Basket">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="beco-cart-count cart-badge" style="display: none;">0</span>
+          </button>
         </div>
       </div>
-    </nav>
+    </div>
   </header>
 
-  <!-- ─── CINEMATIC HERO SECTION (EXACT CLEAN MEDINOVA / FASTONMED LAYOUT) ─ -->
-  <section class="hero-section">
-    <div class="hero-container">
-      <!-- Left Column: Typography & CTAs -->
-      <div class="hero-content">
-        <h1 class="hero-headline">
-          Best Medical Equipment<br>
-          <span class="hero-headline-green">Supplier in UAE</span>
-        </h1>
-        <div class="hero-stat-line">
-          Since 2025 · 2,700+ Catalog Products · Manufacturer Documentation Available
-        </div>
-        <p class="hero-subhead">
-          GYNAEQ supplies medical equipment, biomedical systems and clinical solutions to hospitals, clinics and healthcare facilities across the UAE.
-        </p>
+  <!-- ─── HERO SECTION (1:1 BeCosmetics 4 Screenshot 3 Layout) ───────────── -->
+  <section class="beco-hero-section">
+    <div class="beco-container">
+      <div class="beco-hero-box">
+        <div class="beco-hero-overlay-subtle"></div>
 
-        <div class="hero-actions">
-          <a href="/shop" class="hero-btn-dark">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            <span>Explore Equipment</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-          <a href="tel:+97148792300" class="hero-btn-dark">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span>Call Now</span>
+        <!-- Hero Left: Rounded Organic Wave Card (Screenshot 3) -->
+        <div class="beco-hero-card">
+          <div class="beco-hero-eyebrow">Specialist Gynecology &amp; Obstetrics Equipment</div>
+          <h1 class="beco-hero-title">
+            Discover the power of precision in advanced women’s healthcare
+          </h1>
+          <p class="beco-hero-desc">
+            Hospital-grade Ob-Gyn ultrasound, fetal telemetry, and digital colposcopy engineered for clinical excellence. Without compromise.
+          </p>
+          <a href="/shop" class="beco-hero-btn">
+            <span>GO TO THE CATALOG</span>
+            <span>&rarr;</span>
           </a>
         </div>
-      </div>
 
-      <!-- Right Column: Ultra-Neat Card with Medical Ventilator -->
-      <div id="hero-image-col" class="hero-image-col">
-        <div class="hero-neat-card">
-          <img id="hero-product-img" src="/assets/products/ventilator.png" alt="Best Medical Equipment Supplier in UAE" class="hero-neat-img">
-        </div>
-      </div>
-    </div>
+        <!-- Hero Right: Overlaid Floating White Cards (Screenshot 3 / 2) -->
+        <div class="beco-hero-floating-cards">
+          <!-- Floating Card 1 (Fluffy Cloud equivalent) -->
+          <a class="beco-floating-card" style="cursor: pointer;" href="/product?id=aveus-av-classic-3-fetal-monitor">
+            <span class="beco-floating-card-badge">-25% OFF</span>
+            <img src="/assets/products/aveus-av-classic-3-fetal-monitor.png" alt="AV Classic 3 CTG" class="beco-floating-card-img">
+            <div class="beco-floating-card-title">AV Classic 3 CTG</div>
+            <div class="beco-floating-card-price">AED 8,450 – AED 9,800</div>
+          </a>
 
-    <!-- Full-Width Horizontal Trust Cards Below Columns -->
-    <div class="hero-trust-container">
-      <div id="medinova-trust-cards" class="medinova-trust-cards">
-        <div class="medinova-trust-item">
-          <div class="trust-circle-icon trust-blue">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
-          </div>
-          <div>
-            <h4 class="trust-title">Certified Genuine Quality</h4>
-            <p class="trust-desc">100% genuine biomedical equipment with direct UAE warranty.</p>
-          </div>
-        </div>
-
-        <div class="medinova-trust-item">
-          <div class="trust-circle-icon trust-green">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg>
-          </div>
-          <div>
-            <h4 class="trust-title">Biomedical AMC &amp; Service</h4>
-            <p class="trust-desc">In-house biomedical engineers, calibration &amp; hospital support.</p>
-          </div>
-        </div>
-
-        <div class="medinova-trust-item">
-          <div class="trust-circle-icon trust-purple">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-          </div>
-          <div>
-            <h4 class="trust-title">7 Emirates Coverage</h4>
-            <p class="trust-desc">Same-day Dubai dispatch &amp; 24h delivery across UAE &amp; GCC.</p>
-          </div>
-        </div>
-
-        <div class="medinova-trust-item">
-          <div class="trust-circle-icon trust-orange">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
-          </div>
-          <div>
-            <h4 class="trust-title">24/7 Clinical Support</h4>
-            <p class="trust-desc">Direct hospital procurement rates &amp; emergency loaner units.</p>
-          </div>
+          <!-- Floating Card 2 (Sunny Touch equivalent) -->
+          <a class="beco-floating-card" style="cursor: pointer;" href="/product?id=edan-c6a-video-colposcope">
+            <span class="beco-floating-card-badge">-20% OFF</span>
+            <img src="/assets/products/edan-c6a-video-colposcope.png" alt="Edan C6A Colposcope" class="beco-floating-card-img">
+            <div class="beco-floating-card-title">Edan C6A Colposcope</div>
+            <div class="beco-floating-card-price">AED 11,999 – AED 14,500</div>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── BENTO CATEGORY DISCOVERY ───────────────────────────────────────── -->
-  <section class="section-wrapper" id="bento-section">
-    <div class="section-header" style="align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
-      <div style="max-width: 680px;">
-        <div class="section-tag-green">OUR SPECIALTIES</div>
-        <h2 class="section-title">Specialized Clinical Equipment Categories</h2>
-        <p class="section-subtitle">Precision diagnostic, operative, and patient care technology engineered specifically for women's healthcare institutions.</p>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;">
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.775rem; font-weight: 700; color: #0284C7; background: #F0F9FF; padding: 4px 10px; border-radius: 9999px; border: 1px solid #BAE6FD;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            8 Specialized Divisions
-          </span>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.775rem; font-weight: 700; color: #059669; background: #ECFDF5; padding: 4px 10px; border-radius: 9999px; border: 1px solid #A7F3D0;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            DHA & MoHAP Certified
-          </span>
-          <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.775rem; font-weight: 700; color: #E11D48; background: #FFF1F2; padding: 4px 10px; border-radius: 9999px; border: 1px solid #FECDD3;">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Dubai Showroom & Warehouse
-          </span>
+  <!-- ─── SECTION: SUMMER SALE (1:1 BeCosmetics 4 Screenshot 1 Layout) ─────── -->
+
+
+  <section class="beco-container beco-separated-section">
+    <div class="beco-section-header">
+      <div>
+        <div class="beco-section-eyebrow">Gynaeq</div>
+        <h2 class="beco-section-title">Popular Categories</h2>
+      </div>
+    </div>
+
+    <!-- 2x2 Bento Category Cards with Soft Pastel Tints -->
+    <div class="beco-categories-bento">
+      <!-- Bento 1: 4D/5D ULTRASOUND (Soft Blush #FDF2F7) -->
+      <a href="/category?id=ultrasound" class="beco-category-card beco-cat-tint-1">
+        <div class="beco-cat-visual">
+          <img src="/assets/products/ultrasound_vignette.png" alt="4D/5D Ultrasound Workstations">
+        </div>
+        <div class="beco-cat-text">
+          <div class="beco-cat-name">4D/5D ULTRASOUND</div>
+          <div class="beco-cat-desc">Voluson, matrix probes, HDlive</div>
+          <div class="beco-cat-link">SHOW PRODUCTS</div>
+        </div>
+      </a>
+
+      <!-- Bento 2: FETAL MONITORING (Soft Warm Pearl #F7F3F5) -->
+      <a href="/category?id=fetal-monitoring" class="beco-category-card beco-cat-tint-2">
+        <div class="beco-cat-visual">
+          <img src="/assets/products/aveus-av-classic-3-fetal-monitor.png" alt="Fetal CTG Monitoring">
+        </div>
+        <div class="beco-cat-text">
+          <div class="beco-cat-name">FETAL MONITORING</div>
+          <div class="beco-cat-desc">Twins CTG, telemetry, transducers</div>
+          <div class="beco-cat-link">SHOW PRODUCTS</div>
+        </div>
+      </a>
+
+      <!-- Bento 3: VIDEO COLPOSCOPY (Soft Lavender Rose #F6EEF5) -->
+      <a href="/category?id=colposcopy" class="beco-category-card beco-cat-tint-3">
+        <div class="beco-cat-visual">
+          <img src="/assets/products/edan-c6a-video-colposcope.png" alt="Video Colposcopy Diagnostics">
+        </div>
+        <div class="beco-cat-text">
+          <div class="beco-cat-name">VIDEO COLPOSCOPY</div>
+          <div class="beco-cat-desc">4K screening, green filters, camera</div>
+          <div class="beco-cat-link">SHOW PRODUCTS</div>
+        </div>
+      </a>
+
+      <!-- Bento 4: DELIVERY & EXAM BEDS (Soft Warm Peach-Rose #FAF2EE) -->
+      <a href="/category?id=beds-chairs" class="beco-category-card beco-cat-tint-4">
+        <div class="beco-cat-visual">
+          <img src="/assets/products/exam_chair_vignette.png" alt="Examination and Birthing Couches">
+        </div>
+        <div class="beco-cat-text">
+          <div class="beco-cat-name">EXAM &amp; LDR BEDS</div>
+          <div class="beco-cat-desc">Motorized birthing &amp; exam chairs</div>
+          <div class="beco-cat-link">SHOW PRODUCTS</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="home-collection" aria-labelledby="home-collection-title">
+    <div class="beco-container">
+      <h2 id="home-collection-title">Selected Equipment</h2>
+      <div class="home-collection-carousel">
+        <button class="home-collection-arrow previous" type="button" aria-label="Previous equipment">‹</button>
+        <div id="home-collection-track" class="home-collection-track" tabindex="0" role="region" aria-label="Selected medical equipment"></div>
+        <button class="home-collection-arrow next" type="button" aria-label="Next equipment">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION: POPULAR CATEGORIES (1:1 BeCosmetics 4 Screenshot 4) ───── -->
+
+
+  <!-- ─── SECTION: NEWEST PRODUCTS (1:1 BeCosmetics 4 Screenshot 5) ──────── -->
+
+
+  <!-- ─── SECTION: TWO-COLUMN PROMO BANNERS (1:1 BeCosmetics 4 Screenshot 5) ── -->
+  <section class="beco-container">
+    <div class="beco-promos-section">
+      <!-- Banner 1 (Left: Natural Summer equivalent with Countdown) -->
+      <div class="beco-promo-container beco-promo-left">
+        <div class="beco-promo-left-card">
+          <h3 class="beco-promo-left-title">Turnkey clinic setup</h3>
+          <p class="beco-promo-left-sub">up to -25% on complete maternity suites!</p>
+
+          <!-- Countdown Timer -->
+          <div class="beco-countdown">
+            <div class="beco-countdown-unit">
+              <div class="beco-countdown-num" id="timer-days">07</div>
+              <div class="beco-countdown-label">days</div>
+            </div>
+            <div class="beco-countdown-colon">:</div>
+            <div class="beco-countdown-unit">
+              <div class="beco-countdown-num" id="timer-hours">09</div>
+              <div class="beco-countdown-label">hours</div>
+            </div>
+            <div class="beco-countdown-colon">:</div>
+            <div class="beco-countdown-unit">
+              <div class="beco-countdown-num" id="timer-min">44</div>
+              <div class="beco-countdown-label">min</div>
+            </div>
+            <div class="beco-countdown-colon">:</div>
+            <div class="beco-countdown-unit">
+              <div class="beco-countdown-num" id="timer-sec">09</div>
+              <div class="beco-countdown-label">sec</div>
+            </div>
+          </div>
+
+          <a href="/packages" class="beco-promo-left-btn">
+            <span>GO TO THE CATALOG</span>
+            <span>&rarr;</span>
+          </a>
         </div>
       </div>
-      <div style="display: flex; align-items: center; gap: 14px;">
-        <!-- Slider Navigation Controls -->
-        <div class="category-slider-controls">
-          <button type="button" class="category-slider-arrow" id="category-slider-prev" aria-label="Slide Left" title="Previous Categories">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <button type="button" class="category-slider-arrow" id="category-slider-next" aria-label="Slide Right" title="Next Categories">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-        </div>
-        <a href="/shop" class="btn-secondary" style="padding: 10px 20px; font-size: 0.875rem;">
-          <span>Explore Complete Catalog</span>
+
+      <!-- Banner 2 (Right: Photographic Dark Teal / Navy Banner) -->
+      <div class="beco-promo-container beco-promo-right">
+        <h3 class="beco-promo-right-title">Equip your hospital with world-class technology</h3>
+        <p class="beco-promo-right-sub">Turnkey maternity bundles and biomedical SLA contracts created for UAE hospitals.</p>
+        <a href="/packages" class="beco-promo-right-btn">
+          <span>OUR PACKAGES</span>
           <span>&rarr;</span>
         </a>
       </div>
     </div>
-    <div class="category-slider-viewport">
-      <div class="bento-grid category-slider-track" id="bento-grid">
-        <!-- Dynamic Bento Cards injected via app.js -->
-      </div>
-    </div>
   </section>
 
-  <!-- ─── PRODUCT CATALOG & FILTER ENGINE ───────────────────────────────── -->
-  <section class="catalog-section" id="catalog-section">
-    <div class="catalog-container">
-      <div class="section-header">
-        <div>
-          <div class="eyebrow-pill" style="margin-bottom: 8px;">Official Product Portfolio</div>
-          <h2 class="section-title">Gynecology & Obstetric Equipment Catalog</h2>
-          <p class="section-subtitle">Real-time inventory from our Dubai distribution hub. Select models to request an official institution quotation or compare technical specifications.</p>
-        </div>
-        <div id="results-count" class="filter-results-count">Loading medical inventory...</div>
-      </div>
+  <!-- ─── SECTION: FEATURE BEFORE / AFTER SPLIT BANNER (1:1 BeCosmetics 4 Screenshot 2) ─ -->
+  <section class="beco-container beco-feature-split-section">
+    <div class="beco-feature-split-box">
+      <!-- Left Column: Title, Subtitle, CTA & Floating White Card -->
+      <div class="beco-feature-split-left">
+        <h2 class="beco-feature-split-title">
+          Keep your clinical imaging crystal clear and precise
+        </h2>
+        <p class="beco-feature-split-sub">
+          Virtual depth acoustic matrix rendering with 5D HDlive realism for definitive Ob-Gyn diagnostics.
+        </p>
+        <a href="/category?id=ultrasound" class="beco-feature-split-btn">
+          <span>EXPLORE ULTRASOUND</span>
+          <span>&rarr;</span>
+        </a>
 
-      <!-- Filter Toolbar -->
-      <div class="filter-toolbar">
-        <div class="filter-categories-pills" id="category-filter-pills">
-          <!-- Dynamic Filter Pills -->
-        </div>
-
-        <div class="filter-controls-row">
-          <div class="filter-left-controls">
-            <select class="filter-select" id="brand-filter" aria-label="Filter by Brand">
-              <option value="all">All Global Brands</option>
-            </select>
-
-            <select class="filter-select" id="sort-filter" aria-label="Sort Equipment">
-              <option value="featured">Sort by: Featured</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="rating">Highest Clinical Rating</option>
-              <option value="name-asc">Model Name (A-Z)</option>
-            </select>
-
-            <label class="filter-checkbox-label">
-              <input type="checkbox" id="stock-filter">
-              <span>Dubai Warehouse Stock Only</span>
-            </label>
+        <!-- Floating White Card (Screenshot 2: Luminous Mist equivalent) -->
+        <a class="beco-feature-floating-card" title="Quick View System" href="/product?id=ge-voluson-e10-expert">
+          <img src="/assets/products/ultrasound_transparent.png" alt="Voluson E10 Expert" class="beco-feature-floating-thumb">
+          <div class="beco-feature-floating-info">
+            <span class="beco-feature-floating-title">Voluson™ E10 Expert 4D/5D</span>
+            <span class="beco-feature-floating-price">AED 50,769 – AED 59,500</span>
           </div>
-        </div>
-      </div>
-
-      <!-- Product Cards Grid -->
-      <div class="product-grid" id="product-grid">
-        <!-- Rendered dynamically by app.js -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── TURNKEY OB-GYN CLINIC SETUP PACKAGES ──────────────────────────── -->
-  <section class="packages-section" id="packages-section">
-    <div class="packages-container">
-      <div class="packages-header">
-        <div class="eyebrow-pill" style="background: rgba(199,24,111,0.25); border-color: rgba(199,24,111,0.5); color: #F472B6;">
-          Turnkey Hospital Solutions
-        </div>
-        <h2 class="section-title">Complete Turnkey Clinic Setup Packages</h2>
-        <p class="section-subtitle">End-to-end procurement bundles for new healthcare licenses, clinic expansions, and hospital maternity departments across UAE & GCC.</p>
-      </div>
-
-      <div class="packages-grid">
-        <!-- Package 1 -->
-        <div class="package-card">
-          <div class="package-level">PACKAGE LEVEL 1</div>
-          <h3 class="package-name">Outpatient Gynecology Suite</h3>
-          <p class="package-desc">Ideal for private consultation clinics, polyclinics, and wellness centres requiring essential diagnostic and examination capabilities.</p>
-          <ul class="package-items-list">
-            <li class="package-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Gynecology Examination Couch Manual DP</li>
-            <li class="package-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Jumper JPD-100E Fetal Doppler with TFT Display</li>
-            <li class="package-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>SunlandScope™ Portable Electronic Colposcope</li>
-            <li class="package-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>MoHAP / DHA Licensing Certification Pack</li>
-          </ul>
-          <a href="/packages" class="btn-secondary" style="width: 100%; justify-content: center;">
-            View Full Package Breakdown &rarr;
-          </a>
-        </div>
-
-        <!-- Package 2 (Featured) -->
-        <div class="package-card featured">
-          <div class="package-card-badge">Most Requested</div>
-          <div class="package-level">PACKAGE LEVEL 2</div>
-          <h3 class="package-name">Maternity Ward & Procedure Suite</h3>
-          <p class="package-desc">Designed for maternity hospitals and women's health clinics demanding continuous fetal CTG telemetry and precision electrosurgery.</p>
-          <ul class="package-items-list">
-            <li class="package-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Electric Gynaecology Examination Chair (Motorized)</li>
-            <li class="package-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>AVEUS AV-Classic 3 Twins Fetal Monitor (CTG)</li>
-            <li class="package-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>EDAN C6A High-Resolution Video Colposcope</li>
-            <li class="package-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>LED SpA Surtron 80 High-Frequency Electrosurgery Unit</li>
-            <li class="package-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>2 Years Comprehensive Biomedical AMC Warranty</li>
-          </ul>
-          <a href="/packages" class="btn-primary" style="width: 100%; justify-content: center;">
-            View Full Package Breakdown &rarr;
-          </a>
-        </div>
-
-        <!-- Package 3 -->
-        <div class="package-card">
-          <div class="package-level">PACKAGE LEVEL 3</div>
-          <h3 class="package-name">Cervical Surgery & Minor OT Suite</h3>
-          <p class="package-desc">Complete operative and outpatient setup for cervical diagnostics, cryo-ablation, suction drainage, and specialized gynecological procedures.</p>
-          <ul class="package-items-list">
-            <li class="package-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Basco India BASCO-CRYOS Deluxe Cryosurgical System</li>
-            <li class="package-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Askir C30 Professional Surgical Suction Machine – CA-MI</li>
-            <li class="package-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>EDAN C6A Video Colposcope with Green Filter</li>
-            <li class="package-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Electric Gynaecology Examination Chair</li>
-            <li class="package-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dedicated 24/7 Priority Emergency Loaner SLA</li>
-          </ul>
-          <a href="/packages" class="btn-secondary" style="width: 100%; justify-content: center;">
-            View Full Package Breakdown &rarr;
-          </a>
-        </div>
-      </div>
-
-      <div style="text-align: center; margin-top: 40px;">
-        <a href="/packages" class="btn-primary" style="padding: 14px 32px; font-size: 1rem;">
-          Explore All Turnkey Setup Packages & Detailed Item Pricing &rarr;
         </a>
       </div>
-    </div>
-  </section>
 
-  <!-- ─── WHY CHOOSE GYNAEQ ──────────────────────────────────────────────── -->
-  <section class="features-section" id="features-section">
-    <div class="section-wrapper" style="padding-top: 0;">
-      <div class="section-header" style="text-align: center; flex-direction: column; align-items: center;">
-        <div class="eyebrow-pill">The Gynaeq Standard</div>
-        <h2 class="section-title">Why Middle East Healthcare Leaders Choose GYNAEQ</h2>
-        <p class="section-subtitle">We don't just sell medical machines — we engineer lasting clinical partnerships with comprehensive biomedical lifecycle care.</p>
-      </div>
+      <!-- Right Column: Interactive Before / After Split Slider -->
+      <div class="beco-ba-slider" id="home-ba-slider" style="--ba-pos: 50%;">
+        <!-- Before Image (2D Grayscale) -->
+        <img src="/assets/compare_2d_ultrasound.jpg" alt="Standard 2D Grayscale Ultrasound" class="beco-ba-img beco-ba-img-before">
 
-      <div class="features-grid">
-        <div class="feature-box">
-          <div class="feature-icon-circle">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          </div>
-          <h3 class="feature-title">Immediate Dubai Warehouse Stock</h3>
-          <p class="feature-text">Avoid 8-12 week international factory delays. Our temperature-controlled Dubai Healthcare City warehouse maintains ready-to-ship stock of essential Ob-Gyn equipment.</p>
+        <!-- After Image (5D HDlive Virtual Depth) -->
+        <img src="/assets/compare_5d_hdlive.jpg" alt="5D HDlive Virtual Depth Fetal Rendering" class="beco-ba-img beco-ba-img-after">
+
+        <!-- Center Divider & Handle -->
+        <div class="beco-ba-divider-line"></div>
+        <div class="beco-ba-handle">
+          <span>&#9666;&#9656;</span>
         </div>
 
-        <div class="feature-box">
-          <div class="feature-icon-circle">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h3 class="feature-title">Certified Biomedical Engineers</h3>
-          <p class="feature-text">Our factory-trained biomedical engineering division conducts on-site electrical safety testing, probe calibration, and issues official DHA/MoHAP compliance certificates.</p>
-        </div>
+        <!-- Labels -->
+        <div class="beco-ba-label beco-ba-label-before">Standard 2D</div>
+        <div class="beco-ba-label beco-ba-label-after">5D HDlive Matrix</div>
 
-        <div class="feature-box">
-          <div class="feature-icon-circle">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <h3 class="feature-title">Annual Maintenance (AMC) & Loaners</h3>
-          <p class="feature-text">Guaranteed 4-hour response time for critical maternity wards across the UAE. If a fetal monitor or ultrasound requires workshop repair, we supply a zero-downtime loaner.</p>
-        </div>
+        <!-- Draggable Invisible Range Slider -->
+        <input type="range" min="0" max="100" value="50" class="beco-ba-range-input" id="home-ba-range" aria-label="Interactive Before and After Image Comparison Slider">
       </div>
     </div>
   </section>
 
-  <!-- ─── AUTHORIZED BRANDS & CLIENT TRUST ───────────────────────────────── -->
-  <section class="brands-section" id="brands-section">
-    <div class="brands-container">
-      <div class="brands-title">Authorized Global Medical Manufacturers & Channel Partners</div>
-      <div class="brands-grid">
-        <span class="brand-logo-pill">GE HealthCare</span>
-        <span class="brand-logo-pill">PHILIPS</span>
-        <span class="brand-logo-pill">MINDRAY</span>
-        <span class="brand-logo-pill">OLYMPUS</span>
-        <span class="brand-logo-pill">KARL STORZ</span>
-        <span class="brand-logo-pill">COOPERSURGICAL</span>
-        <span class="brand-logo-pill">MEDGYN</span>
-        <span class="brand-logo-pill">SONOSCAPE</span>
-        <span class="brand-logo-pill">COOK MEDICAL</span>
-        <span class="brand-logo-pill">WELCH ALLYN</span>
+  <!-- ─── SECTION: REVIEWS & 4.9/5 RATING WIDGET (1:1 BeCosmetics 4 Screenshot 2 Bottom) ─── -->
+  <section class="beco-container beco-reviews-section">
+    <div class="beco-section-header">
+      <div>
+        <div class="beco-section-eyebrow">GYNAEQ Women’s Healthcare</div>
+        <h2 class="beco-section-title">Feedback from Women’s Healthcare Teams</h2>
+      </div>
+    </div>
+
+    <div class="beco-reviews-grid">
+      <div class="beco-quotes-subgrid">
+        <div class="beco-quote-card">
+          <div class="beco-quote-title">Wonderful!</div>
+          <p class="beco-quote-text">
+            “GYNAEQ delivered and calibrated our twin fetal CTG monitors and Voluson ultrasound systems within 48 hours. Biomedical calibration and DHA compliance documentation were flawless.”
+          </p>
+          <div>
+            <div class="beco-quote-author">Dr. Fatima Al Mansoori</div>
+            <div class="beco-quote-role">Head of Obstetrics, Dubai Healthcare City</div>
+          </div>
+        </div>
+
+        <div class="beco-quote-card">
+          <div class="beco-quote-title">Amazing!</div>
+          <p class="beco-quote-text">
+            “The Edan C6A Video Colposcope and LEEP electrosurgery units have performed with stellar optical precision across our outpatient rooms. Seamless local warranty backing.”
+          </p>
+          <div>
+            <div class="beco-quote-author">Dr. Sarah Jenkins, FRCOG</div>
+            <div class="beco-quote-role">Consultant Gynecologist, Abu Dhabi</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rating Score Widget (BeCosmetics 4 Style) -->
+      <div class="beco-rating-box">
+        <div class="beco-rating-big">4.9 <span style="font-size: 1.75rem; font-weight: 500; color: var(--beco-text-muted);">/5</span></div>
+        <div class="beco-rating-stars">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="beco-rating-caption">Rate 4.9 on 1,294 opinions</div>
+        <div class="beco-rating-subcaption">Hospital procurement audits across UAE</div>
       </div>
     </div>
   </section>
 
-  <!-- ─── SLIDE-OVER RFQ QUOTE DRAWER ────────────────────────────────────── -->
+  <!-- ─── SECTION: CLINICAL JOURNAL & GUIDES (BeCosmetics 4 Style) ────────── -->
+  <section class="beco-container beco-blog-section">
+    <div class="beco-section-header">
+      <div>
+        <div class="beco-section-eyebrow">GYNAEQ Women’s Healthcare</div>
+        <h2 class="beco-section-title">Clinical Insights &amp; Guides</h2>
+      </div>
+      <a href="/about" class="beco-section-link">
+        <span>ALL NEWS</span>
+        <span class="beco-link-circle">&rarr;</span>
+      </a>
+    </div>
+
+    <div class="beco-blog-grid">
+      <div class="beco-blog-card">
+        <img src="/assets/ultrasound.jpg" alt="Ob-Gyn Ultrasound Selection Guide" class="beco-blog-thumb">
+        <div>
+          <h3 class="beco-blog-title">How to select the right 4D/5D Ultrasound for your Ob-Gyn clinic</h3>
+          <p class="beco-blog-excerpt">
+            A comprehensive guide on acoustic matrix architecture, fetal Doppler sensitivity, and DHA regulatory licensing.
+          </p>
+          <span class="beco-blog-read-more">READ MORE &rarr;</span>
+        </div>
+      </div>
+
+      <div class="beco-blog-card">
+        <img src="/assets/colposcope.jpg" alt="Video Colposcopy Protocol" class="beco-blog-thumb">
+        <div>
+          <h3 class="beco-blog-title">Modern Cervical Screening: Video Colposcopy &amp; Acetic Acid Protocol</h3>
+          <p class="beco-blog-excerpt">
+            Optimizing early micro-vascular cervical cancer detection using multi-grade electronic green filtering and digital RCI scoring.
+          </p>
+          <span class="beco-blog-read-more">READ MORE &rarr;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION: 4-COLUMN TRUST PILLARS (BeCosmetics 4 Style) ────────────── -->
+  <div class="beco-container">
+    <div class="beco-features-strip">
+      <div class="beco-features-grid">
+        <div class="beco-feature-col">
+          <div class="beco-feature-icon-circle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div class="beco-feature-title">MoHAP Registered</div>
+          <div class="beco-feature-desc">100% compliant UAE regulatory dossiers</div>
+        </div>
+
+        <div class="beco-feature-col">
+          <div class="beco-feature-icon-circle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="beco-feature-title">2-Year Factory Warranty</div>
+          <div class="beco-feature-desc">Direct factory parts &amp; certified calibration</div>
+        </div>
+
+        <div class="beco-feature-col">
+          <div class="beco-feature-icon-circle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div class="beco-feature-title">Same-Day UAE Delivery</div>
+          <div class="beco-feature-desc">White-glove clinical installation to 7 Emirates</div>
+        </div>
+
+        <div class="beco-feature-col">
+          <div class="beco-feature-icon-circle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <div class="beco-feature-title">Biomedical Support SLA</div>
+          <div class="beco-feature-desc">24/7 on-call engineers &amp; certified CME training</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SECTION: NEWSLETTER BANNER (BeCosmetics 4 Style) ────────────────── -->
+  <section class="beco-container">
+    <div class="beco-newsletter-banner">
+      <div>
+        <h3 class="beco-nl-title">Subscribe to our Healthcare Bulletin</h3>
+        <p class="beco-nl-desc">Stay updated on new medical equipment, exclusive hospital tender deals, and expert biomedical tips.</p>
+      </div>
+      <form class="beco-nl-form" onsubmit="event.preventDefault(); alert('Subscribed to GYNAEQ healthcare tender index.');">
+        <input type="email" placeholder="Enter your hospital email..." required class="beco-nl-input">
+        <button type="submit" class="beco-nl-btn">SUBSCRIBE</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER (BeCosmetics 4 Clean Minimal Architecture) ───────────────── -->
+  <footer class="beco-footer">
+    <div class="beco-container">
+      <div class="beco-footer-grid">
+        <div class="beco-footer-about">
+          <a href="/" class="beco-logo">
+            <img class="gynaeq-brand-logo" src="/assets/gynaeq-logo.svg?v=20261022-reference" alt="GYNAEQ" width="189" height="44">
+          </a>
+          <p>Premier distributor of advanced gynecology, obstetrics, and maternal healthcare technologies across the United Arab Emirates and GCC.</p>
+          <div style="font-size: 0.85rem; font-weight: 700; color: var(--beco-text-dark); margin-bottom: 6px;">
+            +971 4 879 2300 (Dubai Office)
+          </div>
+          <div style="font-size: 0.8rem; color: var(--beco-text-muted);">
+            Showroom 4, Al Asayel St, Business Bay, Dubai, UAE
+          </div>
+        </div>
+
+        <div class="beco-footer-col">
+          <h5>DIVISIONS</h5>
+          <ul class="beco-footer-links">
+            <li><a href="/category?id=ultrasound">4D/5D Ultrasound</a></li>
+            <li><a href="/category?id=fetal-monitoring">Fetal &amp; Twins CTG</a></li>
+            <li><a href="/category?id=colposcopy">Video Colposcopy</a></li>
+            <li><a href="/category?id=beds-chairs">Examination Chairs</a></li>
+            <li><a href="/category?id=electrosurgery">Electrosurgery</a></li>
+          </ul>
+        </div>
+
+        <div class="beco-footer-col">
+          <h5>BIOMEDICAL</h5>
+          <ul class="beco-footer-links">
+            <li><a href="/packages">Turnkey Packages</a></li>
+            <li><a href="/contact">Annual Maintenance (AMC)</a></li>
+            <li><a href="/contact">DHA Licensing Dossiers</a></li>
+            <li><a href="/contact">Acoustic Calibration</a></li>
+            <li><a href="/contact">Hospital Tender Desk</a></li>
+          </ul>
+        </div>
+
+        <div class="beco-footer-col">
+          <h5>COMPANY</h5>
+          <ul class="beco-footer-links">
+            <li><a href="/about">About GYNAEQ</a></li>
+            <li><a href="/contact">Dubai Showroom</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Supply</a></li>
+            <li><a href="/contact">Contact Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="beco-footer-bottom">
+        <div>
+          &copy; 2026 GYNAEQ Healthcare Technologies LLC. All rights reserved.
+        </div>
+        <div>
+          DHA Registered Medical Device Importer &bull; MoHAP Certified
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── RFQ CART BASKET DRAWER (Preserved & Integrated with store.js) ───── -->
   <div class="drawer-backdrop" id="rfq-drawer-backdrop">
     <div class="rfq-drawer">
       <div class="drawer-header">
         <div>
-          <h3 class="drawer-title">Request for Quotation (RFQ)</h3>
-          <div style="font-size: 0.75rem; color: var(--color-text-muted);">Official Hospital & Clinic Pricing Inquiries</div>
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--beco-text-dark);">
+            Official RFQ Quotation Basket
+          </h3>
+          <p style="font-size: 0.775rem; color: var(--beco-text-muted);">
+            Direct hospital procurement and tender inquiries.
+          </p>
         </div>
-        <button class="drawer-close-btn" id="close-rfq-drawer" aria-label="Close RFQ Drawer">&times;</button>
+        <button class="modal-close-btn" id="close-rfq-drawer-btn" style="position: static;" aria-label="Close RFQ Drawer">&times;</button>
       </div>
 
       <div class="drawer-body">
-        <div id="cart-items-list" class="cart-items-list">
-          <!-- Dynamic Items in RFQ -->
+        <div id="cart-items-list">
+          <!-- Rendered via store.js -->
         </div>
 
-        <div id="rfq-submit-container">
-          <hr style="border: none; border-top: 1px solid var(--border-hairline); margin: 24px 0;">
-          <h4 class="rfq-form-title">Hospital & Facility Information</h4>
-          <form id="rfq-submission-form">
-            <div class="form-group">
-              <label class="form-label">Healthcare Facility / Clinic Name *</label>
-              <input type="text" name="facilityName" class="form-input" required placeholder="e.g. Mediclinic City Hospital">
+        <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--beco-border-hairline);">
+          <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 12px; color: var(--beco-text-dark);">Hospital Procurement Details</h4>
+          <form id="rfq-form" onsubmit="event.preventDefault(); alert('Your official RFQ tender request has been sent to the GYNAEQ biomedical engineering department. Our Dubai team will contact you within 2 hours with official pricing.');">
+            <div style="margin-bottom: 12px;">
+              <label style="font-size: 0.75rem; font-weight: 700; display: block; margin-bottom: 4px;">Hospital / Clinic Name</label>
+              <input type="text" name="hospital" required placeholder="e.g. Mediclinic City Hospital" style="width: 100%; padding: 8px 12px; border: 1px solid var(--beco-border-subtle); border-radius: 6px; font-size: 0.85rem;">
             </div>
-            <div class="form-group">
-              <label class="form-label">Contact Doctor / Procurement In-Charge *</label>
-              <input type="text" name="contactName" class="form-input" required placeholder="Dr. / Eng. Name">
+            <div style="margin-bottom: 12px;">
+              <label style="font-size: 0.75rem; font-weight: 700; display: block; margin-bottom: 4px;">Doctor / Procurement Officer</label>
+              <input type="text" name="contactPerson" required placeholder="Dr. Full Name" style="width: 100%; padding: 8px 12px; border: 1px solid var(--beco-border-subtle); border-radius: 6px; font-size: 0.85rem;">
             </div>
-            <div class="form-group">
-              <label class="form-label">Professional Role</label>
-              <select name="role" class="form-select">
-                <option value="Consultant Obstetrician / Gynecologist">Consultant Ob-Gyn</option>
-                <option value="Biomedical Engineering Lead">Biomedical Engineer</option>
-                <option value="Hospital Procurement Manager">Hospital Procurement</option>
-                <option value="Clinic Medical Director">Clinic Medical Director</option>
-              </select>
+            <div style="margin-bottom: 12px;">
+              <label style="font-size: 0.75rem; font-weight: 700; display: block; margin-bottom: 4px;">Direct Phone / WhatsApp</label>
+              <input type="tel" name="phone" required placeholder="+971 50 ..." style="width: 100%; padding: 8px 12px; border: 1px solid var(--beco-border-subtle); border-radius: 6px; font-size: 0.85rem;">
             </div>
-            <div class="form-group">
-              <label class="form-label">Direct Phone / WhatsApp *</label>
-              <input type="tel" name="phone" class="form-input" required placeholder="+971 50 000 0000">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Official Work Email *</label>
-              <input type="email" name="email" class="form-input" required placeholder="name@hospital.ae">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Emirate / City</label>
-              <select name="city" class="form-select">
-                <option value="Dubai">Dubai</option>
-                <option value="Abu Dhabi">Abu Dhabi</option>
-                <option value="Sharjah">Sharjah</option>
-                <option value="Al Ain">Al Ain</option>
-                <option value="Ajman">Ajman</option>
-                <option value="Ras Al Khaimah">Ras Al Khaimah</option>
-                <option value="Riyadh (KSA)">Riyadh (Saudi Arabia)</option>
-                <option value="Doha (Qatar)">Doha (Qatar)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Project Urgency</label>
-              <select name="urgency" class="form-select">
-                <option value="Immediate (Within 2 Weeks)">Immediate (Within 2 Weeks)</option>
-                <option value="Within 1 Month">Within 1 Month</option>
-                <option value="Tender / Budget Planning (Q4)">Tender / Budget Planning</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Specific Specifications / AMC Requirements</label>
-              <textarea name="notes" rows="2" class="form-textarea" placeholder="Include transducer frequency, warranty preferences, or tender RFP numbers..."></textarea>
+            <div style="margin-bottom: 16px;">
+              <label style="font-size: 0.75rem; font-weight: 700; display: block; margin-bottom: 4px;">Official Hospital Email</label>
+              <input type="email" name="email" required placeholder="name@hospital.ae" style="width: 100%; padding: 8px 12px; border: 1px solid var(--beco-border-subtle); border-radius: 6px; font-size: 0.85rem;">
             </div>
 
-            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
-              Submit Official RFQ Request
+            <button type="submit" class="beco-btn beco-btn-primary" style="width: 100%; justify-content: center; background: var(--beco-primary); color: #fff; padding: 12px; border-radius: 6px; border: none; font-weight: 700; cursor: pointer;">
+              SUBMIT OFFICIAL RFQ
             </button>
           </form>
         </div>
@@ -452,17 +586,17 @@
 
       <div class="drawer-footer">
         <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; font-weight: 700;">
-          <span style="color: var(--color-text-secondary);">Estimated Catalog Total:</span>
-          <span id="rfq-cart-estimate" style="color: var(--color-primary); font-size: 1.1rem;">AED 0</span>
+          <span>Catalog Estimated Subtotal:</span>
+          <span id="rfq-cart-estimate" style="color: var(--beco-primary); font-size: 1.1rem;">AED 0</span>
         </div>
-        <div style="font-size: 0.725rem; color: var(--color-text-muted); margin-top: 4px;">
+        <div style="font-size: 0.725rem; color: var(--beco-text-muted); margin-top: 4px;">
           Final prices subject to hospital tender volume discounts, probes, and AMC packages.
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ─── QUICK VIEW MODAL ───────────────────────────────────────────────── -->
+  <!-- ─── QUICK VIEW MODAL (Integrated with app.js) ──────────────────────── -->
   <div class="modal-backdrop" id="quickview-backdrop">
     <div class="quickview-modal">
       <button class="modal-close-btn" id="close-quickview-btn" aria-label="Close modal">&times;</button>
@@ -472,106 +606,10 @@
     </div>
   </div>
 
-  <!-- ─── SIDE-BY-SIDE COMPARISON MODAL ──────────────────────────────────── -->
-  <div class="modal-backdrop" id="compare-modal-backdrop">
-    <div class="quickview-modal" style="max-width: 1100px;">
-      <button class="modal-close-btn" id="close-compare-modal-btn" aria-label="Close comparison">&times;</button>
-      <div style="padding: 24px 24px 0;">
-        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--color-navy-900);">Equipment Specifications Comparison</h2>
-        <p style="font-size: 0.85rem; color: var(--color-text-muted);">Side-by-side technical evaluation for biomedical engineering and clinical procurement.</p>
-      </div>
-      <div id="compare-modal-content">
-        <!-- Injected via app.js -->
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── FLOATING COMPARISON TRAY ───────────────────────────────────────── -->
-  <div id="compare-tray" style="display: none; position: fixed; bottom: 24px; right: 24px; z-index: 90; background: var(--color-navy-950); color: #FFFFFF; padding: 10px 18px; border-radius: var(--radius-pill); box-shadow: var(--shadow-elevated); align-items: center; gap: 14px; border: 1px solid rgba(255, 255, 255, 0.15);">
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <span style="font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700;">Compare (<span class="compare-badge">0</span>/3):</span>
-      <div id="compare-tray-items" style="display: flex; gap: 8px;"></div>
-    </div>
-    <button class="btn-primary" id="btn-open-compare-tray-btn" style="padding: 6px 14px; font-size: 0.8rem;">
-      Compare Now
-    </button>
-  </div>
-
-  <!-- ─── LUXURY FOOTER ──────────────────────────────────────────────────── -->
-  <footer class="main-footer">
-    <div class="footer-container">
-      <div class="footer-top-grid">
-        <!-- Brand Info -->
-        <div>
-          <img src="/assets/gynaeq-logo-white.svg" alt="GYNAEQ Medical" style="height: 48px;">
-          <p class="footer-brand-desc">
-            GYNAEQ Healthcare Technologies LLC is the Middle East's premier authorized supplier of diagnostic ultrasound, fetal monitoring, colposcopy, and gynecological surgical technology.
-          </p>
-          <div style="font-family: var(--font-mono); font-size: 0.775rem; color: #94A3B8;">
-            TRN: 100489201900003 | DHA Reg: DHCC-MED-4821
-          </div>
-        </div>
-
-        <!-- Quick Links -->
-        <div>
-          <h4 class="footer-heading">Medical Equipment</h4>
-          <ul class="footer-links-list">
-            <li><a href="/category?id=ultrasound-fetal">4D/5D Ob-Gyn Ultrasound</a></li>
-            <li><a href="/category?id=fetal-maternal-monitoring">Fetal & Maternal CTG Monitors</a></li>
-            <li><a href="/category?id=colposcopy-imaging">4K Digital Video Colposcopes</a></li>
-            <li><a href="/category?id=delivery-beds-chairs">Electric LDR Birthing Beds</a></li>
-            <li><a href="/category?id=leep-electrosurgery">Cervical LEEP Electrosurgery</a></li>
-            <li><a href="/category?id=ivf-fertility-lab">IVF Tri-Gas Incubators</a></li>
-          </ul>
-        </div>
-
-        <!-- Solutions & Services -->
-        <div>
-          <h4 class="footer-heading">Services & Support</h4>
-          <ul class="footer-links-list">
-            <li><a href="/packages">Turnkey Clinic Setup Packages</a></li>
-            <li><a href="/shop">All Medical Hardware Catalog</a></li>
-            <li><a href="/about">About GYNAEQ UAE</a></li>
-            <li><a href="/contact">Dubai Showroom & Warehouse</a></li>
-            <li><a href="/admin">Website Admin</a></li>
-          </ul>
-        </div>
-
-        <!-- Location & Contact -->
-        <div>
-          <h4 class="footer-heading">Dubai Headquarters</h4>
-          <div class="footer-contact-item">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <div>Building 64, Dubai Healthcare City (DHCC), Dubai, UAE</div>
-          </div>
-          <div class="footer-contact-item">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            <div>Showroom 4, Al Asayel St, Business Bay, Dubai</div>
-          </div>
-          <div class="footer-contact-item">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <div>+971 4 879 2300 | Emergency: +971 50 892 1100</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom-row">
-        <div>
-          &copy; 2026 GYNAEQ Healthcare Technologies LLC. All rights reserved.
-        </div>
-        <div style="display: flex; gap: 20px;">
-          <a href="#" style="color: #64748B;">Privacy Policy</a>
-          <a href="#" style="color: #64748B;">Terms of Supply & Warranty</a>
-          <a href="#" style="color: #64748B;">DHA Compliance</a>
-          <a href="/admin" style="color: var(--color-primary); font-weight: 700;">Admin Login</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="/js/store.js?v=20261021-console"></script>
+  <!-- Client-side Scripts -->
+  <script src="/js/store.js"></script>
   <script src="/js/app.js"></script>
-<script src="/js/site-content.js?v=20261021-console"></script>
+  <script src="/js/home-collection.js"></script>
+  <script src="/js/shop-mega.js?v=20261022-aligned"></script>
 </body>
 </html>

@@ -1,0 +1,147 @@
+/* A quieter product page: image, name, price and enquiry first. */
+#product-detail-main { padding-top: 38px; }
+#product-detail-main .faston-product-layout { grid-template-columns: 1.08fr 1fr; gap: clamp(32px, 5vw, 80px); }
+#product-detail-main .faston-info-wrapper { gap: 20px; padding-top: 10px; }
+#product-detail-main .faston-cat-eyebrow { color: #78808a; font-size: 10px; font-weight: 500; letter-spacing: .12em; }
+#product-detail-main .faston-title { font-size: clamp(26px, 2.6vw, 38px); font-weight: 500; line-height: 1.22; letter-spacing: -.035em; margin: 0; }
+#product-detail-main .faston-meta-line { gap: 8px 18px; font-size: 11px; color: #78808a; }
+#product-detail-main .faston-sku-badge { background: none; border: 0; padding: 0; font-family: inherit; font-weight: 400; color: #78808a; }
+#product-detail-main .faston-brand-tag { font-weight: 400; color: #78808a; }
+#product-detail-main .faston-stock-beacon { padding: 0; background: none; border: 0; border-radius: 0; font-size: 12px; font-weight: 400; color: #42705b; }
+#product-detail-main .faston-stock-dot { width: 5px; height: 5px; animation: none; box-shadow: none; }
+#product-detail-main .faston-pricing-box { background: transparent; border: 0; border-top: 1px solid #e9eaed; border-radius: 0; padding: 24px 0 0; gap: 9px; }
+#product-detail-main .faston-price-title { font-size: 10px; font-weight: 400; letter-spacing: .08em; }
+#product-detail-main .faston-price-amount { font-size: 30px; font-weight: 500; letter-spacing: -.04em; }
+#product-detail-main .faston-price-subtext { font-size: 11px; color: #8a9098; }
+#product-detail-main #prod-desc { font-size: 13px !important; line-height: 1.8 !important; color: #6a7380; margin: 0; }
+#product-detail-main .faston-main-frame { aspect-ratio: 1 / 1; padding: 30px; background: #f8f8f7; border: 0; border-radius: 3px; box-shadow: none; }
+#product-detail-main .faston-main-frame img { filter: none; }
+#product-detail-main .faston-zoom-hint { background: transparent; border: 0; font-size: 10px; font-weight: 400; }
+#product-detail-main .faston-thumbnails-row { gap: 10px; }
+#product-detail-main .faston-thumb { border-radius: 2px; box-shadow: none; }
+#product-detail-main .faston-brochure-card { padding: 16px 0; border: 0; border-top: 1px solid #e9eaed; border-radius: 0; background: transparent; }
+#product-detail-main .faston-brochure-title { font-size: 11px; font-weight: 500; }
+#product-detail-main .faston-brochure-meta { font-size: 10px; }
+#product-detail-main .faston-brochure-btn { font-size: 11px; border-radius: 3px; }
+#product-detail-main .faston-actions-bar { border: 0; padding: 4px 0 12px; gap: 10px; }
+#product-detail-main .faston-btn-whatsapp { background: #142335; box-shadow: none; border-radius: 3px; font-size: 12px; font-weight: 500; }
+#product-detail-main .faston-btn-whatsapp:hover { background: #283d53; }
+#product-detail-main .faston-btn-rfq { border-radius: 3px; font-size: 12px; font-weight: 500; }
+#product-detail-main .faston-qty-box { border-radius: 3px; }
+.product-more { border-top: 1px solid #e9eaed; }
+.product-more summary { cursor: pointer; list-style: none; padding: 17px 0; display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #364151; }
+.product-more summary::-webkit-details-marker { display: none; }
+.product-more summary span { color: #8a9098; font-size: 18px; font-weight: 300; }
+.product-more[open] summary span { transform: rotate(45deg); }
+.product-more-content { padding: 0 0 20px; display: grid; gap: 18px; font-size: 12px; }
+#product-detail-main .faston-desk-box { border: 0; background: #fafafa; border-radius: 2px; padding: 16px; }
+#product-detail-main .faston-desk-header { font-size: 12px; }
+#product-detail-main .faston-trust-strip { grid-template-columns: repeat(2, 1fr); }
+.faston-breadcrumb-strip .faston-breadcrumb-inner { font-size: 11px; }
+@media(max-width: 850px) { #product-detail-main .faston-product-layout { grid-template-columns: 1fr; gap: 28px; } #product-detail-main .faston-gallery-wrapper { position: static; } #product-detail-main .faston-main-frame { aspect-ratio: 5 / 4; } #product-detail-main .faston-title { font-size: 29px; } #product-detail-main .faston-info-wrapper { gap: 18px; } }
+
+/* Keep gallery thumbnails beside the main image. */
+#product-detail-main .faston-gallery-wrapper {
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+#product-detail-main .faston-main-frame { grid-column: 2; grid-row: 1; }
+#product-detail-main .faston-thumbnails-row {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+#product-detail-main .faston-thumbnails-row > * {
+  width: 62px;
+  height: 62px;
+  min-width: 0;
+  flex: 0 0 62px;
+  border-radius: 3px;
+}
+@media(max-width: 480px) {
+  #product-detail-main .faston-gallery-wrapper { grid-template-columns: 48px minmax(0, 1fr); gap: 10px; }
+  #product-detail-main .faston-thumbnails-row > * { width: 48px; height: 48px; flex-basis: 48px; }
+  #product-detail-main .faston-main-frame { padding: 16px; }
+}
+
+/* Match the gallery and the source photos' near-white backgrounds to the page. */
+#product-detail-main .faston-main-frame,
+#product-detail-main .faston-thumbnails-row > * { background: #fff; }
+#product-detail-main .faston-main-frame img,
+#product-detail-main .faston-thumbnails-row img {
+  mix-blend-mode: normal;
+  filter: brightness(1.075);
+}
+
+/* Single-product composition inspired by the supplied shop reference. */
+#product-detail-main .faston-main-frame { aspect-ratio: 4 / 5; }
+#product-detail-main .faston-gallery-wrapper { grid-template-columns: 76px minmax(0, 1fr); }
+#product-detail-main .faston-thumbnails-row > * { width: 76px; height: 95px; flex-basis: 95px; }
+#product-detail-main .faston-actions-bar { display: grid; grid-template-columns: 112px minmax(0, 1fr); }
+#product-detail-main .faston-btn-rfq { grid-column: 2; grid-row: 1; background: #111; color: #fff; border-color: #111; justify-content: center; min-height: 48px; }
+#product-detail-main .faston-btn-whatsapp { grid-column: 1 / -1; grid-row: 2; background: #c7186f; justify-content: center; min-height: 48px; }
+#product-detail-main .faston-btn-whatsapp:hover { background: #a8155d; }
+#product-detail-main .faston-tabs-wrapper { border: 1px solid #eceef0; border-radius: 0; margin-top: 64px; box-shadow: none; }
+#product-detail-main .faston-tabs-nav { padding: 0 28px; gap: 30px; background: #fff; overflow-x: auto; flex-wrap: nowrap; }
+#product-detail-main .faston-tab-btn { padding: 20px 0; background: #fff; border-radius: 0; font-size: 13px; font-weight: 500; color: #61666f; white-space: nowrap; }
+#product-detail-main .faston-tab-btn.active { color: #111; border-bottom-color: #111; }
+#product-detail-main .faston-tab-content { padding: 32px; }
+#product-detail-main #tab-clinical > div { max-width: none !important; }
+#product-detail-main #tab-clinical h3 { display: none; }
+#product-detail-main #prod-clinical-desc { font-size: 13px; }
+#product-detail-main #prod-clinical-features { display: grid !important; grid-template-columns: 1fr 1fr; gap: 14px 32px !important; }
+#product-detail-main #prod-clinical-features > div { background: transparent !important; border: 0 !important; padding: 8px 0 !important; }
+#product-detail-main #prod-clinical-features span { font-size: 12px !important; font-weight: 400 !important; }
+.faston-related-section, .product-recent-section { padding: 56px 0; background: #fff; }
+.product-shelf-title { text-align: center; font-size: 30px; font-weight: 400; letter-spacing: -.035em; margin: 0 0 36px; }
+.faston-related-section .ecomus-card { border: 0; border-radius: 0; box-shadow: none; }
+.faston-related-section .ecomus-card-stage { background: #fff; aspect-ratio: 4 / 5; border-radius: 6px; }
+.faston-related-section .ecomus-card-stage img { filter: brightness(1.075); }
+.faston-related-section .ecomus-card-badges, .faston-related-section .ecomus-card-brand, .faston-related-section .ecomus-card-specs, .faston-related-section .ecomus-card-stock { display: none; }
+.faston-related-section .ecomus-card-body { padding: 16px 0 0; }
+.faston-related-section .ecomus-card-title { font-size: 13px; font-weight: 400; line-height: 1.6; }
+.faston-related-section .ecomus-card-price-row { border: 0; padding: 0; }
+.faston-related-section .ecomus-card-price { font-size: 13px; font-weight: 500; }
+.product-recent-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.product-recent-card > div { aspect-ratio: 4 / 5; border-radius: 6px; background: #fff; padding: 20px; }
+.product-recent-card img { width: 100%; height: 100%; object-fit: contain; filter: brightness(1.075); }
+.product-recent-card h3 { font-size: 13px; font-weight: 400; margin: 16px 0 8px; }
+.product-recent-card strong { font-size: 13px; font-weight: 500; }
+.product-sticky-bar[hidden], .product-recent-section[hidden] { display: none; }
+.product-sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid #eceef0; padding: 12px 0; z-index: 80; box-shadow: 0 -4px 20px #00000004; }
+.product-sticky-bar .beco-container { display: flex; align-items: center; gap: 18px; }
+.product-sticky-bar img { width: 42px; height: 48px; object-fit: contain; }
+#sticky-product-name { flex: 1; font-size: 12px; }
+#sticky-product-price { font-size: 13px; font-weight: 500; }
+#sticky-product-rfq { background: #111; color: #fff; padding: 14px 28px; font: inherit; font-size: 12px; border: 0; border-radius: 3px; cursor: pointer; }
+body:has(.product-sticky-bar) { padding-bottom: 80px; }
+@media(max-width: 640px) { #product-detail-main .faston-gallery-wrapper { grid-template-columns: 48px minmax(0, 1fr); } #product-detail-main .faston-thumbnails-row > * { width: 48px; height: 60px; flex-basis: 60px; } #product-detail-main .faston-main-frame { aspect-ratio: 1; } #product-detail-main .faston-tabs-nav { padding: 0 18px; gap: 22px; } #product-detail-main .faston-tab-content { padding: 20px; } #product-detail-main #prod-clinical-features { grid-template-columns: 1fr; } .product-recent-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } #sticky-product-name { display: none; } #sticky-product-price { flex: 1; } #sticky-product-rfq { padding: 13px 18px; } .product-shelf-title { font-size: 26px; } }
+
+/* Compact product overview on desktop. */
+@media(min-width: 851px) {
+  #product-detail-main { padding-top: 26px; }
+  #product-detail-main .faston-product-layout { grid-template-columns: 1fr 1.08fr; gap: 44px; }
+  #product-detail-main .faston-main-frame { aspect-ratio: auto; height: clamp(360px, 35vw, 490px); padding: 26px; }
+  #product-detail-main .faston-main-frame img { width: 100%; height: 100%; object-fit: contain; }
+  #product-detail-main .faston-gallery-wrapper { grid-template-columns: 58px minmax(0, 1fr); gap: 12px; }
+  #product-detail-main .faston-thumbnails-row > * { width: 58px; height: 70px; flex-basis: 70px; }
+  #product-detail-main .faston-info-wrapper { gap: 14px; padding-top: 0; }
+  #product-detail-main .faston-title { font-size: clamp(25px, 2vw, 30px); line-height: 1.25; }
+  #product-detail-main .faston-pricing-box { padding-top: 16px; gap: 7px; }
+  #product-detail-main .faston-price-amount { font-size: 25px; }
+  #product-detail-main .faston-actions-bar { gap: 8px; padding-bottom: 4px; }
+  #product-detail-main .faston-btn-rfq, #product-detail-main .faston-btn-whatsapp { min-height: 42px; padding: 11px 16px; }
+  #product-detail-main .faston-qty-box { height: 42px; }
+  #product-detail-main .product-more summary { padding: 13px 0; }
+  #product-detail-main .faston-tabs-wrapper { margin-top: 40px; }
+}
+
+/* Rounded product purchase controls. */
+.faston-btn-rfq, .faston-btn-whatsapp, .faston-qty-box { border-radius: 999px !important; }
+.faston-qty-box { overflow: hidden; }

@@ -1,0 +1,37 @@
+/* Supplied GYNAEQ artwork, with screenshot margins excluded by its SVG viewport. */
+.gynaeq-brand-logo {
+  display: block;
+  width: 170px;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+.beco-header .gynaeq-brand-logo {
+  width: 140px;
+}
+footer .gynaeq-brand-logo,
+.sidebar-header .gynaeq-brand-logo {
+  border-radius: 4px;
+}
+body:has(> .beco-header) { padding-top: 0; }
+.beco-header, .beco-topbar { font-family: 'Inter', sans-serif; }
+
+/* White artwork on dark surfaces; screen removes the inverted screenshot background. */
+footer .gynaeq-brand-logo,
+.sidebar-header .gynaeq-brand-logo {
+  filter: grayscale(1) invert(1) contrast(20);
+  mix-blend-mode: screen;
+  border-radius: 0;
+}
+
+/* Use the available mobile width for the homepage hero. */
+@media (max-width: 768px) {
+  .beco-hero-section > .beco-container { width: calc(100% - 20px); max-width: none; padding-left: 0; padding-right: 0; }
+  .beco-hero-section .beco-hero-box { padding: 12px; border-radius: 20px; }
+  .beco-hero-section .beco-hero-card { width: 100%; max-width: none; margin: 0; padding: 26px 22px; border-radius: 16px; box-sizing: border-box; }
+  .beco-hero-section .beco-hero-title { font-size: clamp(28px, 7vw, 38px); line-height: 1.16; }
+  .beco-hero-section .beco-hero-desc { font-size: 14px; line-height: 1.65; }
+  .beco-hero-section .beco-hero-btn { max-width: 100%; }
+}
+
+.beco-separated-section { border-top: 0; }

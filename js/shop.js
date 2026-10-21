@@ -1,9 +1,8 @@
 // ==========================================================================
-// GYNAEQ Shop & Catalog Controller
+// GYNAEQ Shop & Catalog Controller (Ecomus Fashion/Luxury Architecture)
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Wait for store initialization
   await store.init();
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -11,92 +10,238 @@ document.addEventListener('DOMContentLoaded', async () => {
   const initialBrand = urlParams.get('brand');
   const initialSearch = urlParams.get('search');
 
+  // DOM Elements
   const shopGridEl = document.getElementById('shop-product-grid');
+  const catalogCountBadgeEl = document.getElementById('shop-catalog-count-badge');
   const resultsCountEl = document.getElementById('shop-results-count');
-  const catFiltersEl = document.getElementById('category-filters-container');
-  const brandFiltersEl = document.getElementById('brand-filters-container');
-  const inStockCheckbox = document.getElementById('filter-stock-only');
-  const inStockCountEl = document.getElementById('in-stock-count');
+  const categoriesPillsEl = document.getElementById('shop-categories-pills');
   const sortSelect = document.getElementById('shop-sort-select');
-  const activeChipsEl = document.getElementById('active-filters-chips');
-  const btnReset = document.getElementById('btn-reset-filters');
-  const btnGrid = document.getElementById('btn-view-grid');
-  const btnList = document.getElementById('btn-view-list');
+  const activeChipsContainer = document.getElementById('active-chips-container');
+  const activeFilterCountBadge = document.getElementById('active-filter-count');
 
+  // Filter Drawer elements
+  const filterDrawerBackdrop = document.getElementById('filter-drawer-backdrop');
+  const btnToggleDrawer = document.getElementById('btn-toggle-filter-drawer');
+  const btnCloseDrawer = document.getElementById('btn-close-filter-drawer');
+  const btnApplyDrawer = document.getElementById('btn-apply-drawer-filters');
+  const btnResetDrawer = document.getElementById('btn-reset-drawer-filters');
+  const drawerCategoriesList = document.getElementById('drawer-categories-list');
+  const drawerBrandsList = document.getElementById('drawer-brands-list');
+  const drawerStockCheckbox = document.getElementById('drawer-filter-stock');
+  const drawerStockCount = document.getElementById('drawer-stock-count');
+
+  // Filter State
   let selectedCategories = initialCat ? [initialCat] : [];
   let selectedBrands = initialBrand ? [initialBrand] : [];
   let selectedCerts = [];
   let inStockOnly = false;
   let currentSort = 'featured';
   let searchQuery = initialSearch || '';
-  let viewMode = 'grid';
+  let currentGrid = 'grid-5col';
 
-  // 1. Render Sidebar Categories
-  function renderCategoriesSidebar() {
-    if (!catFiltersEl) return;
+  // 1. Render Top Subcategory Switcher Pills (Ecomus Style)
+  function renderSubcategoryPills() {
+    if (!categoriesPillsEl) return;
     const categories = store.getCategories();
-    catFiltersEl.innerHTML = categories.map(cat => `
-      <label class="filter-checkbox-label">
-        <span style="display: flex; align-items: center;">
-          <input type="checkbox" class="cat-filter-cb" value="${cat.id}" ${selectedCategories.includes(cat.id) ? 'checked' : ''}>
+    const allCount = store.getProducts().length;
+    const isAllActive = selectedCategories.length === 0;
+
+    const products = store.getProducts();
+    const categoryLabels = { all: 'All equipment', ultrasound: 'Ultrasound', 'fetal-monitoring': 'Fetal monitoring', colposcopy: 'Colposcopy', 'beds-chairs': 'Beds & chairs', electrosurgery: 'Electrosurgery', 'surgical-hysteroscopy': 'Hysteroscopy', 'ivf-fertility': 'IVF & fertility', consumables: 'Clinic supplies', 'critical-care': 'Critical care' };
+    const categoryIconCells = { all: [0,0], ultrasound: [50,0], 'fetal-monitoring': [100,0], colposcopy: [0,50], 'beds-chairs': [50,50], electrosurgery: [100,50], 'surgical-hysteroscopy': [0,100], 'ivf-fertility': [50,100], consumables: [100,100], 'critical-care': [100,0] };
+    const categoryCard = (id, name, count, image, active) => `
+      <a href="/shop${id === 'all' ? '' : '?category=' + encodeURIComponent(id)}" class="catalog-category-card ${active ? 'active' : ''}" data-pill-cat="${id}">
+        <div class="catalog-category-line catalog-category-dimensional" aria-hidden="true"><span class="category-clay-icon" style="background-position:${(categoryIconCells[id] || [0,0])[0]}% ${(categoryIconCells[id] || [0,0])[1]}%"></span></div>
+        <strong>${categoryLabels[id] || name}</strong><span>${count} ${count === 1 ? 'item' : 'items'}</span>
+      </a>`;
+    categoriesPillsEl.innerHTML = categoryCard('all', 'All Gynecology Equipment', allCount, '/assets/hero_suite.jpg', isAllActive) + categories.map(c => {
+      const items = products.filter(p => p.categoryId === c.id);
+      return categoryCard(c.id, c.name, items.length, items[0]?.image || c.image || '/assets/hero_suite.jpg', selectedCategories.includes(c.id));
+    }).join('');
+
+    categoriesPillsEl.querySelectorAll('[data-pill-cat]').forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cid = pill.getAttribute('data-pill-cat');
+        if (cid === 'all') {
+          selectedCategories = [];
+        } else {
+          selectedCategories = [cid];
+        }
+        renderSubcategoryPills();
+        syncDrawerCategories();
+        applyFilters();
+      });
+    });
+  }
+
+  const catalogSearch = document.getElementById('catalog-search-input');
+  if (catalogSearch) catalogSearch.value = searchQuery;
+  catalogSearch?.addEventListener('input', () => { searchQuery = catalogSearch.value.trim(); applyFilters(); });
+  document.getElementById('catalog-search-form')?.addEventListener('submit', e => {
+    e.preventDefault();
+    searchQuery = catalogSearch.value.trim();
+    applyFilters();
+  });
+  document.querySelectorAll('[data-category-step]').forEach(button => {
+    button.addEventListener('click', () => categoriesPillsEl.scrollBy({left: Number(button.dataset.categoryStep) * categoriesPillsEl.clientWidth * 0.8, behavior: 'smooth'}));
+  });
+
+  // 2. Filter Drawer Handlers
+  function openFilterDrawer() {
+    filterDrawerBackdrop?.classList.add('active');
+  }
+  function closeFilterDrawer() {
+    filterDrawerBackdrop?.classList.remove('active');
+  }
+
+  btnToggleDrawer?.addEventListener('click', openFilterDrawer);
+  btnCloseDrawer?.addEventListener('click', closeFilterDrawer);
+  shopGridEl?.addEventListener('click', e => {
+    const wish = e.target.closest('[data-shop-wish]');
+    if (wish) {
+      let saved = []; try { saved = JSON.parse(localStorage.getItem('gynaeq_wishlist') || '[]'); } catch {}
+      const id = wish.dataset.shopWish;
+      const active = !saved.includes(id);
+      saved = active ? [...saved, id] : saved.filter(x => x !== id);
+      localStorage.setItem('gynaeq_wishlist', JSON.stringify(saved));
+      wish.setAttribute('aria-pressed', String(active));
+    }
+    const compare = e.target.closest('[data-shop-compare]');
+    if (compare) {
+      store.toggleCompare(compare.dataset.shopCompare);
+      compare.setAttribute('aria-pressed', String(store.compareList.includes(compare.dataset.shopCompare)));
+    }
+  });
+
+  filterDrawerBackdrop?.addEventListener('click', (e) => {
+    if (e.target === filterDrawerBackdrop) closeFilterDrawer();
+  });
+
+  // Populate Drawer Categories
+  function renderDrawerCategories() {
+    if (!drawerCategoriesList) return;
+    const categories = store.getCategories();
+    drawerCategoriesList.innerHTML = `<button type="button" class="shop-all-categories">All Categories <span>${store.getProducts().length}</span></button>` + categories.map(cat => `
+      <label class="ecomus-filter-item">
+        <span>
+          <input type="checkbox" class="drawer-cat-cb" value="${cat.id}" ${selectedCategories.includes(cat.id) ? 'checked' : ''}>
           ${cat.name}
         </span>
-        <span class="filter-count-badge">${cat.count}</span>
+        <span class="ecomus-filter-count">${store.getProducts().filter(p => p.categoryId === cat.id).length}</span>
       </label>
     `).join('');
 
-    catFiltersEl.querySelectorAll('.cat-filter-cb').forEach(cb => {
+    drawerCategoriesList.querySelector('.shop-all-categories')?.addEventListener('click', () => {
+      selectedCategories = [];
+      syncDrawerCategories();
+      renderSubcategoryPills();
+      applyFilters();
+    });
+    drawerCategoriesList.querySelectorAll('.drawer-cat-cb').forEach(cb => {
       cb.addEventListener('change', () => {
         if (cb.checked) {
           selectedCategories.push(cb.value);
         } else {
           selectedCategories = selectedCategories.filter(id => id !== cb.value);
         }
-        applyFilters();
       });
     });
   }
 
-  // 2. Render Sidebar Brands
-  function renderBrandsSidebar() {
-    if (!brandFiltersEl) return;
+  function syncDrawerCategories() {
+    document.querySelectorAll('.drawer-cat-cb').forEach(cb => {
+      cb.checked = selectedCategories.includes(cb.value);
+    });
+  }
+
+  // Populate Drawer Brands
+  function renderDrawerBrands() {
+    if (!drawerBrandsList) return;
     const brands = store.getBrands();
     const products = store.getProducts();
 
-    brandFiltersEl.innerHTML = brands.map(b => {
+    drawerBrandsList.innerHTML = brands.map(b => {
       const count = products.filter(p => p.brandId === b.id || p.brand.toLowerCase() === b.name.toLowerCase()).length;
       return `
-        <label class="filter-checkbox-label">
-          <span style="display: flex; align-items: center;">
-            <input type="checkbox" class="brand-filter-cb" value="${b.id}" ${selectedBrands.includes(b.id) ? 'checked' : ''}>
+        <label class="ecomus-filter-item">
+          <span>
+            <input type="checkbox" class="drawer-brand-cb" value="${b.id}" ${selectedBrands.includes(b.id) ? 'checked' : ''}>
             ${b.name}
           </span>
-          <span class="filter-count-badge">${count}</span>
+          <span class="ecomus-filter-count">${count}</span>
         </label>
       `;
     }).join('');
 
-    brandFiltersEl.querySelectorAll('.brand-filter-cb').forEach(cb => {
+    drawerBrandsList.querySelectorAll('.drawer-brand-cb').forEach(cb => {
       cb.addEventListener('change', () => {
         if (cb.checked) {
           selectedBrands.push(cb.value);
         } else {
           selectedBrands = selectedBrands.filter(id => id !== cb.value);
         }
-        applyFilters();
       });
     });
 
-    if (inStockCountEl) {
-      inStockCountEl.textContent = products.filter(p => p.inStock).length;
+    if (drawerStockCount) {
+      drawerStockCount.textContent = products.filter(p => p.inStock).length;
     }
   }
 
-  // 3. Filter and Sort Logic
+  drawerStockCheckbox?.addEventListener('change', (e) => {
+    inStockOnly = e.target.checked;
+  });
+
+  document.querySelectorAll('.drawer-cert-cb').forEach(cb => {
+    cb.addEventListener('change', () => {
+      selectedCerts = Array.from(document.querySelectorAll('.drawer-cert-cb:checked')).map(c => c.value);
+    });
+  });
+
+  btnApplyDrawer?.addEventListener('click', () => {
+    closeFilterDrawer();
+    renderSubcategoryPills();
+    applyFilters();
+  });
+
+  btnResetDrawer?.addEventListener('click', () => {
+    resetAllFilters();
+    closeFilterDrawer();
+  });
+
+  // 3. Grid Column Switchers (Ecomus Signature)
+  const btnGrid3 = document.getElementById('btn-grid-3col');
+  const btnGrid4 = document.getElementById('btn-grid-5col');
+  const btnGridList = document.getElementById('btn-grid-list');
+
+  function setGridMode(mode) {
+    currentGrid = mode;
+    [btnGrid3, btnGrid4, btnGridList].forEach(b => b?.classList.remove('active'));
+    if (mode === 'grid-3col') btnGrid3?.classList.add('active');
+    if (mode === 'grid-5col') btnGrid4?.classList.add('active');
+    if (mode === 'grid-list') btnGridList?.classList.add('active');
+
+    if (shopGridEl) {
+      shopGridEl.className = `ecomus-product-grid ${mode}`;
+    }
+  }
+
+  btnGrid3?.addEventListener('click', () => setGridMode('grid-3col'));
+  btnGrid4?.addEventListener('click', () => setGridMode('grid-5col'));
+  btnGridList?.addEventListener('click', () => setGridMode('grid-list'));
+
+  // Sort select listener
+  sortSelect?.addEventListener('change', (e) => {
+    currentSort = e.target.value;
+    applyFilters();
+  });
+
+  // 4. Filter & Sort Core Logic
   function applyFilters() {
     let list = store.getProducts();
 
-    // Search
+    // Search Query
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       list = list.filter(p => 
@@ -143,144 +288,200 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderProductsList(list);
   }
 
-  // 4. Render Active Chips
+  // 5. Render Active Chips
   function renderActiveChips() {
-    if (!activeChipsEl) return;
+    if (!activeChipsContainer) return;
     const chips = [];
 
     if (searchQuery) {
-      chips.push(`<span class="active-filter-chip">Search: "${searchQuery}" <span class="btn-remove-chip" data-remove="search">&times;</span></span>`);
+      chips.push(`
+        <span class="ecomus-chip">
+          Search: "${searchQuery}"
+          <span class="ecomus-chip-remove" data-remove="search">&times;</span>
+        </span>
+      `);
     }
 
     selectedCategories.forEach(cid => {
       const cat = store.getCategories().find(c => c.id === cid);
-      chips.push(`<span class="active-filter-chip">${cat?.name || cid} <span class="btn-remove-chip" data-remove-cat="${cid}">&times;</span></span>`);
+      chips.push(`
+        <span class="ecomus-chip">
+          ${cat?.name || cid}
+          <span class="ecomus-chip-remove" data-remove-cat="${cid}">&times;</span>
+        </span>
+      `);
     });
 
     selectedBrands.forEach(bid => {
       const b = store.getBrands().find(br => br.id === bid);
-      chips.push(`<span class="active-filter-chip">Brand: ${b?.name || bid} <span class="btn-remove-chip" data-remove-brand="${bid}">&times;</span></span>`);
+      chips.push(`
+        <span class="ecomus-chip">
+          Brand: ${b?.name || bid}
+          <span class="ecomus-chip-remove" data-remove-brand="${bid}">&times;</span>
+        </span>
+      `);
     });
 
     if (inStockOnly) {
-      chips.push(`<span class="active-filter-chip">In Stock Only <span class="btn-remove-chip" data-remove="stock">&times;</span></span>`);
+      chips.push(`
+        <span class="ecomus-chip">
+          In Stock Only
+          <span class="ecomus-chip-remove" data-remove="stock">&times;</span>
+        </span>
+      `);
     }
 
-    activeChipsEl.innerHTML = chips.join('');
-
-    activeChipsEl.querySelectorAll('[data-remove]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const type = btn.getAttribute('data-remove');
-        if (type === 'search') searchQuery = '';
-        if (type === 'stock') {
-          inStockOnly = false;
-          if (inStockCheckbox) inStockCheckbox.checked = false;
-        }
-        applyFilters();
-      });
+    selectedCerts.forEach(cert => {
+      chips.push(`
+        <span class="ecomus-chip">
+          ${cert}
+          <span class="ecomus-chip-remove" data-remove-cert="${cert}">&times;</span>
+        </span>
+      `);
     });
 
-    activeChipsEl.querySelectorAll('[data-remove-cat]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const cid = btn.getAttribute('data-remove-cat');
-        selectedCategories = selectedCategories.filter(id => id !== cid);
-        renderCategoriesSidebar();
-        applyFilters();
-      });
-    });
+    const activeCount = (searchQuery ? 1 : 0) + selectedCategories.length + selectedBrands.length + (inStockOnly ? 1 : 0) + selectedCerts.length;
+    if (activeFilterCountBadge) {
+      activeFilterCountBadge.textContent = activeCount;
+      activeFilterCountBadge.style.display = activeCount > 0 ? 'inline-flex' : 'none';
+    }
 
-    activeChipsEl.querySelectorAll('[data-remove-brand]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const bid = btn.getAttribute('data-remove-brand');
-        selectedBrands = selectedBrands.filter(id => id !== bid);
-        renderBrandsSidebar();
-        applyFilters();
+    if (chips.length > 0) {
+      chips.push(`<button class="ecomus-clear-all" id="btn-clear-all-chips">Clear All</button>`);
+      activeChipsContainer.innerHTML = chips.join('');
+      activeChipsContainer.style.display = 'flex';
+
+      // Chip Remove Handlers
+      activeChipsContainer.querySelectorAll('[data-remove]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const type = btn.getAttribute('data-remove');
+          if (type === 'search') searchQuery = '';
+          if (type === 'stock') {
+            inStockOnly = false;
+            if (drawerStockCheckbox) drawerStockCheckbox.checked = false;
+          }
+          applyFilters();
+        });
       });
-    });
+
+      activeChipsContainer.querySelectorAll('[data-remove-cat]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cid = btn.getAttribute('data-remove-cat');
+          selectedCategories = selectedCategories.filter(id => id !== cid);
+          renderSubcategoryPills();
+          syncDrawerCategories();
+          applyFilters();
+        });
+      });
+
+      activeChipsContainer.querySelectorAll('[data-remove-brand]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const bid = btn.getAttribute('data-remove-brand');
+          selectedBrands = selectedBrands.filter(id => id !== bid);
+          document.querySelectorAll(`.drawer-brand-cb[value="${bid}"]`).forEach(cb => cb.checked = false);
+          applyFilters();
+        });
+      });
+
+      activeChipsContainer.querySelectorAll('[data-remove-cert]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cert = btn.getAttribute('data-remove-cert');
+          selectedCerts = selectedCerts.filter(c => c !== cert);
+          document.querySelectorAll(`.drawer-cert-cb[value="${cert}"]`).forEach(cb => cb.checked = false);
+          applyFilters();
+        });
+      });
+
+      document.getElementById('btn-clear-all-chips')?.addEventListener('click', resetAllFilters);
+    } else {
+      activeChipsContainer.innerHTML = '';
+      activeChipsContainer.style.display = 'none';
+    }
   }
 
-  // 5. Render Products
+  // Reset Filters
+  function resetAllFilters() {
+    selectedCategories = [];
+    selectedBrands = [];
+    selectedCerts = [];
+    inStockOnly = false;
+    searchQuery = '';
+    currentSort = 'featured';
+    if (drawerStockCheckbox) drawerStockCheckbox.checked = false;
+    if (sortSelect) sortSelect.value = 'featured';
+    document.querySelectorAll('.drawer-cat-cb').forEach(cb => cb.checked = false);
+    document.querySelectorAll('.drawer-brand-cb').forEach(cb => cb.checked = false);
+    document.querySelectorAll('.drawer-cert-cb').forEach(cb => cb.checked = false);
+    renderSubcategoryPills();
+    applyFilters();
+  }
+
+  // 6. Render Product Grid
   function renderProductsList(products) {
     if (!shopGridEl) return;
+
+    if (catalogCountBadgeEl) {
+      catalogCountBadgeEl.textContent = `(${products.length} systems)`;
+    }
     if (resultsCountEl) {
       resultsCountEl.textContent = `Showing ${products.length} medical hardware systems`;
     }
 
     if (products.length === 0) {
       shopGridEl.innerHTML = `
-        <div style="grid-column: 1 / -1; padding: 64px 24px; text-align: center; background: #FFFFFF; border-radius: var(--radius-outer-xl); border: 1px dashed var(--border-hairline);">
-          <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--color-primary-light); color: var(--color-primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+        <div style="grid-column: 1 / -1; padding: 64px 32px; text-align: center; background: #FFFFFF; border-radius: 16px; border: 1px dashed var(--beco-border-subtle);">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: #FDF2F7; color: var(--beco-primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </div>
-          <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--color-navy-900); margin-bottom: 8px;">No matching equipment found</h3>
-          <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 20px;">Try clearing filters or search for another obstetric or gynecological system.</p>
-          <button id="btn-empty-reset" class="btn-primary" style="margin: 0 auto;">Clear All Filters</button>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--beco-text-dark); margin-bottom: 8px;">No matching equipment found</h3>
+          <p style="color: var(--beco-text-muted); font-size: 0.9rem; margin-bottom: 20px;">Try clearing filters or search for another obstetric or gynecological system.</p>
+          <button id="btn-empty-reset" class="beco-btn beco-btn-primary" style="margin: 0 auto; background: var(--beco-primary); color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: 700; border: none; cursor: pointer;">Clear All Filters</button>
         </div>
       `;
-      document.getElementById('btn-empty-reset')?.addEventListener('click', resetAll);
+      document.getElementById('btn-empty-reset')?.addEventListener('click', resetAllFilters);
       return;
     }
 
-    shopGridEl.className = `product-grid ${viewMode === 'list' ? 'list-view' : ''}`;
+    const allCategoriesButton = drawerCategoriesList?.querySelector('.shop-all-categories');
+    allCategoriesButton?.classList.toggle('active', selectedCategories.length === 0);
+    shopGridEl.className = `ecomus-product-grid ${currentGrid}`;
 
     shopGridEl.innerHTML = products.map(p => {
       const isCompared = store.compareList.includes(p.id);
-      const specsList = Object.entries(p.specifications || {}).slice(0, 3);
+      const waMsg = `Hello GYNAEQ Sales Team,\nI would like to inquire about: *${p.title}* (SKU: ${p.sku}, Price: ${p.callForPrice ? 'Quote' : formatAED(p.price)}).\nLink: https://www.gynaeq.com/product?id=${p.id}`;
+      const waLink = `https://wa.me/971508893589?text=${encodeURIComponent(waMsg)}`;
 
       return `
-        <div class="product-card bezel-outer" data-id="${p.id}">
-          <div class="product-card-inner bezel-inner">
-            <div class="product-card-media">
-              <span class="product-badge-tag ${p.badge ? 'product-badge-primary' : ''}">${p.badge || 'CE Certified'}</span>
-              <label class="product-compare-checkbox">
-                <input type="checkbox" class="compare-toggle" data-id="${p.id}" ${isCompared ? 'checked' : ''}>
-                Compare
-              </label>
-              <a href="/product?id=${p.id}" style="display: flex; width: 100%; height: 100%; align-items: center; justify-content: center;">
-                <img src="${p.image}" alt="${p.title}" loading="lazy">
-              </a>
+        <div class="ecomus-card" data-id="${p.id}">
+          <div class="ecomus-card-stage">
+            <div class="ecomus-card-badges">
+              ${p.inStock ? '<span class="ecomus-badge-chip ecomus-badge-green">In Stock</span>' : ''}
             </div>
 
-            <div style="flex: 1; display: flex; flex-direction: column;">
-              <div class="product-meta-row">
-                <span class="product-brand">${p.brand}</span>
-                <span class="product-sku">${p.sku}</span>
-              </div>
+            <a href="/product?id=${p.id}" style="display: flex; width: 100%; height: 100%; align-items: center; justify-content: center;">
+              <img src="${p.image}" alt="${p.title}" loading="lazy">
+            </a>
 
-              <h3 class="product-title" title="${p.title}">
-                <a href="/product?id=${p.id}" style="color: inherit;">${p.title}</a>
-              </h3>
-
-              <ul class="product-specs-list">
-                ${specsList.map(([key, val]) => `
-                  <li class="product-specs-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                    <span><strong>${key}:</strong> ${val}</span>
-                  </li>
-                `).join('')}
-              </ul>
+            <div class="shop-circle-actions">
+              <button type="button" data-shop-wish="${p.id}" aria-label="Save to wishlist" aria-pressed="${(JSON.parse(localStorage.getItem('gynaeq_wishlist') || '[]')).includes(p.id)}"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></button>
+              <button type="button" data-shop-compare="${p.id}" aria-label="Compare product" aria-pressed="${isCompared}"><svg viewBox="0 0 24 24"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 4-3 6-6s4-6 6-6h3m-4-4 4 4-4 4"/></svg></button>
+              <a href="/product?id=${encodeURIComponent(p.id)}" aria-label="View product"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></a>
             </div>
+          </div>
 
-            <div class="product-card-footer">
-              <div class="product-pricing-row">
-                <div class="product-price-box">
-                  <span class="product-price-label">Official UAE Price</span>
-                  <span class="product-price-value">${p.callForPrice ? 'Contact For Quote' : formatAED(p.price)}</span>
-                </div>
-                <div class="product-stock-status">
-                  <span class="stock-indicator-dot"></span>
-                  <span>In Stock (Dubai)</span>
-                </div>
-              </div>
-
-              <div class="product-card-actions">
-                <button class="btn-card-rfq" data-add-rfq="${p.id}">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                  <span>Request Quote</span>
-                </button>
-                <a href="/product?id=${p.id}" class="btn-card-quickview" title="View Full Specifications">
-                  <span>View Details &rarr;</span>
-                </a>
+          <div class="ecomus-card-body">
+            <div class="ecomus-card-brand">${p.brand}</div>
+            <h3 class="ecomus-card-title" title="${String(p.title).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;')}">
+              <a href="/product?id=${p.id}">${p.title}</a>
+            </h3>
+            <div class="ecomus-card-specs">
+              ${p.shortDesc || p.description?.substring(0, 100) || 'Hospital standard equipment with DHA & MoHAP registration.'}
+            </div>
+            <div class="ecomus-card-price-row">
+              <div class="ecomus-card-price">${p.callForPrice ? 'Contact For Quote' : formatAED(p.price)}</div>
+              <div class="ecomus-card-stock">
+                <span class="ecomus-card-stock-dot"></span>
+                <span>${p.inStock ? 'In Stock (Dubai)' : 'On Order'}</span>
               </div>
             </div>
           </div>
@@ -289,57 +490,33 @@ document.addEventListener('DOMContentLoaded', async () => {
     }).join('');
   }
 
-  function resetAll() {
-    selectedCategories = [];
-    selectedBrands = [];
-    selectedCerts = [];
-    inStockOnly = false;
-    searchQuery = '';
-    currentSort = 'featured';
-    if (inStockCheckbox) inStockCheckbox.checked = false;
-    if (sortSelect) sortSelect.value = 'featured';
-    document.querySelectorAll('.cert-filter').forEach(c => c.checked = false);
-    renderCategoriesSidebar();
-    renderBrandsSidebar();
-    applyFilters();
-  }
-
-  // Event Listeners
-  btnReset?.addEventListener('click', resetAll);
-
-  inStockCheckbox?.addEventListener('change', (e) => {
-    inStockOnly = e.target.checked;
-    applyFilters();
-  });
-
-  sortSelect?.addEventListener('change', (e) => {
-    currentSort = e.target.value;
-    applyFilters();
-  });
-
-  document.querySelectorAll('.cert-filter').forEach(cb => {
-    cb.addEventListener('change', () => {
-      selectedCerts = Array.from(document.querySelectorAll('.cert-filter:checked')).map(c => c.value);
+  filterDrawerBackdrop?.addEventListener('change', () => {
+    if (window.matchMedia('(min-width: 1101px)').matches) {
+      renderSubcategoryPills();
       applyFilters();
-    });
-  });
-
-  btnGrid?.addEventListener('click', () => {
-    viewMode = 'grid';
-    btnGrid.classList.add('active');
-    btnList.classList.remove('active');
-    applyFilters();
-  });
-
-  btnList?.addEventListener('click', () => {
-    viewMode = 'list';
-    btnList.classList.add('active');
-    btnGrid.classList.remove('active');
-    applyFilters();
+    }
   });
 
   // Initial Load
-  renderCategoriesSidebar();
-  renderBrandsSidebar();
+  renderSubcategoryPills();
+  const footerCategoryLinks = document.getElementById('shop-footer-category-links');
+  if (footerCategoryLinks && categoriesPillsEl) {
+    categoriesPillsEl.querySelectorAll('.catalog-category-card').forEach(card => {
+      const link = document.createElement('a');
+      link.href = card.getAttribute('href');
+      link.append(card.querySelector('.catalog-category-line').cloneNode(true));
+      const label = document.createElement('span');
+      label.textContent = card.querySelector('strong').textContent;
+      link.append(label);
+      const arrow = document.createElement('span');
+      arrow.className = 'footer-category-chevron';
+      arrow.textContent = '⌄';
+      arrow.setAttribute('aria-hidden', 'true');
+      link.append(arrow);
+      footerCategoryLinks.append(link);
+    });
+  }
+  renderDrawerCategories();
+  renderDrawerBrands();
   applyFilters();
 });
