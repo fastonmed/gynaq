@@ -1,6 +1,11 @@
 DirectoryIndex index.html
 Options -Indexes -MultiViews
 RewriteEngine On
+
+# Keep one public website address and preserve page paths and query strings.
+RewriteCond %{HTTP_HOST} ^gynaeq\.com$ [NC]
+RewriteRule ^ https://www.gynaeq.com%{REQUEST_URI} [R=301,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(shop|product|category|about|contact|packages|compare|admin)/?$ $1.html [L]
