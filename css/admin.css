@@ -100,6 +100,13 @@ input[type="number"] {
   gap: 10px;
 }
 
+.sidebar-brand-logo {
+  display: block;
+  width: 155px;
+  height: 50px;
+  object-fit: contain;
+}
+
 .sidebar-brand-mark {
   flex-shrink: 0;
   display: inline-block;
