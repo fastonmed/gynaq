@@ -4,6 +4,7 @@
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', async () => {
+  await window.gynaeqAdminReady;
   const store = window.gynaeqStore;
   await store.init();
 
@@ -932,6 +933,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         image: uploadedImage
       };
 
+      try {
       if (isEdit) {
         await store.updateProduct(existingProduct.id, productPayload);
         showToast(`Product "${name}" updated in CRM!`);
@@ -940,6 +942,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         showToast(`Product "${name}" saved to CRM!`);
       }
 
+      } catch (error) { showToast(error.message, false); return; }
       closeModal();
       // Re-render active tab
       const container = document.getElementById('admin-tab-content');
@@ -955,7 +958,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
   window.adminDeleteProduct = async (id) => {
     if (confirm('Are you sure you want to delete this product from the CRM catalog?')) {
-      await store.deleteProduct(id);
+      try { await store.deleteProduct(id); } catch (error) { showToast(error.message, false); return; }
       showToast('Product removed from catalog');
       const container = document.getElementById('admin-tab-content');
       if (container) renderProductsTab(container);

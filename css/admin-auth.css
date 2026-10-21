@@ -1,0 +1,12 @@
+.crm-app-shell[hidden] { display: none !important; }
+.admin-signin { min-height: 100dvh; width: 100%; display: grid; place-items: center; padding: 24px; background: #f7f9fc; font-family: Inter, sans-serif; }
+.admin-signin-card { width: 100%; max-width: 430px; padding: 32px; background: white; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 12px 35px #0f172a0a; display: grid; gap: 14px; }
+.admin-signin-card h1 { font-size: 24px; margin: 10px 0 0; color: #0f172a; }
+.admin-signin-card p { line-height: 1.6; color: #475569; margin: 0; }
+.admin-signin-card label { font-weight: 600; color: #1e293b; }
+.admin-signin-card input { width: 100%; min-width: 0; padding: 12px; border: 1px solid #94a3b8; border-radius: 8px; font: inherit; }
+.admin-signin-card button, .admin-signout { min-height: 44px; padding: 10px 18px; border: 0; border-radius: 8px; background: #c8116b; color: white; cursor: pointer; font: inherit; font-weight: 600; }
+.admin-signin-card button:disabled { opacity: .6; }
+.admin-signin-card .admin-signin-error { color: #b91c1c; }
+.admin-signin-card a { color: #a80d58; }
+.admin-signout { position: fixed; right: 24px; bottom: 24px; z-index: 100; box-shadow: 0 4px 15px #0002; }
