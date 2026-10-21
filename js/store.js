@@ -73,23 +73,28 @@ class GynaeqStore {
   }
 
   async init() {
-    try {
-      const res = await fetch('/api/data');
-      if (res.ok) {
-        this.data = await res.json();
-        this.saveLocalStorage('gynaeq_cached_db', this.data);
-      } else {
-        throw new Error('API offline');
+    if (this._initializing) return this._initializing;
+    this._initializing = (async () => {
+      for (const url of ['/api/data', '/data/catalog.json']) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error('Catalog unavailable');
+          const data = await response.json();
+          if (!Array.isArray(data.products) || !data.products.length || !Array.isArray(data.categories)) throw new Error('Empty catalog');
+          this.data = data;
+          this.saveLocalStorage('gynaeq_cached_db', data);
+          this.emit('data:ready', data);
+          return data;
+        } catch (error) {
+          console.warn('Catalog source unavailable:', url);
+        }
       }
-    } catch (e) {
-      console.warn('Using local cached database or fallback seed data:', e);
       const cached = this.loadLocalStorage('gynaeq_cached_db', null);
-      if (cached) {
-        this.data = cached;
-      }
-    }
-    this.emit('data:ready', this.data);
-    return this.data;
+      if (cached?.products?.length) this.data = cached;
+      this.emit('data:ready', this.data);
+      return this.data;
+    })();
+    return this._initializing;
   }
 
   // ─── QUERY HELPERS ────────────────────────────────────────────────────────
