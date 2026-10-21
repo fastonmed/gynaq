@@ -1,0 +1,1246 @@
+/* ==========================================================================
+   GYNAEQ EXECUTIVE CRM & ADMIN PANEL STYLESHEET
+   Ditto Replica of FastonMed CRM UI Architecture
+   ========================================================================== */
+
+:root {
+  --background: #f8fafc;
+  --sidebar-bg: #002533;
+  --sidebar-width: 260px;
+  --header-height: 64px;
+  --primary: #004d66;
+  --primary-dark: #003749;
+  --accent: #42b69c;
+  --accent-light: #eaf8f4;
+  --success: #10b981;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.06), 0 2px 4px -1px rgba(0,0,0,0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.04);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.crm-body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  color-scheme: light;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Hide number stepper arrows */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+input[type="number"] {
+  -moz-appearance: textfield !important;
+  appearance: textfield !important;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ─── APP SHELL LAYOUT ─────────────────────────────────────────────────── */
+.crm-app-shell {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* ─── FASTONMED SIDEBAR ─────────────────────────────────────────────────── */
+.crm-sidebar {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  height: 100%;
+  background: var(--sidebar-bg);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 20;
+  overflow: hidden;
+  transition: width 0.25s ease;
+}
+
+.sidebar-header {
+  padding: 18px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sidebar-logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-brand-mark {
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.sidebar-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.brand-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #42b69c;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Workspace Hub Switcher Button */
+.sidebar-hub-container {
+  padding: 10px 10px 4px 10px;
+}
+
+.sidebar-hub-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background-color: rgba(66, 182, 156, 0.12);
+  border: 1px solid rgba(66, 182, 156, 0.28);
+  color: #42b69c;
+  text-decoration: none;
+  font-size: 12.5px;
+  font-weight: 600;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.sidebar-hub-link:hover {
+  background-color: rgba(66, 182, 156, 0.2);
+  color: #5eead4;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  flex: 1;
+  padding: 8px 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.sidebar-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: all 0.12s ease;
+  user-select: none;
+}
+
+.sidebar-nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.sidebar-nav-link.active {
+  background: linear-gradient(135deg, rgba(66, 182, 156, 0.18), rgba(0, 77, 102, 0.3));
+  border-color: rgba(66, 182, 156, 0.35);
+  color: #42b69c;
+  font-weight: 600;
+}
+
+.sidebar-group {
+  margin-bottom: 2px;
+}
+
+.sidebar-group-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  color: #94a3b8;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 500;
+  font-family: inherit;
+  transition: all 0.12s ease;
+  user-select: none;
+}
+
+.sidebar-group-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.sidebar-group-btn.active {
+  background: rgba(66, 182, 156, 0.12);
+  border-color: rgba(66, 182, 156, 0.25);
+  color: #42b69c;
+}
+
+.sidebar-group-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chevron-icon {
+  transition: transform 0.2s ease;
+  color: #64748b;
+}
+
+.sidebar-group.expanded .chevron-icon {
+  transform: rotate(0deg);
+  color: #42b69c;
+}
+
+.sidebar-group:not(.expanded) .chevron-icon {
+  transform: rotate(-90deg);
+}
+
+.sidebar-sub-tree {
+  display: none;
+  padding-left: 10px;
+  margin-top: 2px;
+  margin-bottom: 4px;
+  border-left: 2px solid rgba(66, 182, 156, 0.25);
+  margin-left: 18px;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar-group.expanded .sidebar-sub-tree {
+  display: flex;
+}
+
+.sidebar-sub-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  font-size: 13px;
+  color: #94a3b8;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: all 0.12s ease;
+  user-select: none;
+}
+
+.sidebar-sub-link:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.sidebar-sub-link.active {
+  background: linear-gradient(135deg, rgba(66, 182, 156, 0.22), rgba(0, 77, 102, 0.35));
+  border-color: rgba(66, 182, 156, 0.35);
+  color: #42b69c;
+  font-weight: 600;
+}
+
+.sub-pill-badge {
+  margin-left: auto;
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  line-height: 1.3;
+}
+
+/* User Section */
+.sidebar-user-section {
+  padding: 12px 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-user-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  margin-bottom: 8px;
+}
+
+.sidebar-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #004d66, #42b69c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.sidebar-user-details {
+  overflow: hidden;
+}
+
+.sidebar-user-name {
+  color: #e2e8f0;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user-role {
+  color: #64748b;
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-logout-btn {
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.18);
+  border-radius: 8px;
+  color: #f87171;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.sidebar-logout-btn:hover {
+  background: rgba(220, 38, 38, 0.16);
+  color: #ef4444;
+}
+
+/* ─── MAIN COLUMN & STICKY HEADER ─────────────────────────────────────── */
+.crm-main-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.crm-header {
+  height: var(--header-height);
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 14px;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.header-titles {
+  flex: 1;
+  min-width: 0;
+}
+
+.header-titles h1 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.header-titles p {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 2px 0 0 0;
+}
+
+.crm-header-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  width: 240px;
+  color: #94a3b8;
+}
+
+.crm-header-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 12.5px;
+  color: var(--text);
+  width: 100%;
+  font-family: inherit;
+}
+
+.kbd-shortcut {
+  background: #e2e8f0;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #64748b;
+  font-family: monospace;
+}
+
+.header-hub-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #b2e7d9;
+  background-color: #eaf8f4;
+  color: #004d66;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.header-hub-btn:hover {
+  background-color: #d1fae5;
+}
+
+.header-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.15s ease;
+}
+
+.header-icon-btn:hover {
+  background: #f0fdfa;
+  color: #004d66;
+  border-color: #ccfbf1;
+}
+
+.notif-badge {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 9.5px;
+  font-weight: 800;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+}
+
+.header-avatar-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #004d66, #42b69c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Main Viewport Content */
+.crm-content-body {
+  flex: 1;
+  padding: 16px 24px;
+  overflow-y: auto;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ─── FASTONMED CARDS & UTILITIES ──────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  user-select: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #004d66, #003649);
+  color: white;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #003b4f, #002b3a);
+  box-shadow: 0 4px 12px rgba(0, 77, 102, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+.btn-secondary:hover {
+  background: #e2e8f0;
+}
+
+.btn-danger {
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+.btn-danger:hover {
+  background: #fecaca;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  background: white;
+  color: var(--text);
+  outline: none;
+}
+.form-input:focus {
+  border-color: #42b69c;
+  box-shadow: 0 0 0 3px rgba(66, 182, 156, 0.2);
+}
+.form-input::placeholder {
+  color: #94a3b8;
+}
+
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+/* ─── FASTONMED PRODUCT CATALOG TOOLBAR ────────────────────────────────── */
+.catalog-toolbar-card {
+  padding: 14px 18px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 12px;
+}
+
+.catalog-toolbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.catalog-search-wrap {
+  position: relative;
+  width: 270px;
+}
+
+.catalog-search-wrap .search-icon {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+  font-size: 13px;
+}
+
+.catalog-search-wrap input {
+  padding-left: 32px;
+  height: 38px;
+  font-size: 13px;
+}
+
+.catalog-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.catalog-select {
+  height: 38px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0 10px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+}
+.catalog-select:focus {
+  border-color: #42b69c;
+}
+
+.view-mode-toggle {
+  display: flex;
+  background: #f1f5f9;
+  padding: 3px;
+  border-radius: 8px;
+  gap: 2px;
+}
+
+.view-mode-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: transparent;
+  color: #64748b;
+  font-family: inherit;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.view-mode-btn.active {
+  background: #004d66;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Results summary bar */
+.catalog-results-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 2px 10px 2px;
+}
+
+.summary-text {
+  font-size: 13px;
+  color: #64748b;
+}
+.summary-text strong {
+  color: #0f172a;
+}
+
+.summary-stats-pills {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.stock-pill {
+  font-size: 12px;
+  color: #64748b;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.dot-green {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  display: inline-block;
+}
+
+/* ─── FASTONMED PRODUCT LIST TABLE ─────────────────────────────────────── */
+.fastonmed-table-card {
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table.fastonmed-table {
+  width: 100%;
+  min-width: 1040px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+}
+
+table.fastonmed-table thead tr {
+  background-color: #f8fafc;
+}
+
+table.fastonmed-table thead th {
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-right: 1px solid #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+table.fastonmed-table thead th:last-child {
+  border-right: none;
+  text-align: center;
+}
+
+table.fastonmed-table tbody tr {
+  transition: background-color 0.12s ease;
+  cursor: pointer;
+}
+
+table.fastonmed-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+table.fastonmed-table tbody td {
+  padding: 10px 14px;
+  color: #0f172a;
+  border-bottom: 1px solid #f1f5f9;
+  border-right: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+table.fastonmed-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table-product-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-product-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 3px;
+}
+
+.margin-pill {
+  font-size: 10px;
+  font-weight: 700;
+  color: #059669;
+  background-color: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  padding: 1px 6px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Fastonmed Action Dropdown */
+.action-dropdown-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+.action-dropdown-btn:hover {
+  border-color: #004d66;
+  color: #004d66;
+}
+
+.action-popover-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 100;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+  min-width: 165px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.action-popover-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: #0f172a;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+  font-family: inherit;
+}
+
+.action-popover-item:hover {
+  background-color: #f0f9ff;
+}
+
+.action-popover-item.danger {
+  color: #ef4444;
+}
+.action-popover-item.danger:hover {
+  background-color: #fef2f2;
+}
+
+/* ─── FASTONMED PRODUCT MODERN GRID ───────────────────────────────────── */
+.product-modern-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (max-width: 1200px) {
+  .product-modern-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 768px) {
+  .product-modern-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.product-catalog-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.product-catalog-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px -4px rgba(0, 39, 53, 0.12);
+  border-color: #004d66;
+}
+
+.product-image-stage {
+  height: 130px;
+  background: radial-gradient(circle at 50% 35%, #ffffff 0%, #f8fafc 70%, #f1f5f9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #f1f5f9;
+}
+.product-stage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px 10px;
+  transition: transform 0.25s ease;
+}
+.product-catalog-card:hover .product-stage-img {
+  transform: scale(1.05);
+}
+
+.id-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  background-color: rgba(255,255,255,0.92);
+  color: #475569;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+/* ─── DITTO FASTONMED "ADD PRODUCT & CONNECT TRADER" MODAL ─────────────── */
+.fastonmed-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+.fastonmed-modal-card {
+  width: 100%;
+  max-width: 880px;
+  max-height: 92vh;
+  overflow-y: auto;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.fastonmed-modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8fafc;
+}
+
+.modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: #e0f2fe;
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.fastonmed-modal-header h2 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #002735;
+  margin: 0;
+}
+
+.fastonmed-modal-header p {
+  margin: 2px 0 0 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #94a3b8;
+  padding: 4px;
+  line-height: 1;
+}
+.modal-close-btn:hover {
+  color: #0f172a;
+}
+
+.fastonmed-modal-form {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Photo Upload Box */
+.photo-upload-box {
+  padding: 16px 20px;
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.photo-preview-square {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background-color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  flex-shrink: 0;
+}
+.photo-preview-square img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-upload-controls {
+  flex: 1;
+}
+
+.photo-btn-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  background-color: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  cursor: pointer;
+  font-family: inherit;
+}
+.photo-btn-add:hover {
+  background-color: #f1f5f9;
+}
+
+.photo-btn-remove {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  background-color: transparent;
+  color: #ef4444;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Form Layout Grids */
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 0.9fr;
+  gap: 14px;
+}
+
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 0.9fr;
+  gap: 14px;
+}
+
+/* Margin Indicator */
+.margin-indicator-badge {
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.margin-indicator-badge.positive {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+}
+.margin-indicator-badge.empty {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #94a3b8;
+}
+
+/* Connected Trader Box */
+.trader-agreement-box {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.trader-box-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #004d66;
+}
+.trader-box-header span.tag {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Autocomplete Popup */
+.brand-autocomplete-popup {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  max-height: 180px;
+  overflow-y: auto;
+  z-index: 200;
+  padding: 4px;
+}
+
+.brand-autocomplete-item {
+  padding: 6px 10px;
+  font-size: 12.5px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #0f172a;
+}
+.brand-autocomplete-item:hover {
+  background-color: #f1f5f9;
+}
+
+/* Toast */
+.crm-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #002533;
+  color: #ffffff;
+  border: 1px solid rgba(66, 182, 156, 0.4);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  z-index: 2000;
+  animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin {
+  animation: spin 0.8s linear infinite;
+}

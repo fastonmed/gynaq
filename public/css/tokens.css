@@ -1,0 +1,314 @@
+/* ==========================================================================
+   GYNAEQ DESIGN SYSTEM TOKENS
+   Awwwards-tier / $150k Agency Architecture
+   Deep Pink / Velvet Magenta / Midnight Navy / Soft Rose Blush
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Brand Primary Palette (From User Logo & Creative Direction) */
+  --color-primary: #C7186F;
+  --color-primary-hover: #A8115C;
+  --color-primary-active: #8A0C4A;
+  --color-primary-light: #FDF2F7;
+  --color-primary-subtle: #FCE7F1;
+  --color-primary-glow: rgba(199, 24, 111, 0.16);
+  --color-primary-glow-strong: rgba(199, 24, 111, 0.32);
+
+  /* Secondary Executive Navy & Slate */
+  --color-navy-950: #070F1E;
+  --color-navy-900: #0B192C;
+  --color-navy-850: #0F223C;
+  --color-navy-800: #152C4E;
+  --color-navy-700: #1E3A63;
+  --color-navy-500: #3B5D8C;
+  --color-navy-100: #EBF1F8;
+
+  /* Neutrals & Medical Clinical Canvas */
+  --color-surface-bg: #F8FAFC;
+  --color-surface-card: #FFFFFF;
+  --color-surface-card-subtle: #FDFEFE;
+  --color-surface-elevated: #FFFFFF;
+  
+  --color-text-main: #0B192C;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748B;
+  --color-text-light: #94A3B8;
+  --color-text-inverse: #FFFFFF;
+
+  /* Subtle Borders & Hairlines */
+  --border-hairline: #E2E8F0;
+  --border-subtle: #EDF2F7;
+  --border-pink: #FBCFE8;
+  --border-pink-strong: #F472B6;
+  --border-focus: #C7186F;
+
+  /* Clinical Status Accents */
+  --color-success: #059669;
+  --color-success-bg: #ECFDF5;
+  --color-success-border: #A7F3D0;
+  
+  --color-warning: #D97706;
+  --color-warning-bg: #FFFBEB;
+  --color-warning-border: #FDE68A;
+
+  --color-info: #0284C7;
+  --color-info-bg: #F0F9FF;
+  --color-info-border: #BAE6FD;
+
+  --color-danger: #DC2626;
+  --color-danger-bg: #FEF2F2;
+  --color-danger-border: #FECACA;
+
+  /* Typography */
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Double-Bezel Concentric Radii Architecture */
+  --radius-outer-2xl: 32px;
+  --radius-inner-2xl: 26px;
+  
+  --radius-outer-xl: 24px;
+  --radius-inner-xl: 18px;
+
+  --radius-outer-lg: 18px;
+  --radius-inner-lg: 13px;
+
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --radius-pill: 9999px;
+
+  /* Ambient Diffused Shadows (Machined Hardware Feel) */
+  --shadow-subtle: 0 2px 8px -2px rgba(11, 25, 44, 0.04), 0 1px 3px 0 rgba(11, 25, 44, 0.02);
+  --shadow-card: 0 12px 30px -8px rgba(11, 25, 44, 0.06), 0 4px 10px -2px rgba(11, 25, 44, 0.03);
+  --shadow-card-hover: 0 24px 48px -12px rgba(199, 24, 111, 0.12), 0 8px 18px -4px rgba(11, 25, 44, 0.06);
+  --shadow-elevated: 0 30px 60px -15px rgba(11, 25, 44, 0.16), 0 10px 24px -6px rgba(11, 25, 44, 0.08);
+  --shadow-bezel-inner: inset 0 1px 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 1px 0 rgba(11, 25, 44, 0.02);
+
+  /* Fluid Kinetic Motion Curves (Spring / Mass Physics) */
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-out-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 180ms var(--ease-out-smooth);
+  --transition-normal: 320ms var(--ease-spring);
+  --transition-slow: 550ms var(--ease-spring);
+
+  /* Spacing Rhythm */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  /* Maximum Layout Width */
+  --container-max: 1360px;
+  --header-height: 84px;
+}
+
+/* Base Reset & Smooth Render */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 130px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-main);
+  background-color: var(--color-surface-bg);
+  line-height: 1.6;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+img, svg, video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Custom Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* High-End Double-Bezel Card Utility */
+.bezel-outer {
+  background: rgba(11, 25, 44, 0.025);
+  border: 1px solid rgba(11, 25, 44, 0.06);
+  padding: 6px;
+  border-radius: var(--radius-outer-xl);
+  box-shadow: var(--shadow-subtle);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.bezel-outer:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--border-pink);
+}
+
+.bezel-inner {
+  background: var(--color-surface-card);
+  border-radius: var(--radius-inner-xl);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-bezel-inner);
+  overflow: hidden;
+}
+
+/* Button-in-Button Trailing Icon Architecture */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 10px 14px 10px 24px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 14px var(--color-primary-glow), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px var(--color-primary-glow-strong), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary .btn-icon-bubble {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.2);
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.btn-primary:hover .btn-icon-bubble {
+  transform: translateX(3px);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFFFFF;
+  color: var(--color-navy-900);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 10px 14px 10px 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-hairline);
+  box-shadow: var(--shadow-subtle);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-card);
+}
+
+.btn-secondary .btn-icon-bubble {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  transition: transform var(--transition-fast);
+}
+
+.btn-secondary:hover .btn-icon-bubble {
+  transform: translateX(3px);
+}
+
+/* Eyebrow Micro-Badge */
+.eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid var(--border-pink);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 8px var(--color-primary);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.7; }
+}

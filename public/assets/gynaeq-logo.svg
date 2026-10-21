@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E21D7A"/>
+      <stop offset="100%" stop-color="#C7186F"/>
+    </linearGradient>
+    <linearGradient id="softPinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F472B6"/>
+      <stop offset="100%" stop-color="#E21D7A"/>
+    </linearGradient>
+    <linearGradient id="swooshGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E21D7A" stop-opacity="0.3"/>
+      <stop offset="25%" stop-color="#E21D7A"/>
+      <stop offset="85%" stop-color="#C7186F"/>
+      <stop offset="100%" stop-color="#A31154"/>
+    </linearGradient>
+    <linearGradient id="swooshGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F472B6" stop-opacity="0.2"/>
+      <stop offset="40%" stop-color="#F472B6" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#E21D7A" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+
+  <g font-family="'Plus Jakarta Sans', 'Outfit', 'Montserrat', -apple-system, sans-serif" font-weight="800">
+    <!-- G -->
+    <text x="35" y="112" font-size="94" fill="#0E1B2E" letter-spacing="-2">G</text>
+    <!-- Y -->
+    <text x="122" y="112" font-size="94" fill="#0E1B2E" letter-spacing="-1">Y</text>
+    <!-- N -->
+    <text x="206" y="112" font-size="94" fill="#0E1B2E" letter-spacing="-1">N</text>
+    
+    <!-- A with diamond feature -->
+    <g transform="translate(294, 28)">
+      <text x="0" y="84" font-size="94" fill="#0E1B2E" letter-spacing="-1">A</text>
+      <!-- Cutout diamond accent in apex of A -->
+      <polygon points="34,44 41,52 34,60 27,52" fill="#E21D7A"/>
+    </g>
+
+    <!-- E -->
+    <text x="382" y="112" font-size="94" fill="#E21D7A" letter-spacing="-1">E</text>
+
+    <!-- Q with Venus Symbol ♀ -->
+    <g transform="translate(458, 44)">
+      <!-- Circle of the Q -->
+      <circle cx="48" cy="48" r="38" fill="none" stroke="#E21D7A" stroke-width="15.5"/>
+      <!-- Inner cutout curve matching logo -->
+      <path d="M 64,66 Q 72,56 70,44" fill="none" stroke="#E21D7A" stroke-width="7" stroke-linecap="round"/>
+      <!-- Venus Symbol Tail / Crossbar -->
+      <line x1="72" y1="74" x2="72" y2="114" stroke="#E21D7A" stroke-width="14" stroke-linecap="square"/>
+      <line x1="56" y1="94" x2="88" y2="94" stroke="#E21D7A" stroke-width="12" stroke-linecap="square"/>
+    </g>
+  </g>
+
+  <!-- Flowing Dynamic Ribbon Wave / Swoosh -->
+  <!-- Main primary ribbon -->
+  <path d="M 45,152 C 140,126 260,118 420,132 C 480,137 530,120 560,95 C 515,130 455,147 385,142 C 240,132 145,148 45,152 Z" fill="url(#swooshGrad1)"/>
+  <!-- Secondary accent ribbon -->
+  <path d="M 65,160 C 170,138 290,132 440,146 C 495,151 540,136 575,115 C 530,144 470,158 405,153 C 265,144 165,158 65,160 Z" fill="url(#swooshGrad2)"/>
+</svg>

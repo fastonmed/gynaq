@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Equipment Catalog & Shop | GYNAEQ UAE</title>
+  <meta name="description" content="Explore authorized gynecology, obstetrics, fetal medicine, ultrasound, delivery beds and IVF medical equipment catalog. Official UAE distributor with Dubai stock.">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+
+
+  <!-- Header -->
+  <header class="main-header" id="site-header">
+    <div class="header-container">
+      <a href="/" class="logo-wrapper" title="GYNAEQ Home">
+        <img src="/assets/gynaeq-logo.svg" alt="GYNAEQ Medical Equipment" class="logo-img">
+      </a>
+
+      <div class="header-search">
+        <div class="search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="header-search-input" placeholder="Search by machine model, brand (GE, Philips, Mindray), or SKU..." autocomplete="off">
+        </div>
+        <div class="search-dropdown" id="search-dropdown"></div>
+      </div>
+
+      <div class="header-actions">
+        <a href="/compare" class="header-btn header-btn-ghost" id="btn-open-compare-modal" title="Compare Selected Equipment">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Compare</span>
+          <span class="header-badge compare-badge" style="display: none;">0</span>
+        </a>
+
+        <button class="header-btn header-btn-primary" data-trigger-rfq-drawer title="View Request for Quote Basket">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Request Quote</span>
+          <span class="header-badge cart-badge" style="display: none;">0</span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="nav-bar">
+      <div class="nav-container">
+        <ul class="nav-links">
+          <li><a href="/" class="nav-item">Home</a></li>
+          <li><a href="/shop" class="nav-item active">Shop Equipment</a></li>
+          <li><a href="/packages" class="nav-item">Turnkey Packages</a></li>
+          <li><a href="/about" class="nav-item">About GYNAEQ</a></li>
+          <li><a href="/contact" class="nav-item">Contact Showroom</a></li>
+          <li><a href="/admin" class="nav-item" style="color: var(--color-primary); font-weight: 700;">Admin CRM</a></li>
+        </ul>
+        <div class="nav-phone-call">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Dubai Showroom: +971 4 879 2300
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb-nav">
+    <div class="breadcrumb-container">
+      <a href="/" class="breadcrumb-link">Home</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Medical Equipment Catalog</span>
+    </div>
+  </div>
+
+  <!-- Shop Main Wrapper -->
+  <main class="shop-page-wrapper">
+    <div class="shop-page-header">
+      <h1 class="shop-page-title">Advanced Ob-Gyn Medical Equipment</h1>
+      <p class="shop-page-subtitle">Authorized UAE distributor catalog featuring ultrasound systems, fetal monitors, video colposcopes, delivery beds, electrosurgery units and IVF equipment with DHA & MoHAP compliance.</p>
+    </div>
+
+    <div class="shop-layout">
+      <!-- Left Faceted Sidebar -->
+      <aside class="shop-sidebar">
+        <div class="sidebar-header">
+          <span class="sidebar-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            Filter Inventory
+          </span>
+          <button id="btn-reset-filters" class="btn-clear-filters-link">Reset All</button>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="filter-group">
+          <div class="filter-group-title">Clinical Categories</div>
+          <div class="filter-checkbox-list" id="category-filters-container">
+            <!-- Injected via shop.js -->
+          </div>
+        </div>
+
+        <!-- Brand Filter -->
+        <div class="filter-group">
+          <div class="filter-group-title">Authorized Brands</div>
+          <div class="filter-checkbox-list" id="brand-filters-container">
+            <!-- Injected via shop.js -->
+          </div>
+        </div>
+
+        <!-- Stock Filter -->
+        <div class="filter-group">
+          <div class="filter-group-title">Warehouse Availability</div>
+          <label class="filter-checkbox-label">
+            <span style="display: flex; align-items: center;">
+              <input type="checkbox" id="filter-stock-only">
+              In Stock (Dubai Warehouse)
+            </span>
+            <span class="filter-count-badge" id="in-stock-count">0</span>
+          </label>
+        </div>
+
+        <!-- Regulatory Approvals -->
+        <div class="filter-group">
+          <div class="filter-group-title">Certifications</div>
+          <div class="filter-checkbox-list">
+            <label class="filter-checkbox-label">
+              <span><input type="checkbox" class="cert-filter" value="MoHAP"> UAE MoHAP Registered</span>
+            </label>
+            <label class="filter-checkbox-label">
+              <span><input type="checkbox" class="cert-filter" value="CE"> CE Marked (Medical Class II/III)</span>
+            </label>
+            <label class="filter-checkbox-label">
+              <span><input type="checkbox" class="cert-filter" value="FDA"> US FDA 510(k) Cleared</span>
+            </label>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right Main Content -->
+      <div class="shop-main-content">
+        <!-- Top Toolbar -->
+        <div class="shop-top-controls">
+          <div class="shop-results-info" id="shop-results-count">Loading medical inventory...</div>
+
+          <div class="shop-controls-right">
+            <select class="shop-sort-select" id="shop-sort-select">
+              <option value="featured">Featured Medical Systems</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Model Name: A &rarr; Z</option>
+            </select>
+
+            <div class="view-mode-buttons">
+              <button class="btn-view-mode active" id="btn-view-grid" title="Grid View">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              </button>
+              <button class="btn-view-mode" id="btn-view-list" title="Detailed List View">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Filter Chips -->
+        <div class="active-filters-row" id="active-filters-chips"></div>
+
+        <!-- Products Grid -->
+        <div class="product-grid" id="shop-product-grid"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Turnkey Clinic Consultation Banner -->
+  <section style="background: linear-gradient(135deg, var(--color-navy-950) 0%, #1E293B 100%); color: #FFFFFF; padding: 64px 24px;">
+    <div style="max-width: var(--container-max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+      <div>
+        <span style="display: inline-block; background: rgba(226, 29, 122, 0.2); color: #F472B6; border: 1px solid rgba(226, 29, 122, 0.4); font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: var(--radius-pill); text-transform: uppercase; margin-bottom: 12px;">Hospital Procurement Advisory</span>
+        <h2 style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 800; margin-bottom: 8px;">Equipping a New Maternity Wing or Ob-Gyn Clinic?</h2>
+        <p style="color: #94A3B8; font-size: 0.95rem; max-width: 600px;">Our clinical biomedical engineers offer architectural layout planning, equipment matching, DHA/MoHAP approval documentation, and consolidated turnkey bundle discounts.</p>
+      </div>
+      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+        <a href="/packages" class="btn-primary" style="padding: 12px 28px;">Explore Turnkey Packages &rarr;</a>
+        <a href="/contact" class="btn-secondary" style="padding: 12px 24px; color: #FFFFFF; border-color: rgba(255, 255, 255, 0.2);">Request Clinical Meeting</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shared RFQ Drawer -->
+  <div class="drawer-backdrop" id="rfq-drawer-backdrop">
+    <div class="drawer-container">
+      <div class="drawer-header">
+        <div class="drawer-title-box">
+          <h2 class="drawer-title">Official UAE Hospital RFQ Basket</h2>
+          <p class="drawer-subtitle">Consolidate medical systems for formal quotation, DHA approval & bulk pricing</p>
+        </div>
+        <button class="drawer-close-btn" id="close-rfq-drawer" aria-label="Close RFQ Drawer">&times;</button>
+      </div>
+
+      <div class="drawer-body">
+        <div id="cart-items-list" class="cart-items-list"></div>
+        <div id="rfq-submit-container">
+          <div class="cart-total-bar">
+            <span>Estimated Total:</span>
+            <span id="rfq-cart-estimate" style="color: var(--color-primary); font-size: 1.1rem;">AED 0</span>
+          </div>
+
+          <form id="rfq-submission-form">
+            <div class="form-group">
+              <label class="form-label" for="facility-name">Healthcare Facility / Hospital Name *</label>
+              <input type="text" id="facility-name" name="facilityName" class="form-input" placeholder="e.g. King's College Hospital Dubai" required>
+            </div>
+            <div class="form-group-row">
+              <div class="form-group">
+                <label class="form-label" for="contact-name">Procurement / Doctor Name *</label>
+                <input type="text" id="contact-name" name="contactName" class="form-input" placeholder="Dr. Sarah Al-Hashimi" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-role">Designation / Role</label>
+                <input type="text" id="contact-role" name="role" class="form-input" placeholder="Head of Obstetrics">
+              </div>
+            </div>
+            <div class="form-group-row">
+              <div class="form-group">
+                <label class="form-label" for="contact-email">Official Work Email *</label>
+                <input type="email" id="contact-email" name="email" class="form-input" placeholder="doctor@hospital.ae" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-phone">UAE Mobile / WhatsApp *</label>
+                <input type="tel" id="contact-phone" name="phone" class="form-input" placeholder="+971 50 123 4567" required>
+              </div>
+            </div>
+            <div class="form-group-row">
+              <div class="form-group">
+                <label class="form-label" for="facility-city">Emirate / City</label>
+                <select id="facility-city" name="city" class="form-input">
+                  <option value="Dubai">Dubai</option>
+                  <option value="Abu Dhabi">Abu Dhabi</option>
+                  <option value="Sharjah">Sharjah</option>
+                  <option value="Ajman">Ajman</option>
+                  <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                  <option value="Fujairah">Fujairah</option>
+                  <option value="Al Ain">Al Ain</option>
+                  <option value="Riyadh (KSA)">Riyadh (KSA)</option>
+                  <option value="Doha (Qatar)">Doha (Qatar)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="procurement-urgency">Installation Urgency</label>
+                <select id="procurement-urgency" name="urgency" class="form-input">
+                  <option value="Immediate">Immediate (Stock Dispatch 24-48h)</option>
+                  <option value="Within 1 Month">Within 1 Month (Clinical Tender)</option>
+                  <option value="Annual Budgeting">Annual Capex Budgeting</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="clinical-notes">Clinical Specifications or Tender Requirements</label>
+              <textarea id="clinical-notes" name="notes" class="form-input" rows="3" placeholder="Specify probe requirements, delivery floor, electrical isolation, or warranty extensions..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 14px; font-size: 1rem; margin-top: 10px;">
+              Submit Official UAE Hospital RFQ
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison Floating Tray -->
+  <div id="compare-tray" style="display: none; position: fixed; bottom: 24px; right: 24px; z-index: 90; background: var(--color-navy-950); color: #FFFFFF; padding: 10px 18px; border-radius: var(--radius-pill); box-shadow: var(--shadow-elevated); align-items: center; gap: 14px; border: 1px solid rgba(255, 255, 255, 0.15);">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700;">Compare (<span class="compare-badge">0</span>/3):</span>
+      <div id="compare-tray-items" style="display: flex; gap: 8px;"></div>
+    </div>
+    <a href="/compare" class="btn-primary" id="btn-open-compare-tray-btn" style="padding: 6px 14px; font-size: 0.8rem;">
+      Compare Now
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-top-grid">
+        <div class="footer-col-main">
+          <img src="/assets/gynaeq-logo-white.svg" alt="GYNAEQ" class="footer-logo">
+          <p class="footer-brand-desc">
+            Authorized regional distributor of advanced gynecology, obstetrics, fetal medicine, and women's health medical equipment across the United Arab Emirates and Gulf Cooperation Council.
+          </p>
+          <div class="footer-cert-badges">
+            <span class="footer-cert-pill">✓ UAE MoHAP Approved</span>
+            <span class="footer-cert-pill">✓ CE Mark 0197 Certified</span>
+            <span class="footer-cert-pill">✓ ISO 13485:2016</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">Equipment Categories</h4>
+          <ul class="footer-links-list">
+            <li><a href="/category?id=ultrasound-fetal">4D/5D Fetal Ultrasound</a></li>
+            <li><a href="/category?id=fetal-maternal-monitoring">Maternal & Fetal CTG Monitors</a></li>
+            <li><a href="/category?id=colposcopy-imaging">Digital Video Colposcopes</a></li>
+            <li><a href="/category?id=delivery-beds-chairs">Electric LDR Delivery Beds</a></li>
+            <li><a href="/category?id=leep-electrosurgery">LEEP Gynecological RF Surgery</a></li>
+            <li><a href="/category?id=ivf-fertility-lab">IVF Lab & CO₂ Incubators</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">Commercial & Hospital</h4>
+          <ul class="footer-links-list">
+            <li><a href="/packages">Turnkey Clinic Setup Packages</a></li>
+            <li><a href="/shop">All Medical Hardware Catalog</a></li>
+            <li><a href="/about">About GYNAEQ UAE</a></li>
+            <li><a href="/contact">Dubai Showroom & Warehouse</a></li>
+            <li><a href="/admin">Executive Operations CRM</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">Dubai Headquarters</h4>
+          <p style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 12px;">
+            Al Quoz Industrial Area 3, Dubai, UAE<br>
+            Biomedical Warehouse & Demo Suite
+          </p>
+          <div class="footer-contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>+971 4 879 2300</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>rfq@gynaeq.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 GYNAEQ Healthcare Technologies LLC. All rights reserved. Dubai, United Arab Emirates.</div>
+        <div style="font-size: 0.775rem; color: #64748B;">Registered Medical Hardware Distributor &bull; Licensed by UAE Ministry of Health and Prevention (MoHAP)</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/store.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/shop.js"></script>
+</body>
+</html>
