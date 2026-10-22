@@ -82,6 +82,7 @@ class GynaeqStore {
           if (!response.ok) throw new Error('Catalog unavailable');
           const data = await response.json();
           if (!Array.isArray(data.products) || !data.products.length || !Array.isArray(data.categories)) throw new Error('Empty catalog');
+          data.products = data.products.map(product => ({ ...product, callForPrice: Boolean(product.callForPrice) || !(Number(product.price) > 0) }));
           this.data = data;
           this.saveLocalStorage('gynaeq_cached_db', data);
           this.emit('data:ready', data);

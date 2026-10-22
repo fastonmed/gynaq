@@ -112,12 +112,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const priceEl = document.getElementById('prod-price');
   if (priceEl) {
-    priceEl.textContent = p.callForPrice ? 'Contact For Official Quote' : formatAED(p.price);
+    priceEl.textContent = p.callForPrice ? 'Price on request' : formatAED(p.price);
+    const note = document.querySelector('.faston-price-subtext');
+    if (note && p.callForPrice) note.textContent = 'Contact our team for pricing and availability.';
   }
 
   const descEl = document.getElementById('prod-desc');
   if (descEl) {
-    descEl.textContent = p.shortDesc || p.description?.substring(0, 220) + '...' || '';
+    const source = p.shortDescription || p.shortDesc || p.description || '';
+    const doc = new DOMParser().parseFromString(source, 'text/html');
+    const summary = (doc.body.textContent || '').replace(/\s+/g, ' ').trim();
+    descEl.textContent = summary.length > 300 ? summary.slice(0, 300).replace(/\s+\S*$/, '') + '…' : summary;
   }
 
   // Highlights list
@@ -199,7 +204,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (p.fullHtmlDesc) {
       clinicalDescEl.innerHTML = p.fullHtmlDesc;
     } else if (p.description) {
-      clinicalDescEl.textContent = p.description;
+      clinicalDescEl.innerHTML = p.description;
     }
   }
 
