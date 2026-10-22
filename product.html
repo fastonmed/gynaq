@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="/css/tokens.css?v=20261022-black-footer">
   <link rel="stylesheet" href="/css/style.css?v=20261022-black-footer">
   <link rel="stylesheet" href="/css/marketplace.css?v=20261022-black-footer">
-  <link rel="stylesheet" href="/css/brand.css?v=20261022-white-footer">
+  <link rel="stylesheet" href="/css/brand.css?v=20261022-compact-crumbs">
   <link rel="stylesheet" href="/css/product-minimal.css?v=20261022-rounded">
   <link rel="stylesheet" href="/css/shop-mega.css?v=20261022-aligned">
 </head>
@@ -45,7 +45,7 @@
         <div class="beco-header-left">
           <!-- Logo -->
           <a href="/" class="beco-logo" title="GYNAEQ Medical Technologies">
-            <img class="gynaeq-brand-logo" src="/assets/gynaeq-logo.svg?v=20261022-reference" alt="GYNAEQ" width="189" height="44">
+            <img class="gynaeq-brand-logo" src="/assets/gynaeq-logo.svg?v=20261022-vector" alt="GYNAEQ" width="189" height="44">
           </a>
 
           <!-- All Categories Dropdown Menu (BeCosmetics 4 Architecture) -->
@@ -108,16 +108,16 @@
     </div>
   </header>
 
-  <!-- ─── FASTONMED BREADCRUMBS HIERARCHY ─────────────────────────────────── -->
-  <div class="faston-breadcrumb-strip">
-    <div class="faston-breadcrumb-inner" id="product-breadcrumb">
-      <a href="/">Home</a>
-      <span class="sep">/</span>
-      <a href="/shop">Medical Equipment</a>
-      <span class="sep">/</span>
-      <span id="bc-category-name"><a href="/shop">Hospital Category</a></span>
-      <span class="sep">/</span>
-      <span id="bc-product-title" class="faston-breadcrumb-current">Product Title</span>
+  <!-- ─── BREADCRUMBS ─────────────────────────────────────────────────────── -->
+  <div class="breadcrumb-nav">
+    <div class="breadcrumb-container" id="product-breadcrumb">
+      <a href="/" class="breadcrumb-link">Home</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="/shop" class="breadcrumb-link">Medical Equipment</a>
+      <span class="breadcrumb-separator">/</span>
+      <span id="bc-category-name"><a href="/shop" class="breadcrumb-link">Hospital Category</a></span>
+      <span class="breadcrumb-separator">/</span>
+      <span id="bc-product-title" class="breadcrumb-current">Product Title</span>
     </div>
   </div>
 
@@ -387,63 +387,78 @@
     </div>
   </div>
 
-  <!-- ─── FOOTER ──────────────────────────────────────────────────────────── -->
-  <footer class="beco-footer" style="background: #0B192C; color: #94A3B8; padding: 64px 0 32px;">
+  <!-- ─── SECTION: NEWSLETTER BANNER ────────────────────────────────── -->
+  <section class="beco-container" style="margin-top: 48px;">
+    <div class="beco-newsletter-banner">
+      <div>
+        <h3 class="beco-nl-title">Subscribe to our Healthcare Bulletin</h3>
+        <p class="beco-nl-desc">Stay updated on new medical equipment, exclusive hospital tender deals, and expert biomedical tips.</p>
+      </div>
+      <form class="beco-nl-form" onsubmit="event.preventDefault(); alert('Subscribed to GYNAEQ healthcare tender index.');">
+        <input type="email" placeholder="Enter your hospital email..." required class="beco-nl-input">
+        <button type="submit" class="beco-nl-btn">SUBSCRIBE</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER (BeCosmetics 4 Clean Minimal Architecture) ───────────────── -->
+  <footer class="beco-footer">
     <div class="beco-container">
-      <div style="display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 40px; margin-bottom: 48px;">
-        <div>
-          <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.5rem; font-weight: 800; color: #FFFFFF; margin-bottom: 14px;">
-            <img class="gynaeq-brand-logo" src="/assets/gynaeq-logo.svg?v=20261022-reference" alt="GYNAEQ" width="189" height="44">
+      <div class="beco-footer-grid">
+        <div class="beco-footer-about">
+          <a href="/" class="beco-logo">
+            <img class="gynaeq-brand-logo" src="/assets/gynaeq-logo.svg?v=20261022-vector" alt="GYNAEQ" width="189" height="44">
+          </a>
+          <p>Premier distributor of advanced gynecology, obstetrics, and maternal healthcare technologies across the United Arab Emirates and GCC.</p>
+          <div style="font-size: 0.85rem; font-weight: 700; color: var(--beco-text-dark); margin-bottom: 6px;">
+            +971 4 879 2300 (Dubai Office)
           </div>
-          <p style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 18px; color: #94A3B8;">
-            Authorized regional medical equipment distributor for advanced gynecology, obstetrics, fetal medicine, ultrasound and women's health hardware across the United Arab Emirates and GCC.
-          </p>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <span style="background: rgba(255,255,255,0.08); color: #FFFFFF; font-size: 0.725rem; font-weight: 700; padding: 4px 10px; border-radius: 9999px;">✓ UAE MoHAP Approved</span>
-            <span style="background: rgba(255,255,255,0.08); color: #FFFFFF; font-size: 0.725rem; font-weight: 700; padding: 4px 10px; border-radius: 9999px;">✓ CE Mark 0197</span>
+          <div style="font-size: 0.8rem; color: var(--beco-text-muted);">
+            Showroom 4, Al Asayel St, Business Bay, Dubai, UAE
           </div>
         </div>
 
-        <div>
-          <h4 style="color: #FFFFFF; font-size: 0.95rem; font-weight: 700; margin-bottom: 16px;">Equipment Categories</h4>
-          <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem;">
-            <li><a href="/category?id=ultrasound" style="color: #94A3B8;">4D/5D Fetal Ultrasound</a></li>
-            <li><a href="/category?id=fetal-monitoring" style="color: #94A3B8;">Maternal &amp; Fetal CTG Monitors</a></li>
-            <li><a href="/category?id=colposcopy" style="color: #94A3B8;">Digital Video Colposcopes</a></li>
-            <li><a href="/category?id=beds-chairs" style="color: #94A3B8;">Electric Gynaecology Chairs</a></li>
-            <li><a href="/category?id=electrosurgery" style="color: #94A3B8;">LEEP Gynecological RF Surgery</a></li>
+        <div class="beco-footer-col">
+          <h5>DIVISIONS</h5>
+          <ul class="beco-footer-links">
+            <li><a href="/category?id=ultrasound">4D/5D Ultrasound</a></li>
+            <li><a href="/category?id=fetal-monitoring">Fetal &amp; Twins CTG</a></li>
+            <li><a href="/category?id=colposcopy">Video Colposcopy</a></li>
+            <li><a href="/category?id=beds-chairs">Examination Chairs</a></li>
+            <li><a href="/category?id=electrosurgery">Electrosurgery</a></li>
           </ul>
         </div>
 
-        <div>
-          <h4 style="color: #FFFFFF; font-size: 0.95rem; font-weight: 700; margin-bottom: 16px;">Hospital Procurement</h4>
-          <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem;">
-            <li><a href="/packages" style="color: #94A3B8;">Turnkey Maternity Packages</a></li>
-            <li><a href="/shop" style="color: #94A3B8;">All Medical Hardware Catalog</a></li>
-            <li><a href="/about" style="color: #94A3B8;">About GYNAEQ UAE</a></li>
-            <li><a href="/contact" style="color: #94A3B8;">Dubai Showroom &amp; Warehouse</a></li>
-            <li><a href="/admin" style="color: var(--beco-primary); font-weight: 700;">Executive Operations CRM</a></li>
+        <div class="beco-footer-col">
+          <h5>BIOMEDICAL</h5>
+          <ul class="beco-footer-links">
+            <li><a href="/packages">Turnkey Packages</a></li>
+            <li><a href="/contact">Annual Maintenance (AMC)</a></li>
+            <li><a href="/contact">DHA Licensing Dossiers</a></li>
+            <li><a href="/contact">Acoustic Calibration</a></li>
+            <li><a href="/contact">Hospital Tender Desk</a></li>
           </ul>
         </div>
 
-        <div>
-          <h4 style="color: #FFFFFF; font-size: 0.95rem; font-weight: 700; margin-bottom: 16px;">Dubai Headquarters</h4>
-          <p style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 14px; color: #94A3B8;">
-            Building 64, Dubai Healthcare City (DHCC)<br>
-            Biomedical Warehouse: DIP-1 &amp; Al Quoz, Dubai
-          </p>
-          <div style="font-size: 0.85rem; color: #FFFFFF; margin-bottom: 6px; font-weight: 700;">
-            Tel: +971 4 879 2300 | WhatsApp: +971 50 889 3589
-          </div>
-          <div style="font-size: 0.825rem; color: #94A3B8;">
-            Email: sales@gynaeq.com
-          </div>
+        <div class="beco-footer-col">
+          <h5>COMPANY</h5>
+          <ul class="beco-footer-links">
+            <li><a href="/about">About GYNAEQ</a></li>
+            <li><a href="/contact">Dubai Showroom</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Supply</a></li>
+            <li><a href="/contact">Contact Support</a></li>
+          </ul>
         </div>
       </div>
 
-      <div style="padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.775rem; color: #64748B; flex-wrap: wrap; gap: 12px;">
-        <div>&copy; 2026 GYNAEQ Healthcare Technologies LLC. All rights reserved. Dubai, United Arab Emirates.</div>
-        <div>Licensed Medical Hardware Distributor &bull; UAE Ministry of Health and Prevention (MoHAP)</div>
+      <div class="beco-footer-bottom">
+        <div>
+          &copy; 2026 GYNAEQ Healthcare Technologies LLC. All rights reserved.
+        </div>
+        <div>
+          DHA Registered Medical Device Importer &bull; MoHAP Certified
+        </div>
       </div>
     </div>
   </footer>

@@ -1927,7 +1927,8 @@ img {
 .faston-breadcrumb-strip {
   background: #FFFFFF;
   border-bottom: 1px solid var(--beco-border-hairline);
-  padding: 14px 0;
+  padding: 6px 0 !important;
+  line-height: 1.2;
 }
 .faston-breadcrumb-inner {
   max-width: var(--beco-container);
@@ -1935,24 +1936,29 @@ img {
   padding: 0 20px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.8125rem;
-  color: var(--beco-text-muted);
+  gap: 6px;
+  font-size: 0.6875rem !important;
+  color: #8A95A5;
+  font-weight: 400 !important;
 }
 .faston-breadcrumb-inner a {
-  color: var(--beco-text-secondary);
-  font-weight: 500;
+  color: #8A95A5 !important;
+  font-weight: 400 !important;
+  font-size: 0.6875rem !important;
   text-decoration: none;
 }
 .faston-breadcrumb-inner a:hover {
-  color: var(--beco-primary);
+  color: var(--beco-primary) !important;
 }
 .faston-breadcrumb-inner .sep {
-  color: #CBD5E1;
+  color: #D1D5DB !important;
+  font-size: 0.625rem !important;
+  font-weight: 400 !important;
 }
 .faston-breadcrumb-current {
-  color: var(--beco-text-dark);
-  font-weight: 700;
+  color: #475569 !important;
+  font-weight: 400 !important;
+  font-size: 0.6875rem !important;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

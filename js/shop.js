@@ -6,7 +6,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   await store.init();
 
   const urlParams = new URLSearchParams(window.location.search);
-  const initialCat = urlParams.get('category');
+  let initialCat = urlParams.get('category') || urlParams.get('id');
+  if (!initialCat) {
+    const pathParts = window.location.pathname.split('/').filter(Boolean);
+    if (pathParts.length > 1 && pathParts[0] === 'category') {
+      initialCat = pathParts[1];
+    }
+  }
   const initialBrand = urlParams.get('brand');
   const initialSearch = urlParams.get('search');
 
@@ -38,6 +44,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   let currentSort = 'featured';
   let searchQuery = initialSearch || '';
   let currentGrid = 'grid-5col';
+
+  function updateBreadcrumbAndTitle() {
+    const bcName = document.getElementById('bc-cat-name');
+    if (!bcName) return;
+    if (selectedCategories.length === 1) {
+      const cat = store.getCategories().find(c => c.id === selectedCategories[0]);
+      if (cat) {
+        bcName.textContent = cat.name;
+        document.title = `${cat.name} Medical Equipment | GYNAEQ UAE`;
+        return;
+      }
+    } else if (selectedCategories.length > 1) {
+      bcName.textContent = `${selectedCategories.length} Categories Selected`;
+      document.title = 'Filtered Medical Equipment | GYNAEQ UAE';
+      return;
+    }
+    bcName.textContent = 'All Medical Equipment Catalog';
+    document.title = 'Medical Equipment Catalog & Shop | GYNAEQ UAE';
+  }
 
   // 1. Render Top Subcategory Switcher Pills (Ecomus Style)
   function renderSubcategoryPills() {
@@ -285,6 +310,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     renderActiveChips();
+    updateBreadcrumbAndTitle();
     renderProductsList(list);
   }
 

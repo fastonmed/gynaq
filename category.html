@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="category-page-title">Clinical Medical Categories | GYNAEQ UAE</title>
-  <meta name="description" id="category-page-desc" content="Browse specialized gynecology, obstetrics, delivery suite and fetal diagnostics equipment by clinical discipline. Official UAE distributor.">
+  <title id="category-page-title">Medical Equipment Catalog | GYNAEQ UAE</title>
+  <meta name="description" id="category-page-desc" content="Explore authorized gynecology, obstetrics, fetal medicine, ultrasound, delivery beds and IVF medical equipment catalog. Official UAE distributor with Dubai stock.">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 
   <!-- Typography: Plus Jakarta Sans & Manrope -->
@@ -15,13 +15,16 @@
   <link rel="stylesheet" href="/css/tokens.css?v=20261022-black-footer">
   <link rel="stylesheet" href="/css/style.css?v=20261022-black-footer">
   <link rel="stylesheet" href="/css/marketplace.css?v=20261022-black-footer">
-  <link rel="stylesheet" href="/css/brand.css?v=20261022-white-footer">
+  <link rel="stylesheet" href="/css/brand.css?v=20261022-compact-crumbs">
+  <link rel="stylesheet" href="/css/catalog-intro.css?v=20261022-restored-area">
   <link rel="stylesheet" href="/css/shop-mega.css?v=20261022-aligned">
+  <link rel="stylesheet" href="/css/shop-showcase.css?v=20261022-catalog-reference">
+  <link rel="stylesheet" href="/css/shop-reference.css?v=11">
 </head>
-<body class="marketplace-theme">
+<body class="marketplace-theme gynaeq-shop">
 
   <!-- ─── TOP ANNOUNCEMENT BAR ───────────────────────────────────────────── -->
-    <div class="beco-topbar">
+  <div class="beco-topbar">
     <div class="beco-container">
       <div class="beco-topbar-inner">
         <div class="beco-topbar-ticker">
@@ -37,7 +40,7 @@
     </div>
   </div>
 
-  <!-- ─── MAIN HEADER (BeCosmetics 4 Screenshot 2) ───────────────────────── -->
+  <!-- ─── MAIN HEADER (BeCosmetics 4 Architecture) ────────────────────────── -->
   <header class="beco-header" id="site-header">
     <div class="beco-container">
       <div class="beco-header-inner">
@@ -47,7 +50,7 @@
             <img class="gynaeq-brand-logo" src="/assets/gynaeq-logo.svg?v=20261022-reference" alt="GYNAEQ" width="189" height="44">
           </a>
 
-          <!-- All Categories Dropdown Menu (BeCosmetics 4 Architecture) -->
+          <!-- All Categories Dropdown Menu -->
           <div class="beco-cats-dropdown-wrapper">
             <a href="/shop" class="beco-cats-btn" id="cats-toggle-btn">
               <span>ALL CATEGORIES</span>
@@ -89,7 +92,7 @@
           </ul>
         </div>
 
-        <!-- Header Right: Search Input + Cart Box (BeCosmetics 4 Screenshot 2) -->
+        <!-- Header Right: Search Input + Cart Box -->
         <div class="beco-header-right">
           <div class="beco-search-container">
             <svg class="beco-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -107,31 +110,31 @@
     </div>
   </header>
 
-  <!-- ─── ECOMUS BREADCRUMBS ─────────────────────────────────────────────── -->
-  <div class="faston-breadcrumb-strip">
-    <div class="faston-breadcrumb-inner">
-      <a href="/">Home</a>
-      <span class="sep">/</span>
-      <a href="/shop">Medical Equipment</a>
-      <span class="sep">/</span>
-      <span class="faston-breadcrumb-current" id="bc-cat-name">Clinical Categories</span>
+  <!-- ─── BREADCRUMBS ─────────────────────────────────────────────────────── -->
+  <div class="breadcrumb-nav">
+    <div class="breadcrumb-container">
+      <a href="/" class="breadcrumb-link">Home</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="/shop" class="breadcrumb-link">Medical Equipment</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current" id="bc-cat-name">Clinical Category</span>
     </div>
   </div>
 
-  <!-- ─── ECOMUS CATEGORY HERO SECTION ───────────────────────────────────── -->
+  <!-- ─── ECOMUS CATALOG HERO SECTION ────────────────────────────────────── -->
   <section class="ecomus-category-hero">
     <div class="ecomus-hero-inner">
-      <div class="ecomus-title-row">
-        <h1 class="ecomus-page-title" id="cat-title">Clinical Medical Categories</h1>
-        <span class="ecomus-count-badge" id="cat-count-badge">(0 systems)</span>
-      </div>
-      <p class="ecomus-category-desc" id="cat-desc">
-        Explore specialized gynecological diagnostic, fetal imaging, delivery suite, and reproductive laboratory hardware authorized for deployment across UAE healthcare facilities.
-      </p>
-
+      <div class="shop-search-pink-box"><form class="shop-category-search" id="catalog-search-form" role="search">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+        <input id="catalog-search-input" type="search" placeholder="Filter by name…" aria-label="Search medical equipment">
+        <button type="submit">Search</button>
+      </form></div>
+      <div class="catalog-category-panel">
+        <div class="catalog-category-controls"><span>Categories</span><div><button type="button" data-category-step="-1" aria-label="Previous categories">←</button><button type="button" data-category-step="1" aria-label="Next categories">→</button></div></div>
       <!-- Subcategory Horizontal Filter Pills (Ecomus Style) -->
-      <div class="ecomus-subcategories-bar" id="cat-switcher-pills">
-        <!-- Injected via category.js -->
+      <div class="ecomus-subcategories-bar" id="shop-categories-pills">
+        <!-- Injected via shop.js -->
+      </div>
       </div>
     </div>
   </section>
@@ -146,133 +149,65 @@
           <span>Filter</span>
           <span class="filter-badge" id="active-filter-count" style="display: none;">0</span>
         </button>
-
-        <span class="ecomus-results-count" id="cat-results-count">Loading medical inventory...</span>
-      </div>
-
-      <div class="ecomus-toolbar-right">
-        <!-- Sort Dropdown -->
-        <select class="ecomus-sort-select" id="cat-sort-select">
-          <option value="featured">Featured Medical Systems</option>
-          <option value="price-asc">Price: Low to High</option>
-          <option value="price-desc">Price: High to Low</option>
-          <option value="name-asc">Model Name: A &rarr; Z</option>
-        </select>
-
-        <!-- Ecomus Grid Column Switchers -->
-        <div class="ecomus-grid-switchers">
-          <button class="ecomus-grid-btn" id="btn-grid-3col" title="3 Columns View">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="5" height="18" rx="1"/><rect x="9.5" y="3" width="5" height="18" rx="1"/><rect x="17" y="3" width="5" height="18" rx="1"/></svg>
-          </button>
-          <button class="ecomus-grid-btn active" id="btn-grid-4col" title="4 Columns View">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="3.8" height="18" rx="0.8"/><rect x="7.8" y="3" width="3.8" height="18" rx="0.8"/><rect x="13.6" y="3" width="3.8" height="18" rx="0.8"/><rect x="19.4" y="3" width="3.8" height="18" rx="0.8"/></svg>
-          </button>
-          <button class="ecomus-grid-btn" id="btn-grid-list" title="List View">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-          </button>
-        </div>
       </div>
     </div>
 
     <!-- Active Filter Chips Strip -->
     <div class="ecomus-active-chips-strip" id="active-chips-container">
-      <!-- Injected via category.js -->
+      <!-- Injected via shop.js -->
     </div>
   </div>
 
-  <!-- ─── ECOMUS SLIDE-OUT FILTER DRAWER ─────────────────────────────────── -->
-  <div class="ecomus-drawer-backdrop" id="filter-drawer-backdrop">
-    <div class="ecomus-drawer">
-      <div class="ecomus-drawer-header">
-        <h3 class="ecomus-drawer-title">Filter Equipment</h3>
-        <button class="ecomus-drawer-close" id="btn-close-filter-drawer" aria-label="Close Filter Drawer">&times;</button>
-      </div>
+  <!-- ─── PRODUCT GRID & SIDEBAR LAYOUT ──────────────────────────────────── -->
+  <main class="ecomus-grid-container shop-sidebar-layout">
+    <div class="ecomus-drawer-backdrop" id="filter-drawer-backdrop">
+      <div class="ecomus-drawer">
+        <div class="ecomus-drawer-header">
+          <button class="ecomus-drawer-close" id="btn-close-filter-drawer" aria-label="Close Filter Drawer">&times;</button>
+        </div>
 
-      <div class="ecomus-drawer-body">
-        <!-- Categories Filter -->
-        <div>
-          <div class="ecomus-filter-section-title">Clinical Categories</div>
-          <div class="ecomus-filter-list" id="drawer-categories-list">
-            <!-- Injected via category.js -->
+        <div class="ecomus-drawer-body">
+          <!-- Authorized Brands Filter -->
+          <div>
+            <div class="ecomus-filter-section-title">Authorized Brands</div>
+            <div class="ecomus-filter-list" id="drawer-brands-list">
+              <!-- Injected via shop.js -->
+            </div>
           </div>
         </div>
 
-        <!-- Authorized Brands Filter -->
-        <div>
-          <div class="ecomus-filter-section-title">Authorized Brands</div>
-          <div class="ecomus-filter-list" id="drawer-brands-list">
-            <!-- Injected via category.js -->
-          </div>
+        <div class="shop-sidebar-enquiry">
+          <span>HOSPITAL &amp; CLINIC ENQUIRIES</span>
+          <h3>Equipping your practice?</h3>
+          <p>Get help selecting equipment and request a quote for your clinic or hospital.</p>
+          <a href="https://wa.me/971508893589?text=Hello%20GYNAEQ%2C%20I%20would%20like%20an%20equipment%20quotation." target="_blank" rel="noopener">WhatsApp quotation <span aria-hidden="true">↗</span></a>
         </div>
-
-        <!-- Warehouse Availability Filter -->
-        <div>
-          <div class="ecomus-filter-section-title">Stock Availability</div>
-          <div class="ecomus-filter-list">
-            <label class="ecomus-filter-item">
-              <span>
-                <input type="checkbox" id="drawer-filter-stock">
-                In Stock (Dubai Central Warehouse)
-              </span>
-              <span class="ecomus-filter-count" id="drawer-stock-count">0</span>
-            </label>
-          </div>
+        <div class="ecomus-drawer-footer">
+          <button class="ecomus-btn-apply" id="btn-apply-drawer-filters">Apply Filters</button>
         </div>
-
-        <!-- Regulatory Approvals -->
-        <div>
-          <div class="ecomus-filter-section-title">Healthcare Approvals</div>
-          <div class="ecomus-filter-list">
-            <label class="ecomus-filter-item">
-              <span><input type="checkbox" class="drawer-cert-cb" value="MoHAP"> UAE MoHAP Registered</span>
-            </label>
-            <label class="ecomus-filter-item">
-              <span><input type="checkbox" class="drawer-cert-cb" value="CE"> CE Marked (Class II/III)</span>
-            </label>
-            <label class="ecomus-filter-item">
-              <span><input type="checkbox" class="drawer-cert-cb" value="FDA"> US FDA 510(k) Cleared</span>
-            </label>
-          </div>
-        </div>
-      </div>
-
-      <div class="ecomus-drawer-footer">
-        <button class="ecomus-btn-apply" id="btn-apply-drawer-filters">Apply Filters</button>
-        <button class="ecomus-btn-reset" id="btn-reset-drawer-filters">Reset</button>
       </div>
     </div>
-  </div>
 
-  <!-- ─── PRODUCT GRID ────────────────────────────────────────────────────── -->
-  <main class="ecomus-grid-container">
-    <div class="ecomus-product-grid grid-4col" id="cat-product-grid">
-      <!-- Rendered via category.js -->
-    </div>
-
-    <!-- Clinical Buying Guide & Standards Box -->
-    <div style="margin-top: 64px; background: #FFFFFF; border-radius: 16px; border: 1px solid var(--beco-border-subtle); padding: 36px; box-shadow: 0 4px 20px rgba(11, 25, 44, 0.03);">
-      <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.45rem; font-weight: 800; color: var(--beco-text-dark); margin-bottom: 12px;">
-        Clinical Procurement Guidelines &amp; DHA / MoHAP Standards
-      </h3>
-      <p style="color: var(--beco-text-secondary); line-height: 1.7; margin-bottom: 24px; font-size: 0.95rem;">
-        When equipping maternal health and obstetrics departments in the United Arab Emirates, medical devices must strictly comply with UAE Ministry of Health and Prevention (MoHAP) registration, Dubai Health Authority (DHA) facility specifications, and Department of Health (DOH) Abu Dhabi biomedical inspection codes.
-      </p>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-        <div style="background: #F8FAFC; padding: 20px; border-radius: 10px; border: 1px solid var(--beco-border-subtle);">
-          <div style="font-weight: 700; color: var(--beco-text-dark); margin-bottom: 6px;">Electrical Safety (IEC 60601-1)</div>
-          <div style="font-size: 0.85rem; color: var(--beco-text-secondary); line-height: 1.5;">All equipment supplied with factory CE conformity declarations and medical-grade hospital isolation transformers.</div>
-        </div>
-        <div style="background: #F8FAFC; padding: 20px; border-radius: 10px; border: 1px solid var(--beco-border-subtle);">
-          <div style="font-weight: 700; color: var(--beco-text-dark); margin-bottom: 6px;">Biomedical Calibration Certificate</div>
-          <div style="font-size: 0.85rem; color: var(--beco-text-secondary); line-height: 1.5;">Each delivery includes an official calibration certificate recognized by DHA and HAAD hospital inspection boards.</div>
-        </div>
-        <div style="background: #F8FAFC; padding: 20px; border-radius: 10px; border: 1px solid var(--beco-border-subtle);">
-          <div style="font-weight: 700; color: var(--beco-text-dark); margin-bottom: 6px;">On-Site Clinical Application Training</div>
-          <div style="font-size: 0.85rem; color: var(--beco-text-secondary); line-height: 1.5;">Factory-trained clinical application specialists provide physician and nurse credentialing upon installation.</div>
-        </div>
+    <div class="reference-results">
+      <div class="ecomus-product-grid grid-5col" id="shop-product-grid">
+        <!-- Rendered via shop.js -->
       </div>
     </div>
   </main>
+
+  <!-- ─── TURNKEY CONSULTATION CALLOUT ───────────────────────────────────── -->
+  <section style="background: #0B192C; color: #FFFFFF; padding: 64px 20px;">
+    <div class="beco-container" style="display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+      <div>
+        <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.85rem; font-weight: 800; margin-bottom: 8px; color: #FFFFFF !important;">Equipping a New Maternity Wing or Ob-Gyn Clinic?</h2>
+        <p style="color: #94A3B8; font-size: 0.95rem; max-width: 620px; line-height: 1.6;">Our clinical biomedical engineers offer architectural layout planning, equipment matching, DHA/MoHAP approval documentation, and consolidated turnkey bundle discounts.</p>
+      </div>
+      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+        <a href="/packages" class="beco-btn" style="background: var(--beco-primary); color: #fff; padding: 12px 28px; border-radius: 6px; font-weight: 700; text-decoration: none;">Explore Turnkey Packages &rarr;</a>
+        <a href="/contact" class="beco-btn" style="background: rgba(255,255,255,0.08); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.2); padding: 12px 24px; border-radius: 6px; font-weight: 700; text-decoration: none;">Request Clinical Meeting</a>
+      </div>
+    </div>
+  </section>
 
   <!-- ─── SHARED RFQ DRAWER ───────────────────────────────────────────────── -->
   <div class="drawer-backdrop" id="rfq-drawer-backdrop">
@@ -296,12 +231,12 @@
           <form id="rfq-submission-form">
             <div class="form-group" style="margin-bottom: 12px;">
               <label class="form-label" for="facility-name" style="font-size: 0.775rem; font-weight: 700; display: block; margin-bottom: 4px;">Healthcare Facility / Hospital Name *</label>
-              <input type="text" id="facility-name" name="facilityName" class="form-input" placeholder="e.g. Danat Al Emarat Hospital" required style="width: 100%; padding: 10px 12px; border: 1px solid var(--beco-border-subtle); border-radius: 6px; font-size: 0.85rem;">
+              <input type="text" id="facility-name" name="facilityName" class="form-input" placeholder="e.g. King's College Hospital Dubai" required style="width: 100%; padding: 10px 12px; border: 1px solid var(--beco-border-subtle); border-radius: 6px; font-size: 0.85rem;">
             </div>
             <div class="form-group-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
               <div class="form-group">
-                <label class="form-label" for="contact-name" style="font-size: 0.775rem; font-weight: 700; display: block; margin-bottom: 4px;">Procurement / Doctor Name *</label>
-                <input type="text" id="contact-name" name="contactName" class="form-input" placeholder="Dr. Huda Al Kindi" required style="width: 100%; padding: 10px 12px; border: 1px solid var(--beco-border-subtle); border-radius: 6px; font-size: 0.85rem;">
+                <label class="form-label" for="contact-name" style="font-size: 0.775rem; font-weight: 700; display: block; margin-bottom: 4px;">Doctor / Procurement *</label>
+                <input type="text" id="contact-name" name="contactName" class="form-input" placeholder="Dr. Sarah Al-Hashimi" required style="width: 100%; padding: 10px 12px; border: 1px solid var(--beco-border-subtle); border-radius: 6px; font-size: 0.85rem;">
               </div>
               <div class="form-group">
                 <label class="form-label" for="contact-phone" style="font-size: 0.775rem; font-weight: 700; display: block; margin-bottom: 4px;">UAE Mobile / WhatsApp *</label>
@@ -321,63 +256,78 @@
     </div>
   </div>
 
-  <!-- ─── FOOTER ──────────────────────────────────────────────────────────── -->
-  <footer class="beco-footer" style="background: #0B192C; color: #94A3B8; padding: 64px 0 32px;">
+  <!-- ─── SECTION: NEWSLETTER BANNER ────────────────────────────────── -->
+  <section class="beco-container" style="margin-top: 48px;">
+    <div class="beco-newsletter-banner">
+      <div>
+        <h3 class="beco-nl-title">Subscribe to our Healthcare Bulletin</h3>
+        <p class="beco-nl-desc">Stay updated on new medical equipment, exclusive hospital tender deals, and expert biomedical tips.</p>
+      </div>
+      <form class="beco-nl-form" onsubmit="event.preventDefault(); alert('Subscribed to GYNAEQ healthcare tender index.');">
+        <input type="email" placeholder="Enter your hospital email..." required class="beco-nl-input">
+        <button type="submit" class="beco-nl-btn">SUBSCRIBE</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER (BeCosmetics 4 Clean Minimal Architecture) ───────────────── -->
+  <footer class="beco-footer">
     <div class="beco-container">
-      <div style="display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 40px; margin-bottom: 48px;">
-        <div>
-          <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.5rem; font-weight: 800; color: #FFFFFF; margin-bottom: 14px;">
+      <div class="beco-footer-grid">
+        <div class="beco-footer-about">
+          <a href="/" class="beco-logo">
             <img class="gynaeq-brand-logo" src="/assets/gynaeq-logo.svg?v=20261022-reference" alt="GYNAEQ" width="189" height="44">
+          </a>
+          <p>Premier distributor of advanced gynecology, obstetrics, and maternal healthcare technologies across the United Arab Emirates and GCC.</p>
+          <div style="font-size: 0.85rem; font-weight: 700; color: var(--beco-text-dark); margin-bottom: 6px;">
+            +971 4 879 2300 (Dubai Office)
           </div>
-          <p style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 18px; color: #94A3B8;">
-            Authorized regional medical equipment distributor for advanced gynecology, obstetrics, fetal medicine, ultrasound and women's health hardware across the United Arab Emirates and GCC.
-          </p>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <span style="background: rgba(255,255,255,0.08); color: #FFFFFF; font-size: 0.725rem; font-weight: 700; padding: 4px 10px; border-radius: 9999px;">✓ UAE MoHAP Approved</span>
-            <span style="background: rgba(255,255,255,0.08); color: #FFFFFF; font-size: 0.725rem; font-weight: 700; padding: 4px 10px; border-radius: 9999px;">✓ CE Mark 0197</span>
+          <div style="font-size: 0.8rem; color: var(--beco-text-muted);">
+            Showroom 4, Al Asayel St, Business Bay, Dubai, UAE
           </div>
         </div>
 
-        <div>
-          <h4 style="color: #FFFFFF; font-size: 0.95rem; font-weight: 700; margin-bottom: 16px;">Equipment Categories</h4>
-          <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem;">
-            <li><a href="/category?id=ultrasound" style="color: #94A3B8;">4D/5D Fetal Ultrasound</a></li>
-            <li><a href="/category?id=fetal-monitoring" style="color: #94A3B8;">Maternal &amp; Fetal CTG Monitors</a></li>
-            <li><a href="/category?id=colposcopy" style="color: #94A3B8;">Digital Video Colposcopes</a></li>
-            <li><a href="/category?id=beds-chairs" style="color: #94A3B8;">Electric Gynaecology Chairs</a></li>
-            <li><a href="/category?id=electrosurgery" style="color: #94A3B8;">LEEP Gynecological RF Surgery</a></li>
+        <div class="beco-footer-col">
+          <h5>DIVISIONS</h5>
+          <ul class="beco-footer-links">
+            <li><a href="/category?id=ultrasound">4D/5D Ultrasound</a></li>
+            <li><a href="/category?id=fetal-monitoring">Fetal &amp; Twins CTG</a></li>
+            <li><a href="/category?id=colposcopy">Video Colposcopy</a></li>
+            <li><a href="/category?id=beds-chairs">Examination Chairs</a></li>
+            <li><a href="/category?id=electrosurgery">Electrosurgery</a></li>
           </ul>
         </div>
 
-        <div>
-          <h4 style="color: #FFFFFF; font-size: 0.95rem; font-weight: 700; margin-bottom: 16px;">Hospital Procurement</h4>
-          <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem;">
-            <li><a href="/packages" style="color: #94A3B8;">Turnkey Maternity Packages</a></li>
-            <li><a href="/shop" style="color: #94A3B8;">All Medical Hardware Catalog</a></li>
-            <li><a href="/about" style="color: #94A3B8;">About GYNAEQ UAE</a></li>
-            <li><a href="/contact" style="color: #94A3B8;">Dubai Showroom &amp; Warehouse</a></li>
-            <li><a href="/admin" style="color: var(--beco-primary); font-weight: 700;">Executive Operations CRM</a></li>
+        <div class="beco-footer-col">
+          <h5>BIOMEDICAL</h5>
+          <ul class="beco-footer-links">
+            <li><a href="/packages">Turnkey Packages</a></li>
+            <li><a href="/contact">Annual Maintenance (AMC)</a></li>
+            <li><a href="/contact">DHA Licensing Dossiers</a></li>
+            <li><a href="/contact">Acoustic Calibration</a></li>
+            <li><a href="/contact">Hospital Tender Desk</a></li>
           </ul>
         </div>
 
-        <div>
-          <h4 style="color: #FFFFFF; font-size: 0.95rem; font-weight: 700; margin-bottom: 16px;">Dubai Headquarters</h4>
-          <p style="font-size: 0.85rem; line-height: 1.6; margin-bottom: 14px; color: #94A3B8;">
-            Building 64, Dubai Healthcare City (DHCC)<br>
-            Biomedical Warehouse: DIP-1 &amp; Al Quoz, Dubai
-          </p>
-          <div style="font-size: 0.85rem; color: #FFFFFF; margin-bottom: 6px; font-weight: 700;">
-            Tel: +971 4 879 2300 | WhatsApp: +971 50 889 3589
-          </div>
-          <div style="font-size: 0.825rem; color: #94A3B8;">
-            Email: sales@gynaeq.com
-          </div>
+        <div class="beco-footer-col">
+          <h5>COMPANY</h5>
+          <ul class="beco-footer-links">
+            <li><a href="/about">About GYNAEQ</a></li>
+            <li><a href="/contact">Dubai Showroom</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Supply</a></li>
+            <li><a href="/contact">Contact Support</a></li>
+          </ul>
         </div>
       </div>
 
-      <div style="padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.775rem; color: #64748B; flex-wrap: wrap; gap: 12px;">
-        <div>&copy; 2026 GYNAEQ Healthcare Technologies LLC. All rights reserved. Dubai, United Arab Emirates.</div>
-        <div>Licensed Medical Hardware Distributor &bull; UAE Ministry of Health and Prevention (MoHAP)</div>
+      <div class="beco-footer-bottom">
+        <div>
+          &copy; 2026 GYNAEQ Healthcare Technologies LLC. All rights reserved.
+        </div>
+        <div>
+          DHA Registered Medical Device Importer &bull; MoHAP Certified
+        </div>
       </div>
     </div>
   </footer>
@@ -385,7 +335,7 @@
   <!-- Scripts -->
   <script src="/js/store.js?v=20261022-catalog-fallback"></script>
   <script src="/js/layout.js"></script>
-  <script src="/js/category.js?v=20261022-no-labels"></script>
+  <script src="/js/shop.js?v=20261022-sidebar-panels"></script>
   <script src="/js/shop-mega.js?v=20261022-aligned"></script>
 </body>
 </html>

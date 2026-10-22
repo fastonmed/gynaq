@@ -98,7 +98,31 @@
     const record=records(key)[0]||{};
     const fields=key==='settings'?[['name','Business name'],['email','Contact email'],['phone','Contact phone'],['address','Address','textarea']]:[['logo','Header logo','image'],['phone','Header phone'],['email','Footer email'],['footerText','Footer description','textarea'],['navigation','Additional navigation links (Label | /path, one per line)','textarea']];
     const value={...record};if(key==='settings'&&!record.id)Object.assign(value,{name:db.company?.name,email:db.company?.email,phone:db.company?.phone,address:db.company?.address});
-    return heading(titles[key],key==='settings'?'Manage the public business contact details.':'Update website branding, contact details and additional menu links.')+`<div class="tk-dashboard-wrap"><form id="record-editor" data-resource="${key}" data-id="${escape(record.id||'')}"><div class="editor-panel" style="max-width:900px"><div class="form-grid">${fields.map(f=>field(f,value)).join('')}</div><button type="submit" class="btn btn-primary" style="margin-top:20px">Save settings</button></div></form></div>`;
+    const passwordPanel = key==='settings'?`
+      <div class="editor-panel" style="max-width:900px;margin-top:28px">
+        <div style="border-bottom:1px solid #e1e8e4;padding-bottom:12px;margin-bottom:20px">
+          <h2 style="font-size:16px;font-weight:700;color:var(--ink);margin:0 0 4px">Security &amp; Password</h2>
+          <p class="help" style="margin:0">Change the master administrator password used to sign in to the GYNAEQ console.</p>
+        </div>
+        <form id="password-form">
+          <div class="form-grid">
+            <div class="field full">
+              <label for="f-current-password">Current password *</label>
+              <input type="password" id="f-current-password" name="currentPassword" required autocomplete="current-password" placeholder="Enter existing password">
+            </div>
+            <div class="field">
+              <label for="f-new-password">New password *</label>
+              <input type="password" id="f-new-password" name="newPassword" minlength="6" required autocomplete="new-password" placeholder="Minimum 6 characters">
+            </div>
+            <div class="field">
+              <label for="f-confirm-password">Confirm new password *</label>
+              <input type="password" id="f-confirm-password" name="confirmPassword" minlength="6" required autocomplete="new-password" placeholder="Re-enter new password">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" id="btn-submit-password" style="margin-top:20px">Update password</button>
+        </form>
+      </div>`:'';
+    return heading(titles[key],key==='settings'?'Manage the public business contact details.':'Update website branding, contact details and additional menu links.')+`<div class="tk-dashboard-wrap"><form id="record-editor" data-resource="${key}" data-id="${escape(record.id||'')}"><div class="editor-panel" style="max-width:900px"><div class="form-grid">${fields.map(f=>field(f,value)).join('')}</div><button type="submit" class="btn btn-primary" style="margin-top:20px">Save settings</button></div></form>${passwordPanel}</div>`;
   }
   function reports() {
     const products=records('products'),enquiries=records('enquiries');const inStock=products.filter(p=>p.inStockCount>0||p.inStock).length;
@@ -141,8 +165,28 @@
     main.querySelectorAll('[data-upload-field]').forEach(input=>input.onchange=async()=>{try{if(!input.files[0])return;const record=await upload(input.files[0]);setImage(input.dataset.uploadField,record.url);notify('Image uploaded to media library.')}catch(e){notify(e.message,true)}});
     main.querySelector('#media-upload')?.addEventListener('change',async e=>{try{for(const file of e.target.files)await upload(file);await render();notify('Images uploaded.')}catch(error){notify(error.message,true)}});
     main.querySelectorAll('[data-pick]').forEach(button=>button.onclick=()=>chooseImage(button.dataset.pick));
-    main.querySelectorAll('[data-format]').forEach(button=>button.onclick=()=>{const text=main.querySelector('#f-content');const prefix={heading:'# ',subheading:'## ',list:'- ',quote:'> '}[button.dataset.format];const start=text.selectionStart;const selected=text.value.slice(start,text.selectionEnd)||'Your text';text.setRangeText((start?'\n':'')+prefix+selected,start,text.selectionEnd,'end');text.focus()});
     main.querySelector('[data-preview]')?.addEventListener('click',()=>{modal(`<h2>Content preview</h2><div class="preview-body">${formatContent(main.querySelector('#f-content').value)}</div>`)});
+    main.querySelector('#password-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const currentPassword = form.querySelector('#f-current-password').value;
+      const newPassword = form.querySelector('#f-new-password').value;
+      const confirmPassword = form.querySelector('#f-confirm-password').value;
+      if (!currentPassword) return notify('Please enter your current password.', true);
+      if (!newPassword || newPassword.length < 6) return notify('New password must be at least 6 characters.', true);
+      if (newPassword !== confirmPassword) return notify('New passwords do not match.', true);
+      const submitBtn = form.querySelector('#btn-submit-password');
+      submitBtn.disabled = true;
+      try {
+        await mutate('/api/admin/change-password', 'POST', { currentPassword, newPassword, confirmPassword });
+        form.reset();
+        notify('Administrator password updated successfully.');
+      } catch (err) {
+        notify(err.message, true);
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
   }
   function formatContent(text) {return String(text||'').split('\n').map(line=>line.startsWith('## ')?`<h3>${escape(line.slice(3))}</h3>`:line.startsWith('# ')?`<h2>${escape(line.slice(2))}</h2>`:line.startsWith('> ')?`<blockquote>${escape(line.slice(2))}</blockquote>`:line.startsWith('- ')?`<p>• ${escape(line.slice(2))}</p>`:`<p>${escape(line)}</p>`).join('');}
   function redrawTable() {const key=route.split('/')[0];const columns=key==='products'?['name','categoryName','brand','price','status']:key==='inventory'?['name','sku','inStockCount','status']:key==='enquiries'?['contactName','facilityName','productRequested','status','createdAt']:configs[key].columns;main.querySelector('#records-table').innerHTML=table(key,columns,filtered(key==='inventory'?'products':key),key!=='enquiries');main.querySelector('.table-summary').textContent=`${filtered(key==='inventory'?'products':key).length} matching records`;}

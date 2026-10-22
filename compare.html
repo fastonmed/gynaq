@@ -9,12 +9,12 @@
 
   <link rel="stylesheet" href="/css/tokens.css?v=20261022-black-footer">
   <link rel="stylesheet" href="/css/style.css?v=20261022-black-footer">
-  <link rel="stylesheet" href="/css/pages.css?v=20261022-black-footer">
+  <link rel="stylesheet" href="/css/pages.css?v=20261022-compact-crumbs">
   <link rel="stylesheet" href="/css/marketplace.css?v=20261022-shared-header">
-  <link rel="stylesheet" href="/css/brand.css?v=20261022-white-footer">
+  <link rel="stylesheet" href="/css/brand.css?v=20261022-compact-crumbs">
   <link rel="stylesheet" href="/css/shop-mega.css?v=20261022-aligned">
 </head>
-<body>
+<body class="marketplace-theme">
 
 
   <!-- Header -->
@@ -41,7 +41,7 @@
         <div class="beco-header-left">
           <!-- Logo -->
           <a href="/" class="beco-logo" title="GYNAEQ Medical Technologies">
-            <img class="gynaeq-brand-logo" src="/assets/gynaeq-logo.svg?v=20261022-reference" alt="GYNAEQ" width="189" height="44">
+            <img class="gynaeq-brand-logo" src="/assets/gynaeq-logo.svg?v=20261022-vector" alt="GYNAEQ" width="189" height="44">
           </a>
 
           <!-- All Categories Dropdown Menu (BeCosmetics 4 Architecture) -->
@@ -156,28 +156,78 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="main-footer">
-    <div class="footer-container">
-      <div class="footer-top-grid">
-        <div class="footer-col-main">
-          <img class="gynaeq-brand-logo" src="/assets/gynaeq-logo.svg?v=20261022-reference" alt="GYNAEQ" width="189" height="44">
-          <p class="footer-brand-desc">
-            Authorized regional distributor of advanced gynecology, obstetrics, fetal medicine, and women's health medical equipment across the United Arab Emirates and Gulf Cooperation Council.
-          </p>
+  <!-- ─── SECTION: NEWSLETTER BANNER ────────────────────────────────── -->
+  <section class="beco-container" style="margin-top: 48px;">
+    <div class="beco-newsletter-banner">
+      <div>
+        <h3 class="beco-nl-title">Subscribe to our Healthcare Bulletin</h3>
+        <p class="beco-nl-desc">Stay updated on new medical equipment, exclusive hospital tender deals, and expert biomedical tips.</p>
+      </div>
+      <form class="beco-nl-form" onsubmit="event.preventDefault(); alert('Subscribed to GYNAEQ healthcare tender index.');">
+        <input type="email" placeholder="Enter your hospital email..." required class="beco-nl-input">
+        <button type="submit" class="beco-nl-btn">SUBSCRIBE</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER (BeCosmetics 4 Clean Minimal Architecture) ───────────────── -->
+  <footer class="beco-footer">
+    <div class="beco-container">
+      <div class="beco-footer-grid">
+        <div class="beco-footer-about">
+          <a href="/" class="beco-logo">
+            <img class="gynaeq-brand-logo" src="/assets/gynaeq-logo.svg?v=20261022-vector" alt="GYNAEQ" width="189" height="44">
+          </a>
+          <p>Premier distributor of advanced gynecology, obstetrics, and maternal healthcare technologies across the United Arab Emirates and GCC.</p>
+          <div style="font-size: 0.85rem; font-weight: 700; color: var(--beco-text-dark); margin-bottom: 6px;">
+            +971 4 879 2300 (Dubai Office)
+          </div>
+          <div style="font-size: 0.8rem; color: var(--beco-text-muted);">
+            Showroom 4, Al Asayel St, Business Bay, Dubai, UAE
+          </div>
         </div>
-        <div class="footer-col">
-          <h4 class="footer-col-title">Navigation</h4>
-          <ul class="footer-links-list">
-            <li><a href="/shop">Medical Hardware Catalog</a></li>
-            <li><a href="/packages">Turnkey Clinic Setup Packages</a></li>
-            <li><a href="/about">About GYNAEQ UAE</a></li>
-            <li><a href="/contact">Dubai Showroom & Warehouse</a></li>
+
+        <div class="beco-footer-col">
+          <h5>DIVISIONS</h5>
+          <ul class="beco-footer-links">
+            <li><a href="/category?id=ultrasound">4D/5D Ultrasound</a></li>
+            <li><a href="/category?id=fetal-monitoring">Fetal &amp; Twins CTG</a></li>
+            <li><a href="/category?id=colposcopy">Video Colposcopy</a></li>
+            <li><a href="/category?id=beds-chairs">Examination Chairs</a></li>
+            <li><a href="/category?id=electrosurgery">Electrosurgery</a></li>
+          </ul>
+        </div>
+
+        <div class="beco-footer-col">
+          <h5>BIOMEDICAL</h5>
+          <ul class="beco-footer-links">
+            <li><a href="/packages">Turnkey Packages</a></li>
+            <li><a href="/contact">Annual Maintenance (AMC)</a></li>
+            <li><a href="/contact">DHA Licensing Dossiers</a></li>
+            <li><a href="/contact">Acoustic Calibration</a></li>
+            <li><a href="/contact">Hospital Tender Desk</a></li>
+          </ul>
+        </div>
+
+        <div class="beco-footer-col">
+          <h5>COMPANY</h5>
+          <ul class="beco-footer-links">
+            <li><a href="/about">About GYNAEQ</a></li>
+            <li><a href="/contact">Dubai Showroom</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Supply</a></li>
+            <li><a href="/contact">Contact Support</a></li>
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">
-        <div>&copy; 2026 GYNAEQ Healthcare Technologies LLC. All rights reserved. Dubai, United Arab Emirates.</div>
+
+      <div class="beco-footer-bottom">
+        <div>
+          &copy; 2026 GYNAEQ Healthcare Technologies LLC. All rights reserved.
+        </div>
+        <div>
+          DHA Registered Medical Device Importer &bull; MoHAP Certified
+        </div>
       </div>
     </div>
   </footer>

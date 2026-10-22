@@ -43,9 +43,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 1. Highlight Active Nav Item
   const currentPath = window.location.pathname;
-  document.querySelectorAll('.nav-links a').forEach(link => {
+  document.querySelectorAll('.beco-nav-links a, .nav-links a').forEach(link => {
     const href = link.getAttribute('href');
-    if (href === currentPath || (currentPath === '/' && href === '/') || (currentPath.includes('shop') && href.includes('shop')) || (currentPath.includes('packages') && href.includes('packages')) || (currentPath.includes('about') && href.includes('about')) || (currentPath.includes('contact') && href.includes('contact'))) {
+    if (!href) return;
+    const isHome = (href === '/' && (currentPath === '/' || currentPath === '/index.html'));
+    const isMatch = isHome || (href !== '/' && (currentPath === href || currentPath.startsWith(href) || (href.endsWith('.html') && currentPath === href.replace('.html', ''))));
+    if (isMatch) {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
