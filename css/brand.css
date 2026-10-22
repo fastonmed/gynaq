@@ -35,3 +35,6 @@ footer .gynaeq-brand-logo,
 }
 
 .beco-separated-section { border-top: 0; }
+
+/* Transparent vector artwork stays crisp and vertically centered. */
+.beco-logo{flex-shrink:0;align-self:center;line-height:0}.beco-header .gynaeq-brand-logo{width:150px;height:auto;display:block}footer .gynaeq-brand-logo,.sidebar-header .gynaeq-brand-logo{filter:none;mix-blend-mode:normal}
