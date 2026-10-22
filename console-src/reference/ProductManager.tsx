@@ -1454,7 +1454,7 @@ export default function ProductManager({
                       if (editorCanvasRef.current) {
                         setProduct((p) => ({
                           ...p,
-                          description: editorCanvasRef.current?.innerHTML || p.description,
+                          description: editorCanvasRef.current?.innerHTML ?? p.description,
                         }));
                       }
                       setDescriptionMode('html');
