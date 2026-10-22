@@ -216,6 +216,7 @@
     await window.gynaeqAdminReady;main=document.getElementById('console-main');nav=document.getElementById('console-nav');
     document.getElementById('mobile-menu').onclick=()=>nav.classList.toggle('mobile-open');
     document.getElementById('console-signout').onclick=async()=>{try{await api('/api/auth/logout',{method:'POST'});location.reload()}catch(e){notify(e.message,true)}};
+    window.addEventListener('gynaeq:products-saved',()=>refresh().then(navigation).catch(e=>notify(e.message,true)));
     main.addEventListener('click',onClick);window.addEventListener('hashchange',()=>render().catch(e=>notify(e.message,true)));
     try{await refresh();await render()}catch(error){main.innerHTML=`<div class="tk-dashboard-wrap"><div class="error-panel">${escape(error.message)} <button class="btn" onclick="location.reload()">Reload</button></div></div>`;}
   });

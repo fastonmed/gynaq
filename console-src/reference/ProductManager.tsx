@@ -1014,8 +1014,8 @@ export default function ProductManager({
         }
         return [saved, ...current];
       });
-      setMessage('Product saved successfully!');
-      setTimeout(() => setMessage(''), 3000);
+      setMessage(saved.status === 'published' ? 'Product saved and published to the shop.' : 'Draft saved. Choose Published and save to show it in the shop.');
+      window.dispatchEvent(new Event('gynaeq:products-saved')); 
       return true;
     } catch (err: any) {
       alert(`Save failed: ${err.message || err}`);

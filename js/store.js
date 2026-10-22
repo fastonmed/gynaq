@@ -75,9 +75,10 @@ class GynaeqStore {
   async init() {
     if (this._initializing) return this._initializing;
     this._initializing = (async () => {
-      for (const url of ['/api/data', '/data/catalog.json']) {
+      const apiBase = ['gynaeq.com', 'www.gynaeq.com'].includes(location.hostname) ? 'https://api.gynaeq.com' : '';
+      for (const url of [apiBase + '/api/data', '/data/catalog.json']) {
         try {
-          const response = await fetch(url);
+          const response = await fetch(url, { cache: 'no-store', credentials: 'omit' });
           if (!response.ok) throw new Error('Catalog unavailable');
           const data = await response.json();
           if (!Array.isArray(data.products) || !data.products.length || !Array.isArray(data.categories)) throw new Error('Empty catalog');
