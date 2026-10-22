@@ -226,6 +226,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     `).join('');
   }
 
+  // Rich sections saved by the reference editor are sanitized by the backend.
+  if (p.technicalDescription) {
+    const target = document.getElementById('prod-specs-table');
+    if (target) { const section = document.createElement('div'); section.className = 'product-rich-content'; section.innerHTML = p.technicalDescription; target.replaceWith(section); }
+  }
+  if (p.clinicalDescription && clinicalFeaturesEl) clinicalFeaturesEl.innerHTML = p.clinicalDescription;
+  if (p.complianceDescription && certListEl) certListEl.innerHTML = '<li>' + p.complianceDescription + '</li>';
+
   // 9. Tab Switching
   document.querySelectorAll('.faston-tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {

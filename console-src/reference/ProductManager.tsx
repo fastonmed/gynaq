@@ -440,13 +440,15 @@ function SearchableCombobox({
 export default function ProductManager({
   mode,
   id,
-  initialStatus = 'published',
+  initialStatus = 'all',
 }: {
   mode: 'list' | 'editor';
   id?: string;
   initialStatus?: 'all' | 'published' | 'draft' | 'trash';
 }) {
   const [products, setProducts] = useState<Product[]>([]);
+  const [knownCategories, setKnownCategories] = useState<string[]>([]);
+  const [knownBrands, setKnownBrands] = useState<string[]>([]);
   const [parentCategories, setParentCategories] = useState<string[]>([]);
   const [product, setProduct] = useState<Product>(blank());
   const [query, setQuery] = useState('');
@@ -503,6 +505,8 @@ export default function ProductManager({
         if (!active) return;
         const all = x.products || [];
         setProducts(all);
+        setKnownCategories((x.categories || []).map((c:any)=>c.name));
+        setKnownBrands((x.brands || []).map((b:any)=>b.name));
         setParentCategories((x.parentCategories || []).map(decodeHtml));
         if (id) {
           const p = all.find((v: Product) => v.id === id || v.slug === id);
@@ -828,17 +832,17 @@ export default function ProductManager({
   // Decoded category counts & existing brands
   const { categories, categoryCounts, brands } = useMemo(() => {
     const counts: Record<string, number> = {};
-    const brandSet = new Set<string>(product.brand ? [decodeHtml(product.brand)] : []);
+    const brandSet = new Set<string>([...knownBrands, ...(product.brand ? [decodeHtml(product.brand)] : [])]);
     for (const p of products) {
       const cat = decodeHtml(p.category?.trim()) || 'Uncategorized';
       counts[cat] = (counts[cat] || 0) + 1;
       const b = decodeHtml(p.brand?.trim());
       if (b) brandSet.add(b);
     }
-    const cats = [...new Set([...Object.keys(counts), ...products.map(item => item.parentCategory).filter(Boolean).map(decodeHtml), ...(product.category ? [decodeHtml(product.category)] : [])])].sort((a, b) => a.localeCompare(b));
+    const cats = [...new Set([...knownCategories, ...Object.keys(counts), ...products.map(item => item.parentCategory).filter(Boolean).map(decodeHtml), ...(product.category ? [decodeHtml(product.category)] : [])])].sort((a, b) => a.localeCompare(b));
     const sortedBrands = Array.from(brandSet).sort((a, b) => a.localeCompare(b));
     return { categories: cats, categoryCounts: counts, brands: sortedBrands };
-  }, [products, product.category, product.brand]);
+  }, [products, product.category, product.brand, knownCategories, knownBrands]);
 
   // Filtered products list
   const filtered = useMemo(() => {

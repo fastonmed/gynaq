@@ -107,6 +107,8 @@
   async function render() {
     const parts=decodeURIComponent(location.hash.slice(1)||'dashboard').split('/');route=parts.join('/');const key=parts[0];search='';statusFilter='all';navigation();nav.classList.remove('mobile-open');
     document.querySelector('#breadcrumb').textContent=(titles[key]||'Dashboard')+' / '+(parts[1]?(parts[1]==='new'?'Add new':'Edit'):'Overview');
+    window.ReferenceConsole?.unmount();
+    if (key==='products' && window.ReferenceConsole) { main.innerHTML='<div id="reference-editor-root"></div>';window.ReferenceConsole.mount(main.firstElementChild,route,db);main.scrollTop=0;return; }
     main.innerHTML=key==='dashboard'?dashboard():key==='media'?media():['siteChrome','settings'].includes(key)?settings(key):key==='reports'?reports():parts[1]&&(key==='products'||configs[key])?editor(key,parts[1]):['products','inventory','enquiries'].includes(key)||configs[key]?listing(key):dashboard();
     main.scrollTop=0;bind();
   }
