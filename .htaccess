@@ -9,3 +9,10 @@ RewriteRule ^ https://www.gynaeq.com%{REQUEST_URI} [R=301,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(shop|product|category|about|contact|packages|compare|admin|blog|post|page)/?$ $1.html [L]
+
+# Revalidate the admin entry page so updated script versions reach returning users.
+<IfModule mod_headers.c>
+  <Files "admin.html">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </Files>
+</IfModule>
