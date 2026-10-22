@@ -460,6 +460,7 @@ export default function ProductManager({
   const [isDeletingBulk, setIsDeletingBulk] = useState(false);
   const [statusFilter, setStatusFilter] = useState<'all' | 'published' | 'draft' | 'trash'>(initialStatus);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState('');
 
   // Description Editor State
   const [descriptionMode, setDescriptionMode] = useState<'visual' | 'html'>('visual');
@@ -499,8 +500,9 @@ export default function ProductManager({
   useEffect(() => {
     let active = true;
     setLoading(true);
+    setLoadError('');
     referenceFetch(mode === 'list' ? '/api/admin/products?view=list' : '/api/admin/products', { cache: 'no-store' })
-      .then((r) => r.json())
+      .then(async (r) => { const data = await r.json(); if (!r.ok) throw new Error(data.error || 'Could not load products. Sign in again.'); return data; })
       .then((x) => {
         if (!active) return;
         const all = x.products || [];
@@ -510,6 +512,7 @@ export default function ProductManager({
         setParentCategories((x.parentCategories || []).map(decodeHtml));
         if (id) {
           const p = all.find((v: Product) => v.id === id || v.slug === id);
+          if (!p) throw new Error('Product could not be found. Reopen it from All Products.');
           if (p) {
             setProduct({ ...blank(), ...p });
             setSpecText(
@@ -531,7 +534,7 @@ export default function ProductManager({
           }, 0);
         }
       })
-      .catch((err) => console.error('Failed to load products:', err))
+      .catch((err) => { if (active) setLoadError(err.message || 'Could not load product.'); })
       .finally(() => {
         if (active) setLoading(false);
       });
@@ -953,6 +956,7 @@ export default function ProductManager({
 
   // Save product (editor mode)
   const saveProduct = async (override?: Partial<Product>): Promise<boolean> => {
+    if (loading || loadError || isSaving) return false;
     setIsSaving(true);
     try {
       const specifications = Object.fromEntries(
@@ -1373,7 +1377,7 @@ export default function ProductManager({
             <button
               className="tk-page-action"
               onClick={() => saveProduct()}
-              disabled={isUploading || isSaving}
+              disabled={loading || !!loadError || isUploading || isSaving}
             >
               <Save size={15} /> {isSaving ? 'Saving...' : 'Save Product'}
             </button>
@@ -1381,7 +1385,9 @@ export default function ProductManager({
         }
       />
 
-      <main className="tk-editor-page">
+      {loading && <p role="status" className="tk-save-message">Loading current product details…</p>}
+      {loadError && <p role="alert" className="error-panel">{loadError}</p>}
+      <main className="tk-editor-page" inert={loading || !!loadError || isSaving}>
         {message && <div className="tk-save-message">{message}</div>}
 
         <div className="tk-product-editor">

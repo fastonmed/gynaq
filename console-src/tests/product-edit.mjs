@@ -27,5 +27,10 @@ try {
  await referenceFetch('/api/admin/products',{method:'POST',body:JSON.stringify({...saved.product,description:''})});
  data=await (await referenceFetch('/api/admin/products')).json();
  assert.equal(data.products[0].description,'');
+ const realFetch=globalThis.fetch;
+ let reads=0;
+ globalThis.fetch=async(path,options)=>{const response=await realFetch(path,options); if(path==='/api/data' && ++reads===2){const db=await response.json(); db.products[0].description='Unexpected old data'; return Response.json(db);} return response;};
+ const rejected=await referenceFetch('/api/admin/products',{method:'POST',body:JSON.stringify({...data.products[0],description:'Must remain saved'})});
+ assert.equal(rejected.status,409);
  console.log('PASS: rich description edit/reload, cleared content, zero price and stock quantity');
 } finally {await rm(temp,{recursive:true,force:true});}

@@ -18,7 +18,14 @@ export async function referenceFetch(path:string,options:any={}){
   const ready={...existing,...body,title:body.name||existing?.title,price:Number(body.salePrice??body.regularPrice??existing?.price??0),sellingPrice:Number(body.salePrice??body.regularPrice??existing?.price??0),categoryId:category?.id||existing?.categoryId,brandId:brand?.id||existing?.brandId,categoryName:body.category||existing?.categoryName,inStock:quantity>0,inStockCount:quantity,shortDesc:body.shortDescription??existing?.shortDesc,description:body.description??existing?.description,fullHtmlDesc:body.description??existing?.fullHtmlDesc};
   const savedResponse=await fetch(base+'/api/products'+(existing?'/'+encodeURIComponent(existing.id):''),{method:existing?'PUT':'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify(ready)});
   const saved=await savedResponse.json();
-  if(saved.product)saved.product=editorProduct(saved.product);
+  if(savedResponse.ok && saved.product){
+   const check=await fetch(base+'/api/data',{credentials:'include',cache:'no-store'});
+   const current=await check.json();
+   const persisted=(current.products||[]).find((p:any)=>p.id===saved.product.id);
+   const fields=['name','description','fullHtmlDesc','regularPrice','salePrice','inStockCount','technicalDescription','clinicalDescription','complianceDescription','image','status'];
+   if(!check.ok || !persisted || fields.some(key=>JSON.stringify(persisted[key])!==JSON.stringify(saved.product[key]))) return json({error:'The saved product could not be verified. Your edits are still in this editor. Please try Save again.'},409);
+   saved.product=editorProduct(persisted);
+  }
   return json(saved,savedResponse.status);
  }
  if(path==='/api/admin/media'&&(!options.method||options.method==='GET')){
